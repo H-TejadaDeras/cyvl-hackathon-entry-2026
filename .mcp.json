@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "cyvl": {
+      "type": "http",
+      "url": "https://i3.cyvl.app/mcp"
+    }
+  }
+}
