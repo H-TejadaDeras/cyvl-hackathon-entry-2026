@@ -94,7 +94,7 @@ add_text(s, Inches(0.8), Inches(1.8), Inches(11.7), Inches(2.0),
          "Find the puddle before\nit floods the basement.", size=54, bold=True,
          color=WHITE)
 add_text(s, Inches(0.8), Inches(4.45), Inches(11.7), Inches(0.7),
-         "Street-level drainage risk scoring from LiDAR + pavement + 311.",
+         "Curb-level drainage risk, surveyed in days — not a FEMA cycle.",
          size=22, color=ACCENT)
 add_text(s, Inches(0.8), Inches(6.4), Inches(11.7), Inches(0.4),
          "Cyvl Hackathon 2026  ·  Somerville, MA demo footprint",
@@ -106,7 +106,7 @@ add_text(s, Inches(0.8), Inches(6.4), Inches(11.7), Inches(0.4),
 # ---------------------------------------------------------------------------
 s = prs.slides.add_slide(BLANK)
 add_bg(s)
-title_bar(s, "THE PROBLEM", "Cities and insurers price flood risk with the wrong map.")
+title_bar(s, "THE PROBLEM", "Existing flood maps miss where streets actually fail.")
 
 # Two-column problem cards
 col_y = Inches(2.0)
@@ -119,13 +119,14 @@ add_rect(s, Inches(0.6), col_y, col_w, Inches(0.5), fill=NAVY)
 add_text(s, Inches(0.85), col_y + Inches(0.08), col_w, Inches(0.4),
          "FOR INSURERS", size=12, bold=True, color=WHITE)
 add_text(s, Inches(0.85), col_y + Inches(0.7), col_w - Inches(0.5), Inches(0.6),
-         "FEMA zones stop at the parcel.", size=18, bold=True, color=NAVY)
+         "FEMA maps are coarse and stale.", size=18, bold=True, color=NAVY)
 add_text(s, Inches(0.85), col_y + Inches(1.4), col_w - Inches(0.5), Inches(3.0),
-         "Two homes on the same block — one at a low point with a\n"
-         "failing catch basin, one on a crest — pay the same premium.\n\n"
-         "Underwriters have no measured, coordinate-level signal\n"
-         "for which addresses pond. Cat modelers (RMS, Verisk)\n"
-         "lack sub-zone drainage granularity.",
+         "FEMA flood maps refresh on 5–10 year cycles and\n"
+         "average risk across entire zones. The crest house and\n"
+         "the low-point house on the same block carry the same\n"
+         "premium — and most flood losses happen outside the\n"
+         "official zone, at street drainage failures the map\n"
+         "never sees.",
          size=13, color=NAVY)
 
 # Card 2 — Cities
@@ -135,13 +136,14 @@ add_rect(s, x2, col_y, col_w, Inches(0.5), fill=NAVY)
 add_text(s, x2 + Inches(0.25), col_y + Inches(0.08), col_w, Inches(0.4),
          "FOR CITIES", size=12, bold=True, color=WHITE)
 add_text(s, x2 + Inches(0.25), col_y + Inches(0.7), col_w - Inches(0.5), Inches(0.6),
-         "Budgets follow complaints, not water.", size=18, bold=True, color=NAVY)
+         "Street drainage gaps stay invisible.", size=18, bold=True, color=NAVY)
 add_text(s, x2 + Inches(0.25), col_y + Inches(1.4), col_w - Inches(0.5), Inches(3.0),
+         "Undersized basins, missing inlets, and ponding pockets\n"
+         "don't appear on any flood map. Cities only learn about\n"
+         "them through 311 complaints, after basements flood.\n\n"
          "Streets get repaved over unresolved drainage and fail\n"
-         "again in 18 months. The loudest neighborhood wins\n"
-         "the budget; the most hydraulically stressed one doesn't.\n\n"
-         "Climate change compresses storms into shorter bursts —\n"
-         "1970s-era basins now see 2020s-era loads.",
+         "again in 18 months — and 1970s-era basins now carry\n"
+         "2020s-era storm loads.",
          size=13, color=NAVY)
 
 add_footer(s, 2)
@@ -151,7 +153,7 @@ add_footer(s, 2)
 # ---------------------------------------------------------------------------
 s = prs.slides.add_slide(BLANK)
 add_bg(s)
-title_bar(s, "THE SOLUTION", "CurbRisk: a measured, address-level flood score.")
+title_bar(s, "THE SOLUTION", "Find every street drainage gap — in days, not years.")
 
 # Pipeline arrow with 4 stages
 stages = [
@@ -190,8 +192,8 @@ add_rect(s, Inches(0.75), Inches(4.4), total_w, Inches(1.5), fill=NAVY)
 add_text(s, Inches(1.0), Inches(4.5), total_w, Inches(0.5),
          "WHAT COMES OUT", size=12, bold=True, color=ACCENT)
 add_text(s, Inches(1.0), Inches(4.9), total_w, Inches(1.0),
-         "A 0–100 CurbRisk score per street segment, a browser-viewable 3D cross-section\n"
-         "of every flagged low point, and an API an underwriter queries by address in < 10 s.",
+         "Every drainage gap on every street, scored 0–100 per 30-ft segment, with a\n"
+         "browser-viewable 3D cross-section of each low point. A city in weeks, not a FEMA cycle.",
          size=16, color=WHITE)
 
 # Footer stat strip
@@ -206,7 +208,7 @@ add_footer(s, 3)
 # ---------------------------------------------------------------------------
 s = prs.slides.add_slide(BLANK)
 add_bg(s)
-title_bar(s, "WHY IT WINS", "Four data layers nobody else has integrated.")
+title_bar(s, "WHY IT WINS", "Faster, finer, and built around the street itself.")
 
 # Four quadrant boxes
 qx0 = Inches(0.75)
@@ -216,14 +218,14 @@ qh = Inches(2.1)
 gap = Inches(0.2)
 
 quads = [
-    ("Measured terrain, not assumed", ACCENT,
-     "Mobile LiDAR captures the 2-inch crown differential that 1-meter DEMs miss. We see where water actually goes."),
-    ("Pavement + drainage in one model", WATER,
-     "Cyvl PCI scores tell us where the road is already weak; terrain tells us where water lands on it. The intersection is where potholes reappear."),
-    ("311 as ground truth", NAVY,
-     "144 Somerville flooding reports validate every modeled low point. If complaints cluster on our high-risk segments, the model is right."),
-    ("Autodesk-ready, browser-viewable", RISK,
-     "Every flagged low point exports as an APS cross-section an underwriter opens in a browser — and a civil engineer opens in Civil 3D."),
+    ("Days, not decades", ACCENT,
+     "FEMA flood maps refresh on 5–10 year cycles. Cyvl mobile LiDAR scans a city in a single drive; CurbRisk re-scores the network in days. Drainage projects don't have to wait on a federal map update."),
+    ("Curb-level, not zone-level", WATER,
+     "FEMA averages risk across whole zones. CurbRisk scores every 30-ft pavement segment and every detected low point — measured terrain, local impervious cover, real complaint history."),
+    ("Street drainage gaps, not just floodplains", NAVY,
+     "Identifies undersized basins, missing inlets, ponding pockets, and flow-concentration points — the failure mode that floods basements outside the official flood zone, that no flood map shows."),
+    ("Validated + Autodesk-delivered", RISK,
+     "144 Somerville flooding 311s ground-truth the model. Every flagged location exports as a browser-viewable APS cross-section — engineers in Civil 3D, underwriters in a browser."),
 ]
 for i, (head, color, body) in enumerate(quads):
     r = i // 2
@@ -239,7 +241,7 @@ for i, (head, color, body) in enumerate(quads):
 
 # Bottom moat line
 add_text(s, Inches(0.75), Inches(6.6), Inches(12), Inches(0.4),
-         "The moat: nobody else holds measured LiDAR + pavement condition + drainage hydrology + Autodesk delivery in one stack.",
+         "Where FEMA gives you a polygon every 5 years, CurbRisk gives you every drainage gap on every street, this month.",
          size=12, bold=True, color=ACCENT)
 
 add_footer(s, 4)
@@ -394,10 +396,10 @@ for i, (kicker, head, body) in enumerate(cards):
 
 # Closing line
 add_text(s, Inches(0.8), Inches(5.8), Inches(11.7), Inches(0.6),
-         "Stop pricing flood risk with a map that ends at the parcel.",
+         "Stop waiting on a federal map cycle to find a failing catch basin.",
          size=20, bold=True, color=ACCENT)
 add_text(s, Inches(0.8), Inches(6.35), Inches(11.7), Inches(0.5),
-         "Start pricing it with the one that ends at the curb.",
+         "Score every street drainage gap, every block, every month.",
          size=20, bold=True, color=WHITE)
 
 add_footer(s, 7)
