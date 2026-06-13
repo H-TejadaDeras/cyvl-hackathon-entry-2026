@@ -21,10 +21,12 @@ ingest/lidar_ground.py  shared ground sampler (low-percentile Z, KDTree)
 ingest/opendata.py      Somerville 311 flood complaints + storm drains (cached)
 scoring/topo.py         street profiles → low points, catchment, ponding volume
 scoring/risk.py         CurbRisk = topo(40)+pavement(30)+basin(20)+complaint(10)
+ingest/imagery.py       per-segment nearest Cyvl street imagery index (for Claude)
+output/narrative.py     Claude summary for top risks (structured offline fallback)
 output/crosssection.py  ezdxf DXF + SVG cross-section per low point
 output/aps_upload.py    DXF → Autodesk APS Viewer URN (SVG fallback w/o creds)
-api/main.py             FastAPI: GET /risk?address=… → JSON report + cross-section
-output/narrative.py     Claude summary for top risks (structured offline fallback)
+api/main.py             FastAPI: GET /risk?address=… → JSON report + cross-section;
+                        GET /map → ranked risk map of the whole demo tile
 ```
 
 ## Run
@@ -43,7 +45,10 @@ Optional Claude summaries (the root `.env` is loaded automatically):
 ANTHROPIC_API_KEY=… python -m curbrisk.output.narrative
 ```
 The API also accepts coordinates: `/risk?lat=42.3855&lon=-71.1020`. Queries
-outside the LiDAR tile return a clear out-of-coverage response.
+outside the LiDAR tile return a clear out-of-coverage response. The ranked
+risk map is at `/map` — every block colored by CurbRisk band, with modeled
+low points, storm drains, and 311 flood reports overlaid and click-through to
+each block's full report.
 
 ## Scoring model (auditable, weights in `config.py`)
 | component | weight | signal |

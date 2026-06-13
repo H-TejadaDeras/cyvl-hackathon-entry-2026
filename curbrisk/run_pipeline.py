@@ -8,14 +8,16 @@ Stages (each is independently runnable as `python -m curbrisk.<module>`):
   3. ingest.opendata      — fetch 311 flood complaints + storm drains
   4. scoring.topo         — low points, catchment, ponding from the point cloud
   5. scoring.risk         — CurbRisk score + SQLite cache
-  6. output.crosssection  — DXF + SVG cross-sections per low point
-  7. output.aps_upload    — translate to APS Viewer (or SVG fallback)
+  6. ingest.imagery       — per-segment nearest Cyvl street imagery index
+  7. output.narrative     — Claude (or structured) summaries for top risks
+  8. output.crosssection  — DXF + SVG cross-sections per low point
+  9. output.aps_upload    — translate to APS Viewer (or SVG fallback)
 """
 from __future__ import annotations
 
 import time
 
-from curbrisk.ingest import cyvl_ingest, opendata, lidar_dem
+from curbrisk.ingest import cyvl_ingest, opendata, lidar_dem, imagery
 from curbrisk.scoring import topo, risk
 from curbrisk.output import crosssection, aps_upload, narrative
 
@@ -31,6 +33,7 @@ def main(build_dem: bool = True) -> None:
     steps += [
         ("Topo / low points", topo.analyze),
         ("Risk scoring", risk.compute),
+        ("Street imagery index", imagery.main),
         ("Plain-English summaries", narrative.generate),
         ("Cross-sections", crosssection.main),
         ("APS upload", aps_upload.upload_all),

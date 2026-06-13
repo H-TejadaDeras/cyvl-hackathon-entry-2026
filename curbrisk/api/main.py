@@ -7,6 +7,9 @@ well under 10 seconds (typically <1s after the first geocode).
 Endpoints:
   GET /risk?address=...   -> full CurbRisk report for the nearest scored segment
   GET /crosssection/{id}.svg -> the rendered cross-section (APS fallback / demo)
+  GET /map                -> ranked risk map of the whole demo tile (Phase 5)
+  GET /segments.geojson   -> scored segments (risk band per block) for the map
+  GET /layers/{name}.geojson -> supporting layers (low points, drains, 311)
   GET /health             -> liveness + dataset summary
   GET /                   -> minimal demo page with an address box
 
@@ -188,6 +191,137 @@ def crosssection(segment_id: str):
     return FileResponse(p, media_type="image/svg+xml")
 
 
+@app.get("/segments.geojson")
+def segments_geojson():
+    """Scored segments (one LineString per 30-ft block) for the ranked map."""
+    if not C.SCORES_OUT.exists():
+        raise HTTPException(503, "risk dataset not built — run the pipeline first")
+    return JSONResponse(json.loads(C.SCORES_OUT.read_text()))
+
+
+_LAYERS = {
+    "low_points": C.LOWPOINTS_OUT,
+    "storm_drains": C.PROCESSED_DIR / "storm_drains.geojson",
+    "flood_complaints": C.PROCESSED_DIR / "flood_complaints.geojson",
+    "catch_basins": C.BASINS_OUT,
+}
+
+
+@app.get("/layers/{name}.geojson")
+def layer_geojson(name: str):
+    """Supporting overlays for the map: low points, drains, 311 complaints."""
+    path = _LAYERS.get(name)
+    if path is None:
+        raise HTTPException(404, f"unknown layer '{name}'")
+    if not path.exists():
+        # an empty-but-valid collection keeps the map happy when a layer is sparse
+        return JSONResponse({"type": "FeatureCollection", "features": []})
+    return JSONResponse(json.loads(path.read_text()))
+
+
+@app.get("/map", response_class=HTMLResponse)
+def risk_map():
+    w, s, e, n = C.LIDAR_BOUNDS_WGS84
+    cx, cy = (w + e) / 2, (s + n) / 2
+    return """<!doctype html><html><head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>CurbRisk — ranked drainage risk map</title>
+<link rel=stylesheet href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+:root{--ink:#1a1f24;--mut:#5c6772;--line:#e3e6ea}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink)}
+header{background:#0f1b2d;color:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+header h1{margin:0;font-size:18px;letter-spacing:-.3px}
+header a{color:#9fb1c9;font-size:14px;text-decoration:none}
+header a:hover{color:#fff}
+#map{position:absolute;top:54px;bottom:0;left:0;right:0}
+.legend{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;line-height:1.7;font-size:13px;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.legend b{display:block;margin-bottom:4px;font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:var(--mut)}
+.legend i{width:22px;height:5px;display:inline-block;border-radius:3px;margin-right:8px;vertical-align:middle}
+.legend .dot{width:12px;height:12px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle;border:1px solid #fff;box-shadow:0 0 0 1px #999}
+.leaflet-popup-content{font:14px/1.45 system-ui,sans-serif}
+.pp h3{margin:0 0 4px;font-size:15px}
+.pp .sc{font-size:26px;font-weight:800;line-height:1}
+.pp .band{display:inline-block;padding:2px 9px;border-radius:999px;color:#fff;font-weight:700;font-size:12px;margin-left:6px;vertical-align:middle}
+.pp .row{color:var(--mut);font-size:13px;margin-top:5px}
+.pp a{display:inline-block;margin-top:8px;color:#1763d6;font-weight:600;text-decoration:none}
+</style></head><body>
+<header><h1>CurbRisk — ranked drainage risk · Somerville demo tile</h1>
+<a href="/">← address lookup</a></header>
+<div id=map></div>
+<script>
+const COL={High:'#d9352a',Moderate:'#e8a33d',Low:'#2e8b57'};
+const map=L.map('map').setView([__CY__,__CX__],17);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+  {attribution:'© OpenStreetMap © CARTO',maxZoom:20}).addTo(map);
+
+function popupHtml(p){
+  const col=COL[p.risk_band]||'#888';
+  return '<div class=pp><h3>'+(p.street||'segment')+'</h3>'
+    +'<span class=sc style="color:'+col+'">'+(p.curb_risk??'—')+'</span>'
+    +'<span class=band style="background:'+col+'">'+(p.risk_band||'')+'</span>'
+    +'<div class=row>topo '+(p.topo_pts??'—')+' · pavement '+(p.pavement_pts??'—')
+    +' · drainage '+(p.basin_pts??'—')+' · 311 '+(p.complaint_pts??'—')+'</div>'
+    +'<div class=row>PCI '+(p.pci??'—')+' · '+(p.has_lidar?'LiDAR-measured':'topo-imputed')
+    +' · action: '+(p.recommended_action||'—')+'</div>'
+    +'<a href="/risk?lat='+p._lat+'&lon='+p._lon+'" target=_blank>full report (JSON) ↗</a></div>';
+}
+
+fetch('/segments.geojson').then(r=>r.json()).then(gj=>{
+  const layer=L.geoJSON(gj,{
+    style:f=>({color:COL[f.properties.risk_band]||'#888',
+      weight:f.properties.risk_band==='High'?8:5,opacity:.9}),
+    onEachFeature:(f,lyr)=>{
+      // a representative coordinate for the address-query deep link
+      const c=f.geometry.coordinates, m=c[Math.floor(c.length/2)];
+      f.properties._lon=m[0]; f.properties._lat=m[1];
+      lyr.bindPopup(popupHtml(f.properties));
+      lyr.on('mouseover',()=>lyr.setStyle({weight:9}));
+      lyr.on('mouseout',()=>layer.resetStyle(lyr));
+    }
+  }).addTo(map);
+  try{ map.fitBounds(layer.getBounds().pad(0.05)); }catch(e){}
+});
+
+// supporting overlays
+fetch('/layers/low_points.geojson').then(r=>r.json()).then(gj=>{
+  L.geoJSON(gj,{pointToLayer:(f,ll)=>L.circleMarker(ll,
+    {radius:7,color:'#1763d6',weight:2,fillColor:'#5aa0ff',fillOpacity:.9})
+    .bindPopup('<b>Modeled low point</b><br>'+(f.properties.street||'')
+      +'<br>ponding '+(f.properties.ponding_depth_in??'—')+' in @ 2&quot; storm'
+      +'<br>catchment '+(f.properties.catchment_sqft??'—')+' sqft')}).addTo(map);
+});
+fetch('/layers/storm_drains.geojson').then(r=>r.json()).then(gj=>{
+  L.geoJSON(gj,{pointToLayer:(f,ll)=>L.circleMarker(ll,
+    {radius:5,color:'#2c9c8f',weight:2,fillColor:'#7fd6c9',fillOpacity:.9})
+    .bindPopup('Storm drain')}).addTo(map);
+});
+fetch('/layers/flood_complaints.geojson').then(r=>r.json()).then(gj=>{
+  L.geoJSON(gj,{pointToLayer:(f,ll)=>L.circleMarker(ll,
+    {radius:6,color:'#b03060',weight:2,fillColor:'#e87da6',fillOpacity:.9})
+    .bindPopup('<b>311 flood report</b><br>'+(f.properties.case_title||'')
+      +'<br>'+(f.properties.date||''))}).addTo(map);
+});
+
+const legend=L.control({position:'bottomright'});
+legend.onAdd=function(){
+  const d=L.DomUtil.create('div','legend');
+  d.innerHTML='<b>CurbRisk band</b>'
+    +'<div><i style="background:#d9352a"></i>High</div>'
+    +'<div><i style="background:#e8a33d"></i>Moderate</div>'
+    +'<div><i style="background:#2e8b57"></i>Low</div>'
+    +'<b style="margin-top:8px">Overlays</b>'
+    +'<div><span class=dot style="background:#5aa0ff"></span>Modeled low point</div>'
+    +'<div><span class=dot style="background:#7fd6c9"></span>Storm drain</div>'
+    +'<div><span class=dot style="background:#e87da6"></span>311 flood report</div>';
+  return d;
+};
+legend.addTo(map);
+</script></body></html>""".replace("__CY__", str(cy)).replace("__CX__", str(cx))
+
+
 @app.get("/", response_class=HTMLResponse)
 def home():
     return """<!doctype html><html><head><meta charset=utf-8>
@@ -235,9 +369,10 @@ pre{background:#0f1b2d;color:#cfe0f5;padding:14px;border-radius:10px;overflow:au
 .err{color:#c0392b;font-weight:600}
 .muted{color:var(--mut)}
 </style></head><body>
-<header><div class=wrap>
-<h1>CurbRisk</h1>
-<p>Street-level drainage risk for underwriting · Somerville, MA demo tile</p>
+<header><div class=wrap style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+<div><h1>CurbRisk</h1>
+<p>Street-level drainage risk for underwriting · Somerville, MA demo tile</p></div>
+<a href="/map" style="color:#9fb1c9;font-size:14px;text-decoration:none">Ranked risk map →</a>
 </div></header>
 <div class=wrap>
 <div class=search>
