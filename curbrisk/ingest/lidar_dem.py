@@ -19,15 +19,22 @@ import time
 
 import numpy as np
 import laspy
+import geopandas as gpd
 import rasterio
+from rasterio.features import geometry_mask
 from rasterio.transform import from_origin
 from scipy import ndimage
 
 from curbrisk import config as C
 
+CORRIDOR_BUFFER_M = 8.0  # keep DEM cells within this distance of pavement
+
 GROUND_QUANTILE = 0.10   # per-cell low quantile used as the ground estimate
-Z_CLIP_LOW, Z_CLIP_HIGH = 0.001, 0.999  # global percentile clip for outliers
-CHUNK = 5_000_000        # points per read chunk (keeps memory bounded)
+# This cloud's ground sits in the lower Z band; building tops / tree canopy are
+# the highest points. Drop the lowest sliver (multipath) and the top decile
+# (structures/vegetation) before gridding so cells read bare-earth, not rooftops.
+Z_CLIP_LOW_PCT = 0.5     # drop points below this global percentile (low multipath)
+Z_CLIP_HIGH_PCT = 90.0   # drop points above this global percentile (buildings/trees)
 
 
 def _accumulate_low_z(grid_min: np.ndarray, ix: np.ndarray, iy: np.ndarray, z: np.ndarray) -> None:
@@ -48,8 +55,8 @@ def build_dem() -> None:
     t0 = time.time()
     las = laspy.read(C.LIDAR_LAZ)
     z_all = np.asarray(las.z, dtype=np.float64)
-    lo, hi = np.quantile(z_all, [Z_CLIP_LOW, Z_CLIP_HIGH])
-    print(f"Z clip range: [{lo:.2f}, {hi:.2f}] m  (read {len(z_all):,} pts in {time.time()-t0:.1f}s)")
+    lo, hi = np.percentile(z_all, [Z_CLIP_LOW_PCT, Z_CLIP_HIGH_PCT])
+    print(f"Ground band: [{lo:.2f}, {hi:.2f}] m  (read {len(z_all):,} pts in {time.time()-t0:.1f}s)")
 
     x_all = np.asarray(las.x, dtype=np.float64)
     y_all = np.asarray(las.y, dtype=np.float64)
@@ -83,18 +90,33 @@ def build_dem() -> None:
         dem[c] = np.partition(seg, k)[k]
     dem = dem.reshape(nrows, ncols)
     filled_frac = np.isfinite(dem).mean()
-    print(f"Cells with data: {filled_frac*100:.1f}%")
-
-    # Fill nodata gaps by nearest-neighbour, then lightly smooth to suppress
-    # residual decluttering noise without erasing real curb/gutter relief.
-    nan_mask = ~np.isfinite(dem)
-    if nan_mask.any():
-        idx = ndimage.distance_transform_edt(nan_mask, return_distances=False, return_indices=True)
-        dem = dem[tuple(idx)]
-    dem = ndimage.median_filter(dem, size=3)
-    dem = ndimage.gaussian_filter(dem, sigma=1.0)
+    print(f"Cells with data (raw): {filled_frac*100:.1f}%")
 
     transform = from_origin(minx, maxy, res, res)
+
+    # Restrict to the road corridor: off-road cells are contaminated by building
+    # facades / tree canopy and are not part of any street profile anyway.
+    seg = gpd.read_file(C.SEGMENTS_OUT).to_crs(C.UTM19N)
+    corridor = seg.geometry.buffer(CORRIDOR_BUFFER_M).union_all()
+    outside = geometry_mask([corridor], out_shape=(nrows, ncols),
+                            transform=transform, invert=False)
+    dem[outside] = np.nan
+    corridor_frac = np.isfinite(dem).mean()
+    print(f"Cells in road corridor with data: {corridor_frac*100:.1f}%")
+
+    # Fill small nodata gaps inside the corridor by nearest-neighbour, then
+    # lightly smooth to suppress decluttering noise without erasing curb/gutter
+    # relief. Cells outside the corridor stay nodata.
+    inside = ~outside
+    nan_inside = inside & ~np.isfinite(dem)
+    if nan_inside.any():
+        known = np.isfinite(dem)
+        idx = ndimage.distance_transform_edt(~known, return_distances=False, return_indices=True)
+        filled = dem[tuple(idx)]
+        dem = np.where(inside, filled, np.nan)
+    dem_s = ndimage.median_filter(np.nan_to_num(dem, nan=0.0), size=3)
+    dem_s = ndimage.gaussian_filter(dem_s, sigma=1.0)
+    dem = np.where(inside, dem_s, np.nan)
     with rasterio.open(
         C.DEM_OUT, "w", driver="GTiff", height=nrows, width=ncols, count=1,
         dtype="float32", crs=C.UTM19N, transform=transform, nodata=np.nan,
