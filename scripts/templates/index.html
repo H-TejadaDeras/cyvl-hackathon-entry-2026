@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cyvl Risk Intelligence Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Autodesk Forge Viewer -->
+    <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.min.css" type="text/css">
+    <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.min.js"></script>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --panel: #1e293b;
+            --text: #f8fafc;
+            --accent: #38bdf8;
+            --accent-hover: #0ea5e9;
+        }
+        body {
+            margin: 0; padding: 0; font-family: 'Inter', sans-serif;
+            background-color: var(--bg); color: var(--text);
+            display: flex; flex-direction: column; height: 100vh;
+            overflow: hidden;
+        }
+        header {
+            padding: 15px 40px; background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex; justify-content: space-between; align-items: center; z-index: 1000;
+        }
+        h1 { margin: 0; font-size: 20px; font-weight: 800; }
+        .stats { font-size: 16px; font-weight: 600; color: var(--accent); }
+        
+        .main-container {
+            display: flex; flex: 1; overflow: hidden;
+        }
+        
+        .map-container {
+            flex: 1; border-right: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+        }
+        #map { width: 100%; height: 100%; background: #0b1121; }
+        
+        .results-container {
+            flex: 1; display: flex; flex-direction: column;
+            background: var(--bg); padding: 20px; overflow-y: auto;
+        }
+        
+        .tabs {
+            display: flex; justify-content: center; gap: 10px; margin-bottom: 20px;
+        }
+        .tab-btn {
+            background: var(--panel); border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text); padding: 10px 16px; border-radius: 8px;
+            font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+        }
+        .tab-btn:hover { border-color: var(--accent); }
+        .tab-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+        
+        .content-area {
+            flex: 1; display: flex; justify-content: center; align-items: flex-start;
+            position: relative; min-height: 400px;
+        }
+        .tab-content {
+            width: 100%; display: none;
+            background: var(--panel); border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05);
+            animation: fadeIn 0.4s ease forwards;
+        }
+        .tab-content.active { display: block; }
+        
+        #tab-cyvl img { width: 100%; border-radius: 12px; display: block; }
+        
+        .loader-overlay {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(5px);
+            display: none; justify-content: center; align-items: center; flex-direction: column;
+            border-radius: 12px; z-index: 100;
+        }
+        .loader-overlay.active { display: flex; }
+        .spinner {
+            width: 50px; height: 50px; border: 4px solid rgba(255,255,255,0.1);
+            border-top-color: var(--accent); border-radius: 50%;
+            animation: spin 1s linear infinite; margin-bottom: 15px;
+        }
+        
+        .placeholder {
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            height: 100%; color: rgba(255,255,255,0.5); text-align: center; padding: 40px;
+        }
+        
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Stormwater Risk Intelligence</h1>
+        <div class="stats" id="vol-stats">Select a road segment to begin</div>
+    </header>
+    
+    <div class="main-container">
+        <!-- 2D Map Pane -->
+        <div class="map-container">
+            <div id="map"></div>
+        </div>
+        
+        <!-- Results Pane -->
+        <div class="results-container">
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('tab-cyvl', this)">Cyvl Vision Layer (SAM)</button>
+                <button class="tab-btn" onclick="switchTab('tab-3d', this)">3D Volumetric LiDAR</button>
+            </div>
+            
+            <div class="content-area">
+                <div class="loader-overlay" id="loader">
+                    <div class="spinner"></div>
+                    <div>Fetching raw Cyvl image & running YOLO+SAM pipeline...</div>
+                </div>
+                
+                <div id="tab-cyvl" class="tab-content active">
+                    <div class="placeholder" id="placeholder-img">
+                        <h3>No Data Loaded</h3>
+                        <p>Click a road line on the map to run the AI Vision pipeline on that location.</p>
+                    </div>
+                    <img id="result-img" style="display:none;" />
+                </div>
+                
+                <div id="tab-3d" class="tab-content">
+                    <div class="placeholder" id="placeholder-3d">
+                        <h3>No Data Loaded</h3>
+                    </div>
+                    <div id="result-dxf" style="display:none; width: 100%; height: 600px; position: relative;">
+                        <div id="forge-viewer" style="width: 100%; height: 100%; position: absolute; top:0; left:0;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Map Setup
+        const map = L.map('map', { zoomControl: false }).setView([42.396, -71.109], 14);
+        L.control.zoom({ position: 'bottomleft' }).addTo(map);
+        
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
+        }).addTo(map);
+
+        // Load Road GeoJSON
+        fetch('/static/roads.geojson')
+            .then(res => res.json())
+            .then(data => {
+                L.geoJSON(data, {
+                    style: function(feature) {
+                        const score = feature.properties.score;
+                        let color = '#10b981'; // Green
+                        if (score < 50) color = '#ef4444'; // Red
+                        else if (score < 80) color = '#f59e0b'; // Yellow
+                        return { color: color, weight: 4, opacity: 0.8 };
+                    },
+                    onEachFeature: function(feature, layer) {
+                        layer.on('click', function(e) {
+                            L.DomEvent.stopPropagation(e);
+                            if (window.isProcessing) return;
+                            const latlon = e.latlng;
+                            processSegment(latlon.lat, latlon.lng, feature.properties.score);
+                        });
+                        layer.bindTooltip(`PCI Score: ${Math.round(feature.properties.score)}`);
+                    }
+                }).addTo(map);
+            });
+
+        // Tab Switching Logic
+        function switchTab(tabId, btn) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            btn.classList.add('active');
+            
+            // Trigger resize for webgl
+            if(tabId === 'tab-3d' && window.forgeViewer) {
+                window.forgeViewer.resize();
+            }
+        }
+
+        // Backend Processing Logic
+        window.isProcessing = false;
+        
+        function processSegment(lat, lon, score) {
+            if (window.isProcessing) return;
+            window.isProcessing = true;
+            document.getElementById('loader').classList.add('active');
+            
+            fetch('/api/process_segment', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ lat: lat, lon: lon, score: score })
+            })
+            .then(res => {
+                if (!res.ok) throw new Error("Server error " + res.status);
+                return res.json();
+            })
+            .then(data => {
+                window.isProcessing = false;
+                document.getElementById('loader').classList.remove('active');
+                
+                // Update Image
+                document.getElementById('placeholder-img').style.display = 'none';
+                const imgEl = document.getElementById('result-img');
+                imgEl.src = data.image_url;
+                imgEl.style.display = 'block';
+                
+                // Update CAD Viewer
+                document.getElementById('placeholder-3d').style.display = 'none';
+                document.getElementById('result-dxf').style.display = 'block';
+                
+                // Initialize Autodesk Viewer
+                const documentId = 'urn:' + data.urn;
+                
+                if (!window.forgeViewer) {
+                    const options = {
+                        env: 'AutodeskProduction',
+                        getAccessToken: function(onGetAccessToken) {
+                            fetch('/api/aps_token')
+                                .then(res => res.json())
+                                .then(tokenData => {
+                                    onGetAccessToken(tokenData.access_token, tokenData.expires_in);
+                                });
+                        }
+                    };
+                    
+                    Autodesk.Viewing.Initializer(options, function() {
+                        const viewerContainer = document.getElementById('forge-viewer');
+                        window.forgeViewer = new Autodesk.Viewing.GuiViewer3D(viewerContainer);
+                        window.forgeViewer.start();
+                        loadDocument(documentId);
+                    });
+                } else {
+                    loadDocument(documentId);
+                }
+                
+                function loadDocument(urn) {
+                    // Try to load every 3 seconds while translation completes
+                    const checkModel = setInterval(() => {
+                        Autodesk.Viewing.Document.load(urn, onDocumentLoadSuccess, function(err) {
+                            console.log("Model not ready yet, retrying...", err);
+                        });
+                    }, 3000);
+                    
+                    function onDocumentLoadSuccess(doc) {
+                        clearInterval(checkModel);
+                        const defaultModel = doc.getRoot().getDefaultGeometry();
+                        window.forgeViewer.loadDocumentNode(doc, defaultModel);
+                    }
+                }
+                
+                // Update Stats
+                document.getElementById('vol-stats').innerText = `Computed Void Volume: ${data.volume.toFixed(3)} m³`;
+            })
+            .catch(err => {
+                console.error(err);
+                window.isProcessing = false;
+                document.getElementById('loader').classList.remove('active');
+            });
+        }
+    </script>
+</body>
+</html>
