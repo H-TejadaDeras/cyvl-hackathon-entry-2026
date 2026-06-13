@@ -1,5 +1,100 @@
 # Urban Drainage Failure and Pothole Risk Mapper
 
+## Business Value
+
+### What This Is
+
+A data-driven drainage and pavement risk service that helps cities stop spending money in the wrong places. It combines LiDAR-derived terrain, pavement condition scores, catch basin locations, and public complaint records to answer one question before a paving or drainage project is approved: **is water going to destroy this repair again?**
+
+---
+
+### Who Buys It and Why
+
+**Primary buyer — municipal Department of Public Works or Engineering**
+
+| Buyer role | Decision they face | Why this product moves them |
+|---|---|---|
+| DPW Director / City Engineer | Where to spend $2–10M in paving and drainage capital this year | Replaces gut-feel prioritization with ranked, evidence-backed project list |
+| Stormwater Program Manager | How to document MS4/NPDES permit compliance | Produces defensible gap analysis and capital plan exactly in the format EPA audits expect |
+| Pavement or Asset Manager | How to stop patching the same pothole every winter | Identifies which segments fail repeatedly because of drainage, not just surface wear |
+| Finance / Grant Writer | How to justify and fund the capital plan | Supplies mapped quantities, modeled benefits, and cost estimates suitable for FEMA BRIC and EPA CWSRF grant applications |
+
+**Secondary buyers**
+
+- **Civil engineering consultants** who deliver municipal drainage and roadway projects — they can license the workflow or receive the Autodesk Civil 3D / InfoDrainage starting model as a paid deliverable, saving 2–4 weeks of survey and setup work per engagement
+- **State DOT and regional planning agencies** managing state-aid roads with recurring flood complaints across multiple municipalities
+- **Flood insurance and infrastructure finance** — not near-term, but a city's quantified risk map has actuarial value
+
+---
+
+### Clear Value Delivered
+
+**1. Stop repaving over unresolved drainage problems**
+The most expensive mistake in public works is resurfacing a street that fails again in 18 months because the catch basin upstream is undersized. This product flags those streets before the contract is signed.
+
+**2. Turn complaint clusters into defensible priority lists**
+Right now, the loudest neighborhood gets the repair budget. This replaces political prioritization with a ranked list backed by terrain data, pavement scores, and 311 complaint history that any city councilmember can audit.
+
+**3. Compress $50,000 of consultant scoping into hours**
+A licensed engineer still stamps the final design. What this removes is the 4–6 week, $30,000–$60,000 GIS survey, data assembly, and site-screening phase that happens before design begins. The engineer receives a Civil 3D surface, catchment polygons, and an InfoDrainage baseline model on day one.
+
+**4. Produce MS4 permit documentation automatically**
+Every US municipality with a storm sewer system is required under NPDES to map its drainage network, identify failing infrastructure, and maintain a capital improvement plan. This tool generates exactly that documentation as a byproduct of the analysis.
+
+**5. Move to the front of federal grant queues**
+FEMA BRIC and EPA Clean Water State Revolving Fund both prioritize applicants who can show a pre-engineered, quantified gap analysis. Cities with this output skip the first round of eligibility screening.
+
+---
+
+### Data Required
+
+| Dataset | Source | Role |
+|---|---|---|
+| LiDAR point cloud (.laz) | Cyvl | Extract road surface, micro-topography, flow paths, and depressions |
+| 30-ft pavement condition scores | Cyvl | Identify structurally weak segments before scoring drainage exposure |
+| Catch basin locations and imagery | Cyvl above-ground assets | Map existing drainage infrastructure against modeled flow accumulation |
+| Street-level and panoramic imagery | Cyvl | Visual confirmation of flagged locations; Claude vision review |
+| 311 flooding and pothole complaints | Somerville open data / SeeClickFix | Ground-truth validation and complaint-density scoring |
+| Impervious surface layer | MassGIS | Scale raw terrain accumulation to actual runoff volume |
+| Design storm precipitation depths | NOAA Atlas 14 | Compute peak flows at each node under 10-, 25-, 100-year events |
+| FEMA National Flood Hazard Layer | FEMA | Add regulatory consequence weight to drainage gaps in mapped floodplains |
+| Pavement repair and work order history | City public works records | Label historical failures for the pothole risk model |
+| Storm sewer as-built records (pipe inverts, diameters) | City GIS or consultant | Required for full hydraulic simulation; declared assumptions if unavailable |
+
+**What is already in hand:** Cyvl provides LiDAR, pavement scores, catch basin locations, and imagery for Somerville. The MassGIS and NOAA datasets are public and free. The 311 data requires a one-time download. As-built sewer records are the hardest input and are often incomplete — the prototype handles this by labeling assumed values separately from measured data.
+
+---
+
+### Steps to Market
+
+**Step 1 — Prove it on one corridor (0–3 months)**
+Run the full pipeline on a single Somerville street segment with known drainage complaints. Produce: a ranked gap list, a pothole risk map, an InfoDrainage baseline simulation, and a one-page summary a DPW director can read in five minutes. This is the sales artifact, not the software.
+
+**Step 2 — Sell a fixed-scope paid pilot to one city ($20,000–$50,000)**
+Scope: one paving package or complaint corridor. Deliverable: the study, ranked list, and Autodesk model. The city gets something it can act on. You get a paying reference customer, real work-order data to validate the model, and a case study. Somerville is the natural first target given the data already in hand.
+
+**Step 3 — Validate the ROI claim**
+After the pilot, track whether the city changed at least one capital or maintenance decision based on the output. Document the avoided cost. This single data point — "they stopped a $400,000 resurfacing job and addressed the drain first" — is worth more in the next sales conversation than any feature list.
+
+**Step 4 — Expand through the consultant channel**
+Engineering firms that already work on municipal drainage and roadway projects are a faster distribution path than selling city by city. Offer the Autodesk Civil 3D starting model as a licensed deliverable. The firm brings its own municipal relationships; the product compresses their scoping phase and improves their proposal win rate.
+
+**Step 5 — Productize for recurring annual contracts**
+After two or three cities, convert the service to a repeatable workflow: ingest new Cyvl surveys each year, update the risk scores, compare against completed projects, and refresh the capital plan. Annual contract priced by road miles or analyzed pavement sections.
+
+**Step 6 — Layer in grant-writing and compliance reporting**
+Once the capital plan output is proven, add a reporting module that generates MS4 permit documentation and grant application exhibits directly from the analysis results. This moves the product from a project tool to a compliance infrastructure subscription.
+
+---
+
+### Why This Wins Against the Alternatives
+
+Generic pavement management software scores surface condition but does not simulate water. Flood models exist but don't explain which pavement repairs will fail again. Engineering consultants can build detailed drainage models — but after a project is already selected and funded. This product does the one thing none of them do: **connects drainage terrain and pavement condition before the capital plan is locked**, and hands the engineer a usable Autodesk starting point on day one.
+
+The moat is the combination of Cyvl's measured LiDAR and pavement data with hydrologic modeling and Autodesk deliverables — no one else has all four layers integrated today.
+
+---
+
 ## The Problem
 
 Cities spend billions on stormwater infrastructure guided almost entirely by models built on assumptions. They don't know exactly where water pools after a storm. They don't know which streets act as open channels routing runoff toward basements and underpasses. They don't know whether the catch basin at the bottom of a hill was sized for the impervious surface that now drains into it, because that basin was designed in 1970 and the parking lot upslope was built in 2003.
@@ -12,7 +107,144 @@ This project replaces the complaint-driven, reactive model with a terrain-inform
 
 ---
 
-If the water seeps into
+## Customer and Business Value
+
+### Best Initial Customer
+
+The beachhead customer is a **mid-sized, cold-climate municipality that already has pavement-condition data, recurring drainage complaints, and an upcoming paving or stormwater capital plan**. Somerville is a strong example.
+
+The customer organization is the Department of Public Works or Engineering Department:
+
+| Role | Why they care |
+|---|---|
+| DPW Director or City Engineer | Economic buyer; must defend maintenance and capital spending |
+| Stormwater Program Manager | Needs drainage priorities, permit documentation, and project candidates |
+| Pavement or Asset Manager | Wants to prevent repeat potholes and coordinate paving with drainage repairs |
+| GIS Manager | Supplies asset, complaint, and work-order data and maintains the resulting layers |
+| Engineering consultant | Uses Civil 3D and InfoDrainage to validate findings and design the selected projects |
+
+The consultant is an important channel and user, but the municipality is the best initial buyer because it owns the maintenance budget, complaints, infrastructure risk, and capital plan.
+
+### Product Wedge
+
+Do not initially sell this as a citywide digital twin or a promise to predict every pothole. Sell a fixed-scope **Drainage-Aware Street Maintenance Study** for one neighborhood, paving package, or known complaint corridor.
+
+The study answers a budget decision:
+
+> Before we repave these streets, where is water causing repeat pavement failure, and which drainage intervention should be included so we do not pay to repair the same location again?
+
+The deliverable includes:
+
+- Ranked 30-foot pavement sections and catchments requiring inspection
+- Evidence for each location: pavement score, LiDAR depression, modeled ponding, imagery, complaints, and repair history
+- Autodesk InfoDrainage comparison of the existing condition and practical interventions
+- Recommended action: clean inlet, seal cracks, patch, adjust grading, add drainage, or reconstruct
+- Civil 3D and GIS files that the city's engineer or consultant can continue using
+- A budget-ready table with intervention type, quantity, urgency, and planning-level cost
+
+### Economic Value
+
+The value is not the map itself. It is avoiding bad capital and maintenance decisions.
+
+| Current cost | Product value |
+|---|---|
+| Repaving over an unresolved drainage problem | Identifies drainage work that should occur before paving |
+| Repeated pothole patching at the same location | Flags chronic moisture and deformation drivers |
+| Broad field surveys before engineers know where to focus | Screens the network and narrows field validation to the highest-risk sites |
+| Separate pavement and stormwater project lists | Creates one coordinated intervention plan |
+| Complaint-driven prioritization | Adds measured terrain and hydraulic evidence |
+| Consultant time spent assembling and cleaning data | Delivers an Autodesk-ready starting model |
+| Weak grant or capital requests | Supplies maps, quantities, alternatives, and modeled outcomes |
+
+The core ROI calculation for a pilot should be:
+
+```
+avoided repeat repairs
++ avoided premature resurfacing
++ reduced survey and model setup effort
++ avoided flood-response costs
+- study and intervention cost
+```
+
+For each recommended project, report a simple benefit case: current annual repair burden, expected remaining pavement life, modeled flood or ponding reduction, estimated intervention cost, and estimated payback period. Do not claim savings until they are validated against municipal work-order and cost data.
+
+### Regulatory and Stormwater-Fee Value
+
+EPA does not impose a routine “stormwater tax” on municipalities. Two different mechanisms are often confused:
+
+1. **Regulatory enforcement:** Municipal storm-sewer operators must comply with their MS4/NPDES permits. EPA or an authorized state can issue compliance orders and pursue civil penalties for permit violations. Citizen suits are also possible under the Clean Water Act.
+2. **Stormwater utility fees:** A city may establish a local fee, often based on impervious area, to pay for drainage operations, maintenance, permit compliance, and capital projects. This is a municipal financing mechanism, not an EPA fine.
+
+The larger financial exposure is often not the fine alone. A compliance order or settlement can require investigation, monitoring, reporting, accelerated maintenance, and capital improvements on a legally enforceable schedule. Those obligations can materially affect a city's budget.
+
+This product creates business value by helping a city:
+
+- Document a repeatable, data-driven process for inspecting and prioritizing stormwater assets
+- Identify likely maintenance and capacity problems before they become documented permit failures
+- Maintain evidence showing why projects were selected and how alternatives were evaluated
+- Build an Autodesk-backed capital plan for correcting identified deficiencies
+- Produce maps, model results, and progress metrics for permit reports, grant applications, and public review
+- Direct stormwater utility revenue toward interventions with modeled benefits
+- Support a future utility-fee or credit program with transparent project and impervious-area data, if the city operates such a program
+
+The sales message should be **“reduce compliance risk and make stormwater spending defensible,”** not “buy this software and avoid EPA fines.” Hydraulic modeling alone does not demonstrate full MS4 compliance because permits also cover pollutant control, illicit discharges, construction activities, public education, monitoring, recordkeeping, and reporting.
+
+Useful customer-facing metrics include:
+
+| Metric | Business relevance |
+|---|---|
+| Percent of catch basins and high-risk areas screened | Demonstrates inspection and planning coverage |
+| High-risk sites investigated or corrected | Shows progress against identified deficiencies |
+| Modeled flood volume reduced | Quantifies hydraulic benefit |
+| Repeat complaints or work orders avoided | Connects compliance work to operating savings |
+| Projects completed by permit or capital-plan deadline | Supports management and reporting |
+| Stormwater-fee dollars tied to ranked projects | Improves budget transparency |
+
+The regulatory buyer may include the Stormwater Program Manager, Environmental Compliance Manager, or municipal counsel. The economic buyer remains the DPW Director, City Engineer, or utility director who controls the operating and capital budget.
+
+Regulatory references:
+
+- [EPA: Stormwater Discharges from Municipal Sources](https://www.epa.gov/npdes/stormwater-discharges-municipal-sources)
+- [EPA: Clean Water Act enforcement authorities](https://www.epa.gov/enforcement/clean-water-act-cwa-and-federal-facilities)
+- [Clean Water Act Section 309](https://www.law.cornell.edu/uscode/text/33/1319)
+
+### Commercial Offering
+
+Use a service-led model first because cities need engineering confidence and the workflow still depends on local data quality.
+
+1. **Paid pilot:** one corridor or neighborhood, delivered as a study and Autodesk model.
+2. **Capital-plan expansion:** process all streets in the next paving or drainage program.
+3. **Annual refresh:** ingest new Cyvl surveys, complaints, work orders, and completed projects.
+4. **Consultant workflow:** license or partner with civil engineering firms that already deliver municipal drainage and roadway projects.
+
+A reasonable pricing hypothesis to test is a fixed-fee pilot in the **$20,000-$50,000** range, followed by citywide or annual contracts priced by road miles, LAZ volume, or number of analyzed pavement sections. This is a hypothesis for customer interviews, not a validated market price.
+
+### Why It Wins
+
+The differentiated value is the connection between four systems that are usually separate:
+
+1. Cyvl's measured street condition and imagery
+2. LiDAR-derived micro-topography and ponding
+3. Autodesk hydraulic simulation and engineering deliverables
+4. Maintenance history and capital-budget decisions
+
+Generic flood models do not explain which pavement repairs will fail again. Pavement-management tools generally score surface condition without simulating water. Engineering consultants can build detailed models, but usually after a project has already been selected. This product helps select the right projects first and hands the engineer a usable Autodesk starting point.
+
+### Proof Required
+
+The pilot succeeds commercially only if it demonstrates:
+
+- High-risk locations correspond to observed ponding, repeat repairs, or field-confirmed distress
+- The analysis changes at least one maintenance or capital recommendation
+- Autodesk scenario testing identifies a practical intervention with measurable benefit
+- Staff spend less time assembling data and screening candidate locations
+- The city can explain the resulting priority list to engineers, finance staff, and residents
+
+The strongest case study is not “we produced a sophisticated model.” It is “the city changed a paving or drainage decision, avoided a repeat failure, and had evidence to defend the investment.”
+
+---
+
+If water accumulates in cracks or depressions, it may further weaken the pavement structure.
 
 ## Why Potholes Belong in This Model
 
@@ -294,39 +526,6 @@ It does not promise the exact location or date of a future pothole. Unless repea
 It is not a replacement for a licensed civil engineer's drainage study. The output is a prioritized list and a preliminary network model. A PE still stamps the final design. What this does is compress the initial scoping work that currently costs $50,000 in survey and GIS analysis into a few hours of automated terrain analysis on data Cyvl has already collected.
 
 ---
-
-## Build Plan (One Day)
-
-**Hours 0–2: Data prep**
-- Load the local pavement, centerline, asset, and imagery layers
-- Reproject vectors from EPSG:4326 to the LAZ CRS, EPSG:32619
-- Clip road corridors and run PDAL SMRF or CSF because the LAZ has no ground classifications
-- Package these operations as a function or command that accepts any LAZ tile
-
-**Hours 2–4: Flow analysis**
-- Build a road-surface raster for the one-street sample
-- Calculate slope, cross-slope, local depressions, and rutting indicators
-- Spatially join these metrics to the 153 overlapping 30-foot pavement sections
-
-**Hours 4–6: Cross-reference and scoring**
-- Join pavement scores and nearest local imagery to each section
-- Compute a transparent susceptibility score from pavement condition, depression depth, cross-slope, and ponding potential
-- Keep historical failure probability disabled until pothole 311/work-order labels are added
-- Export a ranked pavement-section GeoJSON and CSV
-
-**Hours 6–8: Autodesk model**
-- Export the tile surface as LandXML and import it into Civil 3D
-- Delineate a test catchment and exchange the model with InfoDrainage
-- Add a prototype catch basin or storage basin using clearly documented assumptions
-- Run at least two rainfall events and a blocked-inlet scenario
-
-**Hours 8–10: Demo**
-- Show InfoDrainage hydrographs, maximum water level, surcharge, flood volume, and drainage time
-- Round-trip results to Civil 3D and show the hydraulic grade line or storage extent
-- Web map showing LAZ coverage, pavement scores, depression indicators, and pothole-risk sections
-- Use local imagery and Claude to explain the highest-risk locations and simulation results
-- Demonstrate that a second LAZ tile can be added without changing the analysis code
-- Note that measured catch-basin hydraulics require a future tile with a basin and municipal network attributes
 
 **Prototype success criteria**
 - The one-street LAZ is processed without manually editing coordinates or bounds
