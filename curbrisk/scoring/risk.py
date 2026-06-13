@@ -122,6 +122,7 @@ def compute() -> None:
         # --- topo: nearest low point within a short reach -------------------
         depth_in = catch_sqft = 0.0
         lp_dist = np.inf
+        lowpt_elev_m = spill_depth_m = None
         if low is not None and len(low):
             di = low.geometry.distance(centroid)
             j = int(di.idxmin())
@@ -129,6 +130,10 @@ def compute() -> None:
             if lp_dist <= 40.0:  # the segment effectively contains/touches the sag
                 depth_in = float(low.loc[j, "ponding_depth_in"])
                 catch_sqft = float(low.loc[j, "catchment_sqft"])
+                if "elev_m" in low.columns and np.isfinite(low.loc[j, "elev_m"]):
+                    lowpt_elev_m = float(low.loc[j, "elev_m"])
+                if "spill_depth_m" in low.columns and np.isfinite(low.loc[j, "spill_depth_m"]):
+                    spill_depth_m = float(low.loc[j, "spill_depth_m"])
         topo = _topo_score(depth_in, catch_sqft)
         if has_lidar:
             street_topo.setdefault(sgmt["street"], []).append(topo)
@@ -158,6 +163,10 @@ def compute() -> None:
             "low_point_dist_m": round(lp_dist, 1) if np.isfinite(lp_dist) else None,
             "nearest_drain_m": round(dist_drain, 1) if np.isfinite(dist_drain) else None,
             "complaints_nearby": n_comp,
+            "elev_min": round(float(sgmt["elev_min"]), 3) if np.isfinite(sgmt.get("elev_min", np.nan)) else None,
+            "elev_mean": round(float(sgmt["elev_mean"]), 3) if np.isfinite(sgmt.get("elev_mean", np.nan)) else None,
+            "lowpt_elev_m": round(lowpt_elev_m, 3) if lowpt_elev_m is not None else None,
+            "spill_depth_m": round(spill_depth_m, 3) if spill_depth_m is not None else None,
             "_topo": topo, "_pav": pav, "_basin": basin, "_compl": compl,
         })
 
@@ -222,18 +231,20 @@ def _write_sqlite(gdf: gpd.GeoDataFrame) -> None:
             nearest_drain_m REAL, complaints_nearby INTEGER,
             topo_pts REAL, pavement_pts REAL, basin_pts REAL, complaint_pts REAL,
             curb_risk REAL, risk_band TEXT, recommended_action TEXT,
-            hydraulic_assumptions TEXT, lat REAL, lon REAL, wkt TEXT
+            hydraulic_assumptions TEXT, lat REAL, lon REAL, wkt TEXT,
+            elev_min REAL, elev_mean REAL, lowpt_elev_m REAL, spill_depth_m REAL
         )""")
     for _, r in gdf.iterrows():
         c = r.geometry.interpolate(0.5, normalized=True)
         cur.execute(
-            "INSERT INTO segments VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            "INSERT INTO segments VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
             (r["segment_id"], r["client_seg"], r["street"], r["pci"], int(bool(r["has_lidar"])),
              r["ponding_depth_in"], r["catchment_sqft"], r["low_point_dist_m"],
              r["nearest_drain_m"], int(r["complaints_nearby"]),
              r["topo_pts"], r["pavement_pts"], r["basin_pts"], r["complaint_pts"],
              r["curb_risk"], r["risk_band"], r["recommended_action"],
-             r["hydraulic_assumptions"], c.y, c.x, r.geometry.wkt))
+             r["hydraulic_assumptions"], c.y, c.x, r.geometry.wkt,
+             r["elev_min"], r["elev_mean"], r["lowpt_elev_m"], r["spill_depth_m"]))
     con.commit()
     con.close()
 

@@ -1,47 +1,56 @@
 {
   "IA11151": {
     "urn": "dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6Y3VyYnJpc2stc29tZXJ2aWxsZS1kZW1vL3hzZWN0aW9uX0lBMTExNTEuZHhm",
-    "status": "translating",
-    "viewer": "https://developer.api.autodesk.com/derivativeservice/v2/viewer?urn=dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6Y3VyYnJpc2stc29tZXJ2aWxsZS1kZW1vL3hzZWN0aW9uX0lBMTExNTEuZHhm"
+    "status": "ready",
+    "viewer": "/viewer/IA11151",
+    "thumbnail": "/crosssection/aps_thumb_IA11151.png"
   },
   "IA11154": {
     "urn": "dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6Y3VyYnJpc2stc29tZXJ2aWxsZS1kZW1vL3hzZWN0aW9uX0lBMTExNTQuZHhm",
-    "status": "translating",
-    "viewer": "https://developer.api.autodesk.com/derivativeservice/v2/viewer?urn=dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6Y3VyYnJpc2stc29tZXJ2aWxsZS1kZW1vL3hzZWN0aW9uX0lBMTExNTQuZHhm"
+    "status": "ready",
+    "viewer": "/viewer/IA11154",
+    "thumbnail": "/crosssection/aps_thumb_IA11154.png"
   },
   "IA11157": {
     "urn": "dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6Y3VyYnJpc2stc29tZXJ2aWxsZS1kZW1vL3hzZWN0aW9uX0lBMTExNTcuZHhm",
-    "status": "translating",
-    "viewer": "https://developer.api.autodesk.com/derivativeservice/v2/viewer?urn=dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6Y3VyYnJpc2stc29tZXJ2aWxsZS1kZW1vL3hzZWN0aW9uX0lBMTExNTcuZHhm"
+    "status": "ready",
+    "viewer": "/viewer/IA11157",
+    "thumbnail": "/crosssection/aps_thumb_IA11157.png"
   },
   "IA11160": {
     "urn": "dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6Y3VyYnJpc2stc29tZXJ2aWxsZS1kZW1vL3hzZWN0aW9uX0lBMTExNjAuZHhm",
-    "status": "translating",
-    "viewer": "https://developer.api.autodesk.com/derivativeservice/v2/viewer?urn=dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6Y3VyYnJpc2stc29tZXJ2aWxsZS1kZW1vL3hzZWN0aW9uX0lBMTExNjAuZHhm"
+    "status": "ready",
+    "viewer": "/viewer/IA11160",
+    "thumbnail": "/crosssection/aps_thumb_IA11160.png"
   },
   "IA11164": {
     "urn": "dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6Y3VyYnJpc2stc29tZXJ2aWxsZS1kZW1vL3hzZWN0aW9uX0lBMTExNjQuZHhm",
-    "status": "translating",
-    "viewer": "https://developer.api.autodesk.com/derivativeservice/v2/viewer?urn=dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6Y3VyYnJpc2stc29tZXJ2aWxsZS1kZW1vL3hzZWN0aW9uX0lBMTExNjQuZHhm"
+    "status": "ready",
+    "viewer": "/viewer/IA11164",
+    "thumbnail": "/crosssection/aps_thumb_IA11164.png"
   },
   "IA11175": {
     "urn": "dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6Y3VyYnJpc2stc29tZXJ2aWxsZS1kZW1vL3hzZWN0aW9uX0lBMTExNzUuZHhm",
-    "status": "translating",
-    "viewer": "https://developer.api.autodesk.com/derivativeservice/v2/viewer?urn=dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6Y3VyYnJpc2stc29tZXJ2aWxsZS1kZW1vL3hzZWN0aW9uX0lBMTExNzUuZHhm"
+    "status": "ready",
+    "viewer": "/viewer/IA11175",
+    "thumbnail": "/crosssection/aps_thumb_IA11175.png"
   },
   "IA11186": {
     "urn": "dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6Y3VyYnJpc2stc29tZXJ2aWxsZS1kZW1vL3hzZWN0aW9uX0lBMTExODYuZHhm",
-    "status": "translating",
-    "viewer": "https://developer.api.autodesk.com/derivativeservice/v2/viewer?urn=dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6Y3VyYnJpc2stc29tZXJ2aWxsZS1kZW1vL3hzZWN0aW9uX0lBMTExODYuZHhm"
+    "status": "ready",
+    "viewer": "/viewer/IA11186",
+    "thumbnail": "/crosssection/aps_thumb_IA11186.png"
   },
   "IA11188": {
     "urn": "dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6Y3VyYnJpc2stc29tZXJ2aWxsZS1kZW1vL3hzZWN0aW9uX0lBMTExODguZHhm",
-    "status": "translating",
-    "viewer": "https://developer.api.autodesk.com/derivativeservice/v2/viewer?urn=dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6Y3VyYnJpc2stc29tZXJ2aWxsZS1kZW1vL3hzZWN0aW9uX0lBMTExODguZHhm"
+    "status": "ready",
+    "viewer": "/viewer/IA11188",
+    "thumbnail": "/crosssection/aps_thumb_IA11188.png"
   },
   "IA11189": {
     "urn": "dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6Y3VyYnJpc2stc29tZXJ2aWxsZS1kZW1vL3hzZWN0aW9uX0lBMTExODkuZHhm",
-    "status": "translating",
-    "viewer": "https://developer.api.autodesk.com/derivativeservice/v2/viewer?urn=dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6Y3VyYnJpc2stc29tZXJ2aWxsZS1kZW1vL3hzZWN0aW9uX0lBMTExODkuZHhm"
+    "status": "ready",
+    "viewer": "/viewer/IA11189",
+    "thumbnail": "/crosssection/aps_thumb_IA11189.png"
   }
 }

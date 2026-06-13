@@ -1,0 +1,500 @@
+{
+  "IA11151": {
+    "segment_id": "IA11151",
+    "pci": 92.0,
+    "cracks": [
+      {
+        "id": "C02",
+        "along_m": 1.84,
+        "offset_m": 2.44,
+        "length_m": 0.45,
+        "width_mm": 2.7,
+        "depth_mm": 6.3,
+        "depth_is_synthetic": true,
+        "orientation": "longitudinal",
+        "severity": "Low",
+        "dist_to_low_m": 1.84
+      },
+      {
+        "id": "C01",
+        "along_m": 2.18,
+        "offset_m": 1.64,
+        "length_m": 0.81,
+        "width_mm": 5.2,
+        "depth_mm": 10.2,
+        "depth_is_synthetic": true,
+        "orientation": "longitudinal",
+        "severity": "Medium",
+        "dist_to_low_m": 2.18
+      },
+      {
+        "id": "C04",
+        "along_m": 2.28,
+        "offset_m": 2.37,
+        "length_m": 1.04,
+        "width_mm": 8.7,
+        "depth_mm": 6.8,
+        "depth_is_synthetic": true,
+        "orientation": "transverse",
+        "severity": "Medium",
+        "dist_to_low_m": 2.28
+      },
+      {
+        "id": "C05",
+        "along_m": 4.88,
+        "offset_m": 1.96,
+        "length_m": 0.51,
+        "width_mm": 9.5,
+        "depth_mm": 19.8,
+        "depth_is_synthetic": true,
+        "orientation": "longitudinal",
+        "severity": "Medium",
+        "dist_to_low_m": 4.88
+      },
+      {
+        "id": "C03",
+        "along_m": 7.34,
+        "offset_m": -2.66,
+        "length_m": 0.38,
+        "width_mm": 4.0,
+        "depth_mm": 6.9,
+        "depth_is_synthetic": true,
+        "orientation": "longitudinal",
+        "severity": "Low",
+        "dist_to_low_m": 7.34
+      }
+    ]
+  },
+  "IA11154": {
+    "segment_id": "IA11154",
+    "pci": 95.1,
+    "cracks": [
+      {
+        "id": "C01",
+        "along_m": 2.39,
+        "offset_m": 0.99,
+        "length_m": 0.42,
+        "width_mm": 3.2,
+        "depth_mm": 7.2,
+        "depth_is_synthetic": true,
+        "orientation": "longitudinal",
+        "severity": "Low",
+        "dist_to_low_m": 2.39
+      },
+      {
+        "id": "C03",
+        "along_m": -3.08,
+        "offset_m": -0.04,
+        "length_m": 1.94,
+        "width_mm": 3.8,
+        "depth_mm": 8.9,
+        "depth_is_synthetic": true,
+        "orientation": "longitudinal",
+        "severity": "Low",
+        "dist_to_low_m": 3.08
+      },
+      {
+        "id": "C02",
+        "along_m": -5.26,
+        "offset_m": -1.68,
+        "length_m": 0.76,
+        "width_mm": 4.8,
+        "depth_mm": 6.0,
+        "depth_is_synthetic": true,
+        "orientation": "longitudinal",
+        "severity": "Low",
+        "dist_to_low_m": 5.26
+      },
+      {
+        "id": "C04",
+        "along_m": 6.4,
+        "offset_m": -0.72,
+        "length_m": 1.12,
+        "width_mm": 4.4,
+        "depth_mm": 9.4,
+        "depth_is_synthetic": true,
+        "orientation": "longitudinal",
+        "severity": "Low",
+        "dist_to_low_m": 6.4
+      }
+    ]
+  },
+  "IA11157": {
+    "segment_id": "IA11157",
+    "pci": 95.9,
+    "cracks": [
+      {
+        "id": "C02",
+        "along_m": 0.11,
+        "offset_m": -1.91,
+        "length_m": 0.8,
+        "width_mm": 6.9,
+        "depth_mm": 5.4,
+        "depth_is_synthetic": true,
+        "orientation": "longitudinal",
+        "severity": "Medium",
+        "dist_to_low_m": 0.11
+      },
+      {
+        "id": "C04",
+        "along_m": -4.58,
+        "offset_m": -0.67,
+        "length_m": 1.99,
+        "width_mm": 2.8,
+        "depth_mm": 6.1,
+        "depth_is_synthetic": true,
+        "orientation": "longitudinal",
+        "severity": "Low",
+        "dist_to_low_m": 4.58
+      },
+      {
+        "id": "C01",
+        "along_m": 5.87,
+        "offset_m": 2.53,
+        "length_m": 1.78,
+        "width_mm": 7.9,
+        "depth_mm": 8.7,
+        "depth_is_synthetic": true,
+        "orientation": "longitudinal",
+        "severity": "Medium",
+        "dist_to_low_m": 5.87
+      },
+      {
+        "id": "C03",
+        "along_m": 7.21,
+        "offset_m": 3.54,
+        "length_m": 0.65,
+        "width_mm": 5.7,
+        "depth_mm": 9.2,
+        "depth_is_synthetic": true,
+        "orientation": "longitudinal",
+        "severity": "Medium",
+        "dist_to_low_m": 7.21
+      }
+    ]
+  },
+  "IA11160": {
+    "segment_id": "IA11160",
+    "pci": 93.0,
+    "cracks": [
+      {
+        "id": "C03",
+        "along_m": 0.97,
+        "offset_m": -1.93,
+        "length_m": 0.68,
+        "width_mm": 6.9,
+        "depth_mm": 8.0,
+        "depth_is_synthetic": true,
+        "orientation": "longitudinal",
+        "severity": "Medium",
+        "dist_to_low_m": 0.97
+      },
+      {
+        "id": "C02",
+        "along_m": -1.84,
+        "offset_m": 2.68,
+        "length_m": 0.94,
+        "width_mm": 9.5,
+        "depth_mm": 13.6,
+        "depth_is_synthetic": true,
+        "orientation": "longitudinal",
+        "severity": "Medium",
+        "dist_to_low_m": 1.84
+      },
+      {
+        "id": "C04",
+        "along_m": -5.78,
+        "offset_m": 0.56,
+        "length_m": 1.35,
+        "width_mm": 6.2,
+        "depth_mm": 8.0,
+        "depth_is_synthetic": true,
+        "orientation": "longitudinal",
+        "severity": "Medium",
+        "dist_to_low_m": 5.78
+      },
+      {
+        "id": "C01",
+        "along_m": 7.19,
+        "offset_m": -2.9,
+        "length_m": 0.39,
+        "width_mm": 2.5,
+        "depth_mm": 6.8,
+        "depth_is_synthetic": true,
+        "orientation": "transverse",
+        "severity": "Low",
+        "dist_to_low_m": 7.19
+      }
+    ]
+  },
+  "IA11164": {
+    "segment_id": "IA11164",
+    "pci": 96.2,
+    "cracks": [
+      {
+        "id": "C03",
+        "along_m": 0.24,
+        "offset_m": -1.71,
+        "length_m": 1.45,
+        "width_mm": 3.1,
+        "depth_mm": 7.4,
+        "depth_is_synthetic": true,
+        "orientation": "longitudinal",
+        "severity": "Low",
+        "dist_to_low_m": 0.24
+      },
+      {
+        "id": "C04",
+        "along_m": -0.31,
+        "offset_m": 3.87,
+        "length_m": 1.88,
+        "width_mm": 4.5,
+        "depth_mm": 6.5,
+        "depth_is_synthetic": true,
+        "orientation": "longitudinal",
+        "severity": "Low",
+        "dist_to_low_m": 0.31
+      },
+      {
+        "id": "C02",
+        "along_m": -3.43,
+        "offset_m": 2.22,
+        "length_m": 1.07,
+        "width_mm": 7.1,
+        "depth_mm": 17.1,
+        "depth_is_synthetic": true,
+        "orientation": "transverse",
+        "severity": "Medium",
+        "dist_to_low_m": 3.43
+      },
+      {
+        "id": "C01",
+        "along_m": 3.51,
+        "offset_m": -0.08,
+        "length_m": 2.0,
+        "width_mm": 4.8,
+        "depth_mm": 5.2,
+        "depth_is_synthetic": true,
+        "orientation": "longitudinal",
+        "severity": "Low",
+        "dist_to_low_m": 3.51
+      }
+    ]
+  },
+  "IA11175": {
+    "segment_id": "IA11175",
+    "pci": 96.0,
+    "cracks": [
+      {
+        "id": "C02",
+        "along_m": -0.25,
+        "offset_m": -2.61,
+        "length_m": 1.41,
+        "width_mm": 3.2,
+        "depth_mm": 5.9,
+        "depth_is_synthetic": true,
+        "orientation": "longitudinal",
+        "severity": "Low",
+        "dist_to_low_m": 0.25
+      },
+      {
+        "id": "C04",
+        "along_m": -1.94,
+        "offset_m": -2.91,
+        "length_m": 1.81,
+        "width_mm": 3.7,
+        "depth_mm": 6.7,
+        "depth_is_synthetic": true,
+        "orientation": "transverse",
+        "severity": "Low",
+        "dist_to_low_m": 1.94
+      },
+      {
+        "id": "C03",
+        "along_m": -3.33,
+        "offset_m": -1.1,
+        "length_m": 1.5,
+        "width_mm": 3.2,
+        "depth_mm": 6.7,
+        "depth_is_synthetic": true,
+        "orientation": "transverse",
+        "severity": "Low",
+        "dist_to_low_m": 3.33
+      },
+      {
+        "id": "C01",
+        "along_m": -5.59,
+        "offset_m": -3.92,
+        "length_m": 0.6,
+        "width_mm": 6.8,
+        "depth_mm": 11.2,
+        "depth_is_synthetic": true,
+        "orientation": "transverse",
+        "severity": "Medium",
+        "dist_to_low_m": 5.59
+      }
+    ]
+  },
+  "IA11186": {
+    "segment_id": "IA11186",
+    "pci": 94.0,
+    "cracks": [
+      {
+        "id": "C01",
+        "along_m": -0.29,
+        "offset_m": 2.67,
+        "length_m": 1.05,
+        "width_mm": 7.6,
+        "depth_mm": 7.2,
+        "depth_is_synthetic": true,
+        "orientation": "transverse",
+        "severity": "Medium",
+        "dist_to_low_m": 0.29
+      },
+      {
+        "id": "C03",
+        "along_m": 1.98,
+        "offset_m": -3.77,
+        "length_m": 0.32,
+        "width_mm": 3.5,
+        "depth_mm": 5.5,
+        "depth_is_synthetic": true,
+        "orientation": "longitudinal",
+        "severity": "Low",
+        "dist_to_low_m": 1.98
+      },
+      {
+        "id": "C04",
+        "along_m": -2.32,
+        "offset_m": -2.68,
+        "length_m": 1.15,
+        "width_mm": 8.1,
+        "depth_mm": 9.8,
+        "depth_is_synthetic": true,
+        "orientation": "longitudinal",
+        "severity": "Medium",
+        "dist_to_low_m": 2.32
+      },
+      {
+        "id": "C02",
+        "along_m": -2.93,
+        "offset_m": 0.73,
+        "length_m": 0.64,
+        "width_mm": 4.3,
+        "depth_mm": 9.5,
+        "depth_is_synthetic": true,
+        "orientation": "transverse",
+        "severity": "Low",
+        "dist_to_low_m": 2.93
+      }
+    ]
+  },
+  "IA11188": {
+    "segment_id": "IA11188",
+    "pci": 95.4,
+    "cracks": [
+      {
+        "id": "C01",
+        "along_m": 0.46,
+        "offset_m": -0.51,
+        "length_m": 0.3,
+        "width_mm": 6.6,
+        "depth_mm": 6.4,
+        "depth_is_synthetic": true,
+        "orientation": "transverse",
+        "severity": "Medium",
+        "dist_to_low_m": 0.46
+      },
+      {
+        "id": "C02",
+        "along_m": 0.99,
+        "offset_m": -0.97,
+        "length_m": 0.52,
+        "width_mm": 4.5,
+        "depth_mm": 6.9,
+        "depth_is_synthetic": true,
+        "orientation": "longitudinal",
+        "severity": "Low",
+        "dist_to_low_m": 0.99
+      },
+      {
+        "id": "C04",
+        "along_m": 1.6,
+        "offset_m": 0.09,
+        "length_m": 0.98,
+        "width_mm": 6.2,
+        "depth_mm": 6.8,
+        "depth_is_synthetic": true,
+        "orientation": "transverse",
+        "severity": "Medium",
+        "dist_to_low_m": 1.6
+      },
+      {
+        "id": "C03",
+        "along_m": 4.94,
+        "offset_m": 3.27,
+        "length_m": 0.41,
+        "width_mm": 7.5,
+        "depth_mm": 6.2,
+        "depth_is_synthetic": true,
+        "orientation": "transverse",
+        "severity": "Medium",
+        "dist_to_low_m": 4.94
+      }
+    ]
+  },
+  "IA11189": {
+    "segment_id": "IA11189",
+    "pci": 94.9,
+    "cracks": [
+      {
+        "id": "C04",
+        "along_m": 1.28,
+        "offset_m": 2.03,
+        "length_m": 0.68,
+        "width_mm": 5.8,
+        "depth_mm": 10.1,
+        "depth_is_synthetic": true,
+        "orientation": "longitudinal",
+        "severity": "Medium",
+        "dist_to_low_m": 1.28
+      },
+      {
+        "id": "C03",
+        "along_m": -3.39,
+        "offset_m": -3.38,
+        "length_m": 1.75,
+        "width_mm": 4.2,
+        "depth_mm": 10.5,
+        "depth_is_synthetic": true,
+        "orientation": "longitudinal",
+        "severity": "Low",
+        "dist_to_low_m": 3.39
+      },
+      {
+        "id": "C01",
+        "along_m": 3.79,
+        "offset_m": -3.34,
+        "length_m": 1.26,
+        "width_mm": 7.2,
+        "depth_mm": 5.8,
+        "depth_is_synthetic": true,
+        "orientation": "longitudinal",
+        "severity": "Medium",
+        "dist_to_low_m": 3.79
+      },
+      {
+        "id": "C02",
+        "along_m": -7.57,
+        "offset_m": -3.14,
+        "length_m": 0.6,
+        "width_mm": 4.4,
+        "depth_mm": 8.2,
+        "depth_is_synthetic": true,
+        "orientation": "longitudinal",
+        "severity": "Low",
+        "dist_to_low_m": 7.57
+      }
+    ]
+  }
+}

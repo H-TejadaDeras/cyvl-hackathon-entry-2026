@@ -24,6 +24,7 @@ Run:
 """
 from __future__ import annotations
 
+import json
 import math
 from pathlib import Path
 
@@ -38,6 +39,14 @@ from curbrisk.ingest.lidar_ground import get_sampler
 
 OUT_DIR = C.PROCESSED_DIR / "crosssections"
 OUT_DIR.mkdir(exist_ok=True)
+CRACKS_INDEX = C.PROCESSED_DIR / "cracks_index.json"
+
+# Synthetic crack rendering. Real crack openings are millimetres — far too small
+# to see next to a road — so width/depth are visually EXAGGERATED in the model
+# (the click-through panel reports the true synthetic mm values). Colour = severity.
+CRACK_SEV_COLOR = {"High": 1, "Medium": 30, "Low": 2}   # ACI red / orange / yellow
+CRACK_WIDTH_VIS = 0.004    # model metres added per mm of crack width (visibility)
+CRACK_DEPTH_VIS = 6.0      # extra depth exaggeration on top of VEXAG
 
 HALF_WIDTH_M = 4.0     # carriageway half-width (extruded transverse extent)
 ALONG_LEN_M = 18.0     # longitudinal extent of the measured profile (centred on sag)
@@ -108,7 +117,45 @@ def _bowl_bounds(prof, sag_i, sag_z, spill_m):
     return lo, hi
 
 
-def build_dxf(low_row, alongs, offs, Z, pci, curb_risk) -> Path:
+def _surface_z(alongs, offs, Z, z_ref, a, o):
+    """Exaggerated surface height (model units) at along=a, offset=o (nearest cell)."""
+    i = int(np.argmin(np.abs(alongs - a)))
+    j = int(np.argmin(np.abs(offs - o)))
+    z = Z[i, j]
+    if not np.isfinite(z):
+        col = Z[i, :]
+        z = float(np.nanmin(col)) if np.isfinite(col).any() else z_ref
+    return (float(z) - z_ref) * VEXAG
+
+
+def _add_cracks(msp, doc, alongs, offs, Z, z_ref, cracks) -> None:
+    """Draw each synthetic crack as its own named layer object (CRACK_<id>) so it
+    is individually selectable + toggleable in the APS Viewer. A recessed quad
+    reads as an open crack; true mm dimensions live in the API/UI, not geometry."""
+    amin, amax = float(alongs.min()), float(alongs.max())
+    omin, omax = float(offs.min()), float(offs.max())
+    for ck in cracks:
+        a0 = min(max(float(ck["along_m"]), amin), amax)
+        o0 = min(max(float(ck["offset_m"]), omin), omax)
+        half_len = float(ck["length_m"]) / 2.0
+        half_w = 0.08 + float(ck["width_mm"]) * CRACK_WIDTH_VIS
+        recess = max(0.05, float(ck["depth_mm"]) / 1000.0 * VEXAG * CRACK_DEPTH_VIS)
+        zc = _surface_z(alongs, offs, Z, z_ref, a0, o0) - recess
+        if ck.get("orientation") == "transverse":
+            da, do = half_w, half_len
+        else:
+            da, do = half_len, half_w
+        corners = [(a0 - da, o0 - do), (a0 + da, o0 - do),
+                   (a0 + da, o0 + do), (a0 - da, o0 + do)]
+        layer = f"CRACK_{ck['id']}"
+        if layer not in doc.layers:
+            doc.layers.add(layer, color=CRACK_SEV_COLOR.get(ck.get("severity"), 2))
+        m = MeshBuilder()
+        m.add_face([(x, y, zc) for x, y in corners])
+        m.render_mesh(msp, dxfattribs={"layer": layer})
+
+
+def build_dxf(low_row, alongs, offs, Z, pci, curb_risk, cracks=None) -> Path:
     """Write a 3-D DXF: bare-earth road mesh + modeled pond surface.
 
     The pond is anchored to the *detected* sag (the topo low point at the centre
@@ -156,6 +203,9 @@ def build_dxf(low_row, alongs, offs, Z, pci, curb_risk) -> Path:
     road.render_mesh(msp, dxfattribs={"layer": "ROAD"})
     if len(water.faces):
         water.render_mesh(msp, dxfattribs={"layer": "WATER"})
+
+    # synthetic cracks, each on its own selectable/toggleable layer
+    _add_cracks(msp, doc, alongs, offs, Z, z_ref, cracks or [])
 
     # annotations placed just above/beside the model
     top = water_local + 0.6
@@ -229,6 +279,7 @@ def main() -> None:
     scores = gpd.read_file(C.SCORES_OUT)
     sampler = get_sampler()
     by_seg = {r["segment_id"]: r for _, r in scores.iterrows()}
+    crack_index = json.loads(CRACKS_INDEX.read_text()) if CRACKS_INDEX.exists() else {}
 
     made = 0
     for _, lr in low.iterrows():
@@ -240,7 +291,8 @@ def main() -> None:
         risk = sc.get("curb_risk", "n/a")
         lr = lr.copy()
         lr["risk_band"] = sc.get("risk_band", "Moderate")
-        p = build_dxf(lr, alongs, offs, Z, pci, risk)
+        cracks = (crack_index.get(str(lr["segment_id"]), {}) or {}).get("cracks", [])
+        p = build_dxf(lr, alongs, offs, Z, pci, risk, cracks=cracks)
         # the measured longitudinal profile (centre column) feeds the 2-D SVG
         _render_svg(p.with_suffix(".svg"), alongs, Z[:, Z.shape[1] // 2], lr, pci, risk)
         made += 1
