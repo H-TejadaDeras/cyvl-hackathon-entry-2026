@@ -367,7 +367,7 @@ html,body{margin:0;height:100%;font:14px/1.5 system-ui,-apple-system,Segoe UI,Ro
 #main{position:absolute;top:48px;bottom:0;left:0;right:0;display:flex}
 #viewerwrap{flex:1;position:relative;min-width:0;background:#1b1b1b}
 #fv{position:absolute;inset:0}
-#rain{position:absolute;inset:0;pointer-events:none;z-index:3}
+#rain{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:3}
 #tint{position:absolute;inset:0;pointer-events:none;z-index:2;background:linear-gradient(180deg,rgba(20,60,120,0) 40%,rgba(20,70,140,0.0));transition:background .4s}
 #pond{position:absolute;left:14px;bottom:14px;width:54px;z-index:4;background:rgba(10,14,19,.72);border:1px solid var(--line);border-radius:10px;padding:8px 6px;text-align:center}
 #pond .g{height:90px;width:18px;margin:4px auto;background:#10202f;border-radius:4px;position:relative;overflow:hidden}
@@ -438,20 +438,32 @@ input[type=range]{width:100%;accent-color:var(--accent)}
 </div>
 <script>
 const SID='__SID__', URN='__URN__';
-let viewer=null, objTree=null, crackDbIds={}, baseData=null, selCrack=null;
+let viewer=null, objTree=null, crackDbIds={}, baseData=null, selCrack=null, pondDepth=0;
 const $=id=>document.getElementById(id);
 const COL={High:'#d9352a',Moderate:'#e8a33d',Low:'#2e8b57'};
 const SEVC={High:'#d9352a',Medium:'#e8a33d',Low:'#f2d15b'};
 const fmt=v=>(v===null||v===undefined)?'—':v;
 
 /* ---------- APS viewer ---------- */
-function showViewerError(msg){
-  $('fv').innerHTML='<div style="color:#e6edf3;padding:28px;max-width:520px;font:14px/1.6 system-ui">'
-    +'<h3 style="color:#ff9d9d;margin:0 0 8px">3-D model failed to load</h3>'
-    +'<p style="color:#9fb1c9">'+msg+'</p></div>';
+function showSvgFallback(msg){
+  // Never leave the viewer pane an empty dark void (with rain falling on nothing):
+  // drop in the always-available 2-D measured cross-section so there is a road.
+  $('fv').innerHTML='<div style="position:absolute;inset:0;display:flex;flex-direction:column;'
+    +'align-items:center;justify-content:center;gap:12px;padding:20px;text-align:center;background:#11161d">'
+    +'<img src="/crosssection/'+SID+'.svg" onerror="this.remove()" '
+    +'style="max-width:94%;max-height:74%;border:1px solid #2a313c;border-radius:10px;background:#f7f7f4">'
+    +'<div style="color:#9fb1c9;font:13px/1.55 system-ui;max-width:520px">'
+    +(msg||'')+' Showing the 2-D measured cross-section instead.</div></div>';
+}
+function frameModel(){
+  // Fit AFTER geometry has streamed in; a second fit on the next frame settles
+  // the camera once the bounding box is final.
+  try{ viewer.fitToView(); requestAnimationFrame(()=>{ try{ viewer.fitToView(); }catch(e){} }); }catch(e){}
 }
 Autodesk.Viewing.Initializer({env:'AutodeskProduction',api:'streamingV2',
-  getAccessToken:cb=>fetch('/aps/token').then(r=>r.json()).then(t=>cb(t.access_token,t.expires_in))},
+  getAccessToken:cb=>fetch('/aps/token').then(r=>{if(!r.ok)throw new Error('token HTTP '+r.status);return r.json();})
+    .then(t=>cb(t.access_token,t.expires_in))
+    .catch(e=>showSvgFallback('Autodesk viewer token unavailable ('+e.message+').'))},
   ()=>{
     viewer=new Autodesk.Viewing.GuiViewer3D($('fv'));
     viewer.start();
@@ -465,13 +477,21 @@ Autodesk.Viewing.Initializer({env:'AutodeskProduction',api:'streamingV2',
       const g3d=root.search({type:'geometry',role:'3d'});
       const g2d=root.search({type:'geometry',role:'2d'});
       const geom=(g3d&&g3d[0])||(g2d&&g2d[0])||root.getDefaultGeometry();
-      if(!geom){ showViewerError('No renderable viewable found in this model.'); return; }
+      if(!geom){ showSvgFallback('No renderable 3-D viewable in this model.'); return; }
+      // Frame the model and wire up cracks only once GEOMETRY_LOADED fires —
+      // calling fitToView() right after loadDocumentNode resolves points the
+      // camera at empty space, so the road appears "missing" though it loaded.
+      viewer.addEventListener(Autodesk.Viewing.GEOMETRY_LOADED_EVENT,
+        ()=>{ frameModel(); mapCracks(); scheduleRainRebuild(); }, {once:true});
+      viewer.addEventListener(Autodesk.Viewing.SELECTION_CHANGED_EVENT, onViewerSelect);
+      viewer.addEventListener(Autodesk.Viewing.CAMERA_CHANGE_EVENT, scheduleRainRebuild);
       viewer.loadDocumentNode(doc, geom).then(()=>{
-        viewer.addEventListener(Autodesk.Viewing.GEOMETRY_LOADED_EVENT, mapCracks);
-        viewer.addEventListener(Autodesk.Viewing.SELECTION_CHANGED_EVENT, onViewerSelect);
-        viewer.fitToView();
-      }).catch(err=>showViewerError('Could not load the geometry: '+(err&&err.message?err.message:err)));
-    }, (code,msg)=>{ showViewerError('Document load error '+code+': '+msg); });
+        // Some Viewer builds resolve after GEOMETRY_LOADED_EVENT has fired.
+        mapCracks();
+        scheduleRainRebuild();
+      })
+        .catch(err=>showSvgFallback('Could not load the geometry: '+(err&&err.message?err.message:err)));
+    }, (code,msg)=>{ showSvgFallback('Document load error '+code+': '+msg); });
   });
 
 function mapCracks(){
@@ -483,7 +503,13 @@ function mapCracks(){
         const m=nm.match(/C\\d\\d/);
         if(nm.indexOf('CRACK')>=0 && m){ crackDbIds[m[0]]=id; }
       }, true);
-      renderCracks();   // re-render now that we can wire toggles to the model
+      // DXF translation may expose the layer only through APS search rather
+      // than in the object-tree node name.
+      const cks=(baseData&&baseData.cracks)||[];
+      cks.forEach(c=>viewer.search('CRACK_'+c.id, ids=>{
+        if(ids&&ids.length){ crackDbIds[c.id]=ids[0]; renderCracks(); }
+      }));
+      renderCracks();
     });
   }catch(e){}
 }
@@ -506,6 +532,7 @@ async function loadBase(){
 }
 
 function setScore(score, band, ponding){
+  pondDepth=Math.max(0,ponding||0);
   $('score').textContent=fmt(score);
   $('score').style.color=COL[band]||'#fff';
   const b=$('band'); b.textContent=(band||'—')+' RISK'; b.style.background=COL[band]||'#888';
@@ -601,31 +628,101 @@ $('snowsl').addEventListener('input',onSim);
 $('reset').addEventListener('click',()=>{ $('rainsl').value=2; $('snowsl').value=0; onSim(); });
 
 /* ---------- rain/snow rendered over the Autodesk view ---------- */
-const cv=$('rain'), ctx=cv.getContext('2d'); let parts=[], rainI=0.25, snowI=0;
-function resize(){ cv.width=cv.clientWidth; cv.height=cv.clientHeight; }
-window.addEventListener('resize',resize); resize();
+const cv=$('rain'), ctx=cv.getContext('2d');
+let parts=[], rainI=0.25, snowI=0, cw=1, ch=1, rainRebuildT=null;
+function resize(){
+  const r=cv.getBoundingClientRect(), dpr=Math.min(window.devicePixelRatio||1,2);
+  cw=Math.max(1,r.width||cv.parentElement.clientWidth||window.innerWidth);
+  ch=Math.max(1,r.height||cv.parentElement.clientHeight||window.innerHeight);
+  cv.width=Math.round(cw*dpr); cv.height=Math.round(ch*dpr);
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  rebuild();
+}
+window.addEventListener('resize',resize);
+if(window.ResizeObserver){ try{ new ResizeObserver(resize).observe($('viewerwrap')); }catch(e){} }
+function scheduleRainRebuild(){
+  clearTimeout(rainRebuildT);
+  rainRebuildT=setTimeout(rebuild,80);
+}
 function setRain(rain, snow){ rainI=rain/8; snowI=snow/24; rebuild(); }
+function roadTarget(){
+  if(viewer&&viewer.model){
+    try{
+      const b=viewer.model.getBoundingBox();
+      // The CAD also contains long annotation text, so the full model bounds
+      // are wider than the pavement. Target the generated 18 m x 8 m road slab.
+      const p=new THREE.Vector3(
+        -8.7+Math.random()*17.4,
+        -3.8+Math.random()*7.6,
+        b.min.z+0.03
+      );
+      const q=viewer.worldToClient(p);
+      if(Number.isFinite(q.x)&&Number.isFinite(q.y)){
+        return {x:Math.max(0,Math.min(cw,q.x)),y:Math.max(ch*.2,Math.min(ch,q.y))};
+      }
+    }catch(e){}
+  }
+  return {x:Math.random()*cw,y:ch*(.62+Math.random()*.28)};
+}
+function resetParticle(p, initial=false){
+  const t=roadTarget(); p.tx=t.x; p.ty=t.y;
+  p.y=initial?Math.random()*p.ty:-Math.random()*ch*.35;
+  p.x=p.tx+(p.ty-p.y)*.09;
+}
+function drawPond(){
+  if(!pondDepth||!viewer||!viewer.model)return;
+  try{
+    // The modeled sag is the CAD origin. Project a small local road frame so
+    // the puddle stays attached to the pavement while the user orbits the view.
+    const z=viewer.model.getBoundingBox().min.z+0.035;
+    const c=viewer.worldToClient(new THREE.Vector3(0,0,z));
+    const ax=viewer.worldToClient(new THREE.Vector3(4,0,z));
+    const ay=viewer.worldToClient(new THREE.Vector3(0,3,z));
+    if(![c.x,c.y,ax.x,ax.y,ay.x,ay.y].every(Number.isFinite))return;
+    const growth=Math.min(1,Math.sqrt(pondDepth/8));
+    const rx=Math.max(14,Math.hypot(ax.x-c.x,ax.y-c.y)*(.28+.62*growth));
+    const ry=Math.max(8,Math.hypot(ay.x-c.x,ay.y-c.y)*(.24+.58*growth));
+    const angle=Math.atan2(ax.y-c.y,ax.x-c.x);
+    ctx.save();
+    ctx.translate(c.x,c.y); ctx.rotate(angle);
+    const g=ctx.createRadialGradient(0,0,ry*.08,0,0,rx);
+    g.addColorStop(0,'rgba(55,145,225,'+(.24+.22*growth)+')');
+    g.addColorStop(.72,'rgba(35,115,205,'+(.18+.20*growth)+')');
+    g.addColorStop(1,'rgba(30,95,180,0)');
+    ctx.fillStyle=g; ctx.beginPath(); ctx.ellipse(0,0,rx,ry,0,0,Math.PI*2); ctx.fill();
+    ctx.strokeStyle='rgba(135,205,255,'+(.18+.25*growth)+')';
+    ctx.lineWidth=1.2; ctx.beginPath(); ctx.ellipse(0,0,rx*.72,ry*.55,0,0,Math.PI*2); ctx.stroke();
+    ctx.restore();
+  }catch(e){}
+}
 function rebuild(){
   const nRain=Math.round(rainI*420), nSnow=Math.round(snowI*220);
   parts=[];
-  for(let i=0;i<nRain;i++) parts.push({t:'r',x:Math.random()*cv.width,y:Math.random()*cv.height,
-    l:6+Math.random()*14,s:7+Math.random()*8});
-  for(let i=0;i<nSnow;i++) parts.push({t:'s',x:Math.random()*cv.width,y:Math.random()*cv.height,
-    r:1.2+Math.random()*2.4,s:1+Math.random()*1.8,d:Math.random()*6.28});
+  for(let i=0;i<nRain;i++){
+    const p={t:'r',l:6+Math.random()*14,s:7+Math.random()*8};
+    resetParticle(p,true); parts.push(p);
+  }
+  for(let i=0;i<nSnow;i++){
+    const p={t:'s',r:1.2+Math.random()*2.4,s:1+Math.random()*1.8,d:Math.random()*6.28};
+    resetParticle(p,true); parts.push(p);
+  }
 }
 function tick(){
-  ctx.clearRect(0,0,cv.width,cv.height);
+  ctx.clearRect(0,0,cw,ch);
+  drawPond();
   for(const p of parts){
     if(p.t==='r'){ ctx.strokeStyle='rgba(150,190,255,.55)'; ctx.lineWidth=1.1;
       ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(p.x-1.5,p.y+p.l); ctx.stroke();
-      p.y+=p.s; p.x-=0.6; if(p.y>cv.height){p.y=-p.l;p.x=Math.random()*cv.width;} }
+      p.y+=p.s; p.x-=p.s*.09; if(p.y>p.ty)resetParticle(p); }
     else{ ctx.fillStyle='rgba(255,255,255,.85)'; ctx.beginPath();
       ctx.arc(p.x,p.y,p.r,0,6.28); ctx.fill();
-      p.y+=p.s; p.x+=Math.sin((p.d+=0.02))*0.6; if(p.y>cv.height){p.y=-4;p.x=Math.random()*cv.width;} }
+      p.y+=p.s; p.x-=p.s*.09; p.x+=Math.sin((p.d+=0.02))*.6;
+      if(p.y>p.ty)resetParticle(p); }
   }
   requestAnimationFrame(tick);
 }
-rebuild(); tick();
+// defer first spawn to after layout/paint so the canvas has a real width
+requestAnimationFrame(()=>{ resize(); rebuild(); tick(); });
 
 loadBase();
 </script></body></html>"""

@@ -26,6 +26,8 @@ from __future__ import annotations
 
 import json
 import math
+import random
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -44,9 +46,8 @@ CRACKS_INDEX = C.PROCESSED_DIR / "cracks_index.json"
 # Synthetic crack rendering. Real crack openings are millimetres — far too small
 # to see next to a road — so width/depth are visually EXAGGERATED in the model
 # (the click-through panel reports the true synthetic mm values). Colour = severity.
-CRACK_SEV_COLOR = {"High": 1, "Medium": 30, "Low": 2}   # ACI red / orange / yellow
-CRACK_WIDTH_VIS = 0.004    # model metres added per mm of crack width (visibility)
-CRACK_DEPTH_VIS = 6.0      # extra depth exaggeration on top of VEXAG
+CRACK_COLOR = 250          # dark charcoal, readable as a fissure on grey pavement
+CRACK_WIDTH_VIS = 0.012    # visual metres per mm; true width remains in the API
 
 HALF_WIDTH_M = 4.0     # carriageway half-width (extruded transverse extent)
 ALONG_LEN_M = 18.0     # longitudinal extent of the measured profile (centred on sag)
@@ -130,28 +131,45 @@ def _surface_z(alongs, offs, Z, z_ref, a, o):
 
 def _add_cracks(msp, doc, alongs, offs, Z, z_ref, cracks) -> None:
     """Draw each synthetic crack as its own named layer object (CRACK_<id>) so it
-    is individually selectable + toggleable in the APS Viewer. A recessed quad
-    reads as an open crack; true mm dimensions live in the API/UI, not geometry."""
+    is individually selectable + toggleable in the APS Viewer.
+
+    Each crack is a dark, irregular ribbon draped just above the road. This reads
+    as an actual pavement fissure in APS; the previous rectangular severity bars
+    looked like CAD markers and could disappear against the shaded road."""
     amin, amax = float(alongs.min()), float(alongs.max())
     omin, omax = float(offs.min()), float(offs.max())
     for ck in cracks:
         a0 = min(max(float(ck["along_m"]), amin), amax)
         o0 = min(max(float(ck["offset_m"]), omin), omax)
-        half_len = float(ck["length_m"]) / 2.0
-        half_w = 0.08 + float(ck["width_mm"]) * CRACK_WIDTH_VIS
-        recess = max(0.05, float(ck["depth_mm"]) / 1000.0 * VEXAG * CRACK_DEPTH_VIS)
-        zc = _surface_z(alongs, offs, Z, z_ref, a0, o0) - recess
-        if ck.get("orientation") == "transverse":
-            da, do = half_w, half_len
-        else:
-            da, do = half_len, half_w
-        corners = [(a0 - da, o0 - do), (a0 + da, o0 - do),
-                   (a0 + da, o0 + do), (a0 - da, o0 + do)]
+        length = max(0.45, float(ck["length_m"]))
+        width = max(0.10, float(ck["width_mm"]) * CRACK_WIDTH_VIS)
+        transverse = ck.get("orientation") == "transverse"
+        rng = random.Random(f"{ck['id']}:{a0}:{o0}")
+        n = max(7, int(length / 0.18))
+        centers = []
+        for i in range(n):
+            t = i / (n - 1) - 0.5
+            jitter = 0.0 if i in (0, n - 1) else rng.uniform(-width * 0.9, width * 0.9)
+            a = a0 + (jitter if transverse else t * length)
+            o = o0 + (t * length if transverse else jitter)
+            a = min(max(a, amin), amax)
+            o = min(max(o, omin), omax)
+            centers.append((a, o, _surface_z(alongs, offs, Z, z_ref, a, o) + 0.025))
+
         layer = f"CRACK_{ck['id']}"
         if layer not in doc.layers:
-            doc.layers.add(layer, color=CRACK_SEV_COLOR.get(ck.get("severity"), 2))
+            doc.layers.add(layer, color=CRACK_COLOR)
         m = MeshBuilder()
-        m.add_face([(x, y, zc) for x, y in corners])
+        for i in range(len(centers) - 1):
+            a1, o1, z1 = centers[i]
+            a2, o2, z2 = centers[i + 1]
+            da, do = a2 - a1, o2 - o1
+            mag = math.hypot(da, do) or 1.0
+            pa, po = -do / mag * width / 2, da / mag * width / 2
+            m.add_face([
+                (a1 + pa, o1 + po, z1), (a2 + pa, o2 + po, z2),
+                (a2 - pa, o2 - po, z2), (a1 - pa, o1 - po, z1),
+            ])
         m.render_mesh(msp, dxfattribs={"layer": layer})
 
 
@@ -273,7 +291,7 @@ def _render_svg(path, offs, elev, low_row, pci, curb_risk):
     Path(path).write_text(svg)
 
 
-def main() -> None:
+def main(segment_ids: set[str] | None = None) -> None:
     seg = gpd.read_file(C.PROCESSED_DIR / "segments_elev.geojson").to_crs(C.UTM19N)
     low = gpd.read_file(C.LOWPOINTS_OUT).to_crs(C.UTM19N)
     scores = gpd.read_file(C.SCORES_OUT)
@@ -283,6 +301,8 @@ def main() -> None:
 
     made = 0
     for _, lr in low.iterrows():
+        if segment_ids and str(lr["segment_id"]) not in segment_ids:
+            continue
         alongs, offs, Z = _surface_grid(sampler, lr, seg)
         if not np.isfinite(Z).any():
             continue
@@ -301,4 +321,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    main(set(sys.argv[1:]) or None)

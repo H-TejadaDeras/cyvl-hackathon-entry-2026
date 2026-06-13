@@ -21,9 +21,11 @@ Run:
 from __future__ import annotations
 
 import base64
+import hashlib
 import json
 import os
 import re
+import sys
 import time
 from pathlib import Path
 
@@ -93,7 +95,8 @@ def _ensure_bucket(tok: str) -> None:
 def _upload(tok: str, dxf: Path) -> str:
     """Signed-S3 upload; returns the object URN (base64, unpadded)."""
     h = {"Authorization": f"Bearer {tok}"}
-    key = dxf.name
+    digest = hashlib.sha256(dxf.read_bytes()).hexdigest()[:12]
+    key = f"{dxf.stem}_{digest}{dxf.suffix}"
     r = requests.get(
         f"{BASE}/oss/v2/buckets/{BUCKET}/objects/{key}/signeds3upload",
         headers=h, timeout=30)
@@ -159,10 +162,18 @@ def _save_thumbnail(tok: str, urn: str, seg: str) -> str | None:
     return None
 
 
-def upload_all() -> dict:
+def upload_all(segment_ids: set[str] | None = None) -> dict:
     tok = _token()
-    urns = {}
+    if URN_CACHE.exists():
+        try:
+            urns = json.loads(URN_CACHE.read_text())
+        except (OSError, json.JSONDecodeError):
+            urns = {}
+    else:
+        urns = {}
     dxfs = sorted(OUT_DIR.glob("*.dxf"))
+    if segment_ids:
+        dxfs = [d for d in dxfs if d.stem.replace("xsection_", "") in segment_ids]
     if tok is None:
         print("No APS_CLIENT_ID/SECRET set — skipping APS translation.")
         print("Serving local SVG fallbacks; set creds to enable the APS Viewer.")
@@ -187,6 +198,9 @@ def upload_all() -> dict:
             "viewer": f"/viewer/{seg}" if status == "success" else f"/crosssection/{seg}.svg",
             "thumbnail": f"/crosssection/{thumb}" if thumb else None,
         }
+        # Persist each result so a slow remote translation or interrupted run
+        # never discards models that already completed successfully.
+        URN_CACHE.write_text(json.dumps(urns, indent=2))
         print(f"  {seg}: upload + SVF2 translate -> {status}"
               + (f", thumbnail {thumb}" if thumb else ""))
     URN_CACHE.write_text(json.dumps(urns, indent=2))
@@ -196,7 +210,8 @@ def upload_all() -> dict:
 
 
 if __name__ == "__main__":
-    out = upload_all()
+    requested = set(sys.argv[1:]) or None
+    out = upload_all(requested)
     print(json.dumps(out, indent=2))
 
     # Confirm at least one URN is a real, translating APS derivative (not the SVG

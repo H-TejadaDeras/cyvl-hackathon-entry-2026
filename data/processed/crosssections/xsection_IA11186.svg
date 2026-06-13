@@ -3,8 +3,8 @@
 <polygon points='40.0,296.8 40.0,296.8 93.3,296.8 146.7,296.8 200.0,296.8 253.3,298.3 306.7,304.8 360.0,311.3 413.3,309.1 466.7,304.8 520.0,296.8 573.3,296.8 626.7,296.8 680.0,320.0 680.0,296.8' fill='#4a90d9' fill-opacity='0.55'/>
 <polyline points='40.0,257.1 93.3,263.6 146.7,263.6 200.0,287.4 253.3,298.3 306.7,304.8 360.0,311.3 413.3,309.1 466.7,304.8 520.0,287.4 573.3,270.1 626.7,280.9 680.0,320.0' fill='none' stroke='#444' stroke-width='2.5'/>
 <line x1='40.0' y1='296.8' x2='680.0' y2='296.8' stroke='#1f6fb2' stroke-dasharray='6 4' stroke-width='2'/>
-<text x='40' y='28' font-size='18' font-weight='700'>Avon Street — longitudinal profile at low point</text>
-<text x='40' y='346' font-size='13' fill='#333'>Ponding 4.2 in @ 2.0" storm · catchment 10386 sqft · PCI 94.0</text>
+<text x='40' y='28' font-size='18' font-weight='700'>Avon Street â€” longitudinal profile at low point</text>
+<text x='40' y='346' font-size='13' fill='#333'>Ponding 4.2 in @ 2.0" storm Â· catchment 10386 sqft Â· PCI 94.0</text>
 <rect x='570' y='14' width='136' height='30' rx='6' fill='#e8a33d'/>
 <text x='638' y='34' font-size='15' fill='#fff' text-anchor='middle' font-weight='700'>CurbRisk 43.8</text>
 </svg>
