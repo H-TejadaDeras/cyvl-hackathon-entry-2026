@@ -191,6 +191,72 @@ def crosssection(segment_id: str):
     return FileResponse(p, media_type="image/svg+xml")
 
 
+@app.get("/crosssection/{name}.png")
+def crosssection_png(name: str):
+    """Autodesk-rendered thumbnails (and any other PNG) for a cross-section."""
+    p = XS_DIR / f"{name}.png"
+    if not p.exists():
+        raise HTTPException(404, "no image for this segment")
+    return FileResponse(p, media_type="image/png")
+
+
+@app.get("/aps/token")
+def aps_token():
+    """Short-lived viewer token (2-legged, viewables:read) for the APS Viewer.
+
+    Only the read scope is exposed to the browser; upload/translate scopes stay
+    server-side in the pipeline.
+    """
+    from curbrisk.output import aps_upload
+    try:
+        tok = aps_upload._token("viewables:read")
+    except Exception as exc:  # noqa: BLE001
+        raise HTTPException(502, f"APS auth failed: {exc}")
+    if tok is None:
+        raise HTTPException(503, "APS credentials not configured")
+    return {"access_token": tok, "expires_in": 3600}
+
+
+@app.get("/viewer/{segment_id}", response_class=HTMLResponse)
+def viewer(segment_id: str):
+    """Full-page Autodesk APS Viewer loading the translated SVF2 model."""
+    entry = None
+    if URN_CACHE.exists():
+        entry = json.loads(URN_CACHE.read_text()).get(segment_id)
+    if not entry or not entry.get("urn") or entry.get("status") != "ready":
+        raise HTTPException(404, "no translated APS model for this segment")
+    urn = entry["urn"]
+    return """<!doctype html><html><head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>CurbRisk — APS Viewer · __SID__</title>
+<link rel=stylesheet href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.min.css">
+<script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.min.js"></script>
+<style>
+html,body{margin:0;height:100%;font-family:system-ui,sans-serif;background:#2b2b2b}
+#bar{position:absolute;top:0;left:0;right:0;height:46px;background:#0f1b2d;color:#fff;display:flex;align-items:center;gap:14px;padding:0 16px;z-index:5}
+#bar b{font-size:15px}#bar span{color:#9fb1c9;font-size:13px}#bar a{margin-left:auto;color:#9fb1c9;font-size:13px;text-decoration:none}
+#fv{position:absolute;top:46px;bottom:0;left:0;right:0}
+</style></head><body>
+<div id=bar><b>CurbRisk · Autodesk APS Viewer</b>
+<span>Segment __SID__ — modeled drainage cross-section (SVF2)</span>
+<a href="/">← back to report</a></div>
+<div id=fv></div>
+<script>
+const URN='__URN__';
+Autodesk.Viewing.Initializer({env:'AutodeskProduction',api:'streamingV2',
+  getAccessToken:cb=>fetch('/aps/token').then(r=>r.json()).then(t=>cb(t.access_token,t.expires_in))},
+  ()=>{
+    const v=new Autodesk.Viewing.GuiViewer3D(document.getElementById('fv'));
+    v.start();
+    Autodesk.Viewing.Document.load('urn:'+URN,
+      doc=>{ v.loadDocumentNode(doc, doc.getRoot().getDefaultGeometry())
+               .then(()=>{v.fitToView();}); },
+      (code,msg)=>{ document.getElementById('fv').innerHTML=
+        '<p style="color:#fff;padding:20px">Viewer failed to load model ('+code+'): '+msg+'</p>'; });
+  });
+</script></body></html>""".replace("__URN__", urn).replace("__SID__", segment_id)
+
+
 @app.get("/segments.geojson")
 def segments_geojson():
     """Scored segments (one LineString per 30-ft block) for the ranked map."""
@@ -451,10 +517,20 @@ async function go(){
   // cross-section
   const xs=d.cross_section;
   if(xs&&xs.viewer){
-    html+='<div class=card><h3>Modeled cross-section at low point'
-      +(xs.status==='svg_fallback'?'':' <span class=tag>APS Viewer</span>')+'</h3>';
-    if(xs.viewer.endsWith('.svg')) html+='<img class=xs src="'+xs.viewer+'">';
-    else html+='<p><a href="'+xs.viewer+'" target=_blank>Open in Autodesk APS Viewer ↗</a></p>';
+    const ready=xs.status==='ready';
+    html+='<div class=card><h3>Modeled drainage cross-section at low point'
+      +(ready?' <span class=tag>Autodesk APS · 3D</span>':'')+'</h3>';
+    if(ready){
+      if(xs.thumbnail)
+        html+='<a href="'+xs.viewer+'" target=_blank title="Open interactive 3D model">'
+          +'<img class=xs src="'+xs.thumbnail+'"></a>';
+      html+='<p><a href="'+xs.viewer+'" target=_blank>Open interactive 3D model in the '
+        +'Autodesk APS Viewer ↗</a> <span class=muted>— orbit & measure, no CAD install</span></p>';
+    } else if(xs.viewer.endsWith('.svg')){
+      html+='<img class=xs src="'+xs.viewer+'">';
+    } else {
+      html+='<p><a href="'+xs.viewer+'" target=_blank>Open cross-section ↗</a></p>';
+    }
     html+='</div>';
   }
 
