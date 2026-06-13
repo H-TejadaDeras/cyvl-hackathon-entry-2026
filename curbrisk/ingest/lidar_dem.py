@@ -108,15 +108,15 @@ def build_dem() -> None:
     # lightly smooth to suppress decluttering noise without erasing curb/gutter
     # relief. Cells outside the corridor stay nodata.
     inside = ~outside
-    nan_inside = inside & ~np.isfinite(dem)
-    if nan_inside.any():
-        known = np.isfinite(dem)
-        idx = ndimage.distance_transform_edt(~known, return_distances=False, return_indices=True)
-        filled = dem[tuple(idx)]
-        dem = np.where(inside, filled, np.nan)
-    dem_s = ndimage.median_filter(np.nan_to_num(dem, nan=0.0), size=3)
-    dem_s = ndimage.gaussian_filter(dem_s, sigma=1.0)
-    dem = np.where(inside, dem_s, np.nan)
+    # Nearest-neighbour fill across the whole grid first (gives every cell a
+    # valid ground value via extrapolation), smooth that continuous field, then
+    # re-apply the corridor mask. This avoids smoothing against nodata/zeros.
+    known = np.isfinite(dem)
+    idx = ndimage.distance_transform_edt(~known, return_distances=False, return_indices=True)
+    filled = dem[tuple(idx)]
+    filled = ndimage.median_filter(filled, size=3)
+    filled = ndimage.gaussian_filter(filled, sigma=1.0)
+    dem = np.where(inside, filled, np.nan)
     with rasterio.open(
         C.DEM_OUT, "w", driver="GTiff", height=nrows, width=ncols, count=1,
         dtype="float32", crs=C.UTM19N, transform=transform, nodata=np.nan,

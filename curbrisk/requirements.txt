@@ -1,0 +1,12 @@
+# CurbRisk pipeline dependencies
+numpy<2            # pinned: prebuilt scipy/rasterio wheels in this env need numpy 1.x
+scipy
+geopandas
+shapely
+pyproj
+laspy[lazrs]
+rasterio
+ezdxf
+fastapi
+uvicorn
+requests
