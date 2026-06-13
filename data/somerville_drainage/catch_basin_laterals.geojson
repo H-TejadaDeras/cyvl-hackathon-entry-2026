@@ -1,0 +1,2117 @@
+{
+ "type": "FeatureCollection",
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+  }
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 59,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 46.1475241676,
+    "FieldBook": " ",
+    "OBJECTID_1": 58,
+    "Shape_Length": 46.1477915763002,
+    "FeatureID": "CBL-SD-58"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10354476160967,
+      42.391093060077495
+     ],
+     [
+      -71.10344193416533,
+      42.39119418100383
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 61,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 39.211230754,
+    "FieldBook": " ",
+    "OBJECTID_1": 60,
+    "Shape_Length": 39.21115525948198,
+    "FeatureID": "CBL-SD-60"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10192410731716,
+      42.39065584895384
+     ],
+     [
+      -71.10188234353258,
+      42.39055280223609
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 62,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 8,
+    "Shape_Leng": 252.335926647,
+    "FieldBook": " ",
+    "OBJECTID_1": 61,
+    "Shape_Length": 252.33601526459415,
+    "FeatureID": "CBL-SD-61"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10188234353258,
+      42.39055280223609
+     ],
+     [
+      -71.10177717542325,
+      42.39041380749468
+     ],
+     [
+      -71.10176761065718,
+      42.390402340810894
+     ],
+     [
+      -71.10176958961354,
+      42.390393768872734
+     ],
+     [
+      -71.10177928158522,
+      42.39038523083044
+     ],
+     [
+      -71.1017966759226,
+      42.390379574237215
+     ],
+     [
+      -71.1018159158935,
+      42.39038535760946
+     ],
+     [
+      -71.10235031341281,
+      42.39063874532803
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 63,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 35.0342670314,
+    "FieldBook": " ",
+    "OBJECTID_1": 62,
+    "Shape_Length": 35.034348430125135,
+    "FeatureID": "CBL-SD-62"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10291742124458,
+      42.39059496854732
+     ],
+     [
+      -71.10283021564818,
+      42.390666124749224
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 64,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 79.4561005837,
+    "FieldBook": " ",
+    "OBJECTID_1": 63,
+    "Shape_Length": 79.45624394100788,
+    "FeatureID": "CBL-SD-63"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10283021564818,
+      42.390666124749224
+     ],
+     [
+      -71.10258417982564,
+      42.390546649604886
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 65,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 39.5965662478,
+    "FieldBook": " ",
+    "OBJECTID_1": 64,
+    "Shape_Length": 39.59637103419821,
+    "FeatureID": "CBL-SD-64"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10258417982564,
+      42.390546649604886
+     ],
+     [
+      -71.1024533835874,
+      42.3904976086678
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 68,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 41.9919924358,
+    "FieldBook": " ",
+    "OBJECTID_1": 65,
+    "Shape_Length": 41.99198121673425,
+    "FeatureID": "CBL-SD-65"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10012230354322,
+      42.389600570169875
+     ],
+     [
+      -71.10020005363421,
+      42.38950079287988
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 69,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 23.979376937,
+    "FieldBook": " ",
+    "OBJECTID_1": 66,
+    "Shape_Length": 23.979366246808212,
+    "FeatureID": "CBL-SD-66"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10046598960815,
+      42.3898261476925
+     ],
+     [
+      -71.1005390131246,
+      42.389863556772
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 70,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 142.703913839,
+    "FieldBook": " ",
+    "OBJECTID_1": 67,
+    "Shape_Length": 142.70379993375852,
+    "FeatureID": "CBL-SD-67"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.1005390131246,
+      42.389863556772
+     ],
+     [
+      -71.10066007958123,
+      42.38992686171478
+     ],
+     [
+      -71.10074816194147,
+      42.38971708023234
+     ],
+     [
+      -71.10067509339486,
+      42.38968680856511
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 71,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 54.7045936204,
+    "FieldBook": " ",
+    "OBJECTID_1": 68,
+    "Shape_Length": 54.70460438811195,
+    "FeatureID": "CBL-SD-68"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10147192300578,
+      42.390208373135806
+     ],
+     [
+      -71.10157147480643,
+      42.390077653928635
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 72,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 45.026068999,
+    "FieldBook": " ",
+    "OBJECTID_1": 69,
+    "Shape_Length": 45.026276181389974,
+    "FeatureID": "CBL-SD-69"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.09897456811699,
+      42.38908491828828
+     ],
+     [
+      -71.09905815144054,
+      42.38897802374479
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 73,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -938908800000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 10,
+    "Shape_Leng": 20.0103258049,
+    "FieldBook": " ",
+    "OBJECTID_1": 70,
+    "Shape_Length": 20.010486590509046,
+    "FeatureID": "CBL-SD-70"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10768949748628,
+      42.38410579842188
+     ],
+     [
+      -71.10767832324746,
+      42.384051517366885
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 74,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -938908800000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 10,
+    "Shape_Leng": 28.0321796389,
+    "FieldBook": " ",
+    "OBJECTID_1": 71,
+    "Shape_Length": 28.032325422968864,
+    "FeatureID": "CBL-SD-71"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.1075931661766,
+      42.38409546416541
+     ],
+     [
+      -71.10767832324746,
+      42.384051517366885
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 624,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "RCP",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 12,
+    "Shape_Leng": 61.3039267739,
+    "FieldBook": " ",
+    "OBJECTID_1": 73,
+    "Shape_Length": 61.303954020714954,
+    "FeatureID": "CBL-SD-73"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10221560993858,
+      42.39020441674941
+     ],
+     [
+      -71.10199018153558,
+      42.39022373871044
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 77,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -2261952000000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 8.24148710712,
+    "FieldBook": " ",
+    "OBJECTID_1": 75,
+    "Shape_Length": 8.241528309356463,
+    "FeatureID": "CBL-SD-75"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.09413688722016,
+      42.390790662673304
+     ],
+     [
+      -71.09410803815761,
+      42.39079801885121
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 78,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -2261952000000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 28.1923901439,
+    "FieldBook": " ",
+    "OBJECTID_1": 76,
+    "Shape_Length": 28.192502043655335,
+    "FeatureID": "CBL-SD-76"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.09480622538443,
+      42.389538542940265
+     ],
+     [
+      -71.09485780069431,
+      42.38960579649707
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 79,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -2261952000000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 6.97985935916,
+    "FieldBook": " ",
+    "OBJECTID_1": 77,
+    "Shape_Length": 6.979850164770917,
+    "FeatureID": "CBL-SD-77"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.09489512917358,
+      42.389579583858705
+     ],
+     [
+      -71.09487055641851,
+      42.389585502227185
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 80,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -2263075200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 20.8529850656,
+    "FieldBook": " ",
+    "OBJECTID_1": 78,
+    "Shape_Length": 20.85297696730313,
+    "FeatureID": "CBL-SD-78"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.09522678454398,
+      42.38889580886366
+     ],
+     [
+      -71.09527838791753,
+      42.388938363987606
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 81,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -2263075200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 3.17655087561,
+    "FieldBook": " ",
+    "OBJECTID_1": 79,
+    "Shape_Length": 3.1764360955563,
+    "FeatureID": "CBL-SD-79"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.09530326916763,
+      42.388919304291484
+     ],
+     [
+      -71.09529336859995,
+      42.388914602403716
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 82,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -2261952000000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 65.5710622615,
+    "FieldBook": " ",
+    "OBJECTID_1": 80,
+    "Shape_Length": 65.57107800672807,
+    "FeatureID": "CBL-SD-80"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.09560277377376,
+      42.388061407495194
+     ],
+     [
+      -71.09574193831,
+      42.388208824471455
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 93,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 60.2936429539,
+    "FieldBook": " ",
+    "OBJECTID_1": 90,
+    "Shape_Length": 60.29381772252296,
+    "FeatureID": "CBL-SD-90"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.09694663996736,
+      42.3879423249649
+     ],
+     [
+      -71.09675632301126,
+      42.387855905301116
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 94,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 71.1086252497,
+    "FieldBook": " ",
+    "OBJECTID_1": 91,
+    "Shape_Length": 71.1083918127753,
+    "FeatureID": "CBL-SD-91"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.09675632301126,
+      42.387855905301116
+     ],
+     [
+      -71.09661857297311,
+      42.38768963537986
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 95,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 42.7072216423,
+    "FieldBook": " ",
+    "OBJECTID_1": 92,
+    "Shape_Length": 42.706935584545135,
+    "FeatureID": "CBL-SD-92"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.09675632301126,
+      42.387855905301116
+     ],
+     [
+      -71.09659824137978,
+      42.38785535117661
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 96,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 5.93831903996,
+    "FieldBook": " ",
+    "OBJECTID_1": 93,
+    "Shape_Length": 5.938516969586756,
+    "FeatureID": "CBL-SD-93"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.09659824137978,
+      42.38785535117661
+     ],
+     [
+      -71.09658466110145,
+      42.3878681650033
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 97,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 56.9239210507,
+    "FieldBook": " ",
+    "OBJECTID_1": 94,
+    "Shape_Length": 56.92396116125152,
+    "FeatureID": "CBL-SD-94"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.09658466110145,
+      42.3878681650033
+     ],
+     [
+      -71.09647007499213,
+      42.3879992503939
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 98,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 78.2457340444,
+    "FieldBook": " ",
+    "OBJECTID_1": 95,
+    "Shape_Length": 78.24560210344984,
+    "FeatureID": "CBL-SD-95"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.09661857297311,
+      42.38768963537986
+     ],
+     [
+      -71.09637058087007,
+      42.38757871872231
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 99,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 61.4683857964,
+    "FieldBook": " ",
+    "OBJECTID_1": 96,
+    "Shape_Length": 61.46832737238329,
+    "FeatureID": "CBL-SD-96"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.09637058087007,
+      42.38757871872231
+     ],
+     [
+      -71.09614306846866,
+      42.38758077518374
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 100,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 50.2017926874,
+    "FieldBook": " ",
+    "OBJECTID_1": 97,
+    "Shape_Length": 50.20157725691326,
+    "FeatureID": "CBL-SD-97"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.09758443601737,
+      42.3883004274099
+     ],
+     [
+      -71.09748920723307,
+      42.388418719158516
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 101,
+    "Enabled": 1,
+    "Subtype": 7,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 8,
+    "Shape_Leng": 139.992937832,
+    "FieldBook": " ",
+    "OBJECTID_1": 98,
+    "Shape_Length": 139.99290094978946,
+    "FeatureID": "CBL-SD-98"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.09793719841066,
+      42.38861179536743
+     ],
+     [
+      -71.09748920723307,
+      42.388418719158516
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 102,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 59.5761354767,
+    "FieldBook": " ",
+    "OBJECTID_1": 99,
+    "Shape_Length": 59.57606777832826,
+    "FeatureID": "CBL-SD-99"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.097135032018,
+      42.38802730251998
+     ],
+     [
+      -71.09694663996736,
+      42.3879423249649
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 103,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 13.3080206284,
+    "FieldBook": " ",
+    "OBJECTID_1": 100,
+    "Shape_Length": 13.30818016485976,
+    "FeatureID": "CBL-SD-100"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.09748920723307,
+      42.388418719158516
+     ],
+     [
+      -71.09746394619265,
+      42.388450070456685
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 104,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 27.4048245446,
+    "FieldBook": " ",
+    "OBJECTID_1": 101,
+    "Shape_Length": 27.404816225858717,
+    "FeatureID": "CBL-SD-101"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.09380548234765,
+      42.38667446200935
+     ],
+     [
+      -71.093870576498,
+      42.38661678738189
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 105,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 29.1053492609,
+    "FieldBook": " ",
+    "OBJECTID_1": 102,
+    "Shape_Length": 29.105372065342305,
+    "FeatureID": "CBL-SD-102"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.093870576498,
+      42.38661678738189
+     ],
+     [
+      -71.09394015713404,
+      42.38655581280792
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 506,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 28.1849337124,
+    "FieldBook": " ",
+    "OBJECTID_1": 446,
+    "Shape_Length": 28.18509537127193,
+    "FeatureID": "CBL-SD-446"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10844191716455,
+      42.39113496907954
+     ],
+     [
+      -71.10838534383859,
+      42.3911999533337
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 507,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "Unk",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 0,
+    "Shape_Leng": 5.20451900673,
+    "FieldBook": " ",
+    "OBJECTID_1": 447,
+    "Shape_Length": 5.204408050434607,
+    "FeatureID": "CBL-SD-447"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10838534383859,
+      42.3911999533337
+     ],
+     [
+      -71.10837395088511,
+      42.39121146967183
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 508,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "VC",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 8,
+    "Shape_Leng": 19.7900112885,
+    "FieldBook": " ",
+    "OBJECTID_1": 448,
+    "Shape_Length": 19.79018048564348,
+    "FeatureID": "CBL-SD-448"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10820314797256,
+      42.39104364112374
+     ],
+     [
+      -71.1081381600387,
+      42.39106870693226
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 509,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "VC",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 8,
+    "Shape_Leng": 15.6292732707,
+    "FieldBook": " ",
+    "OBJECTID_1": 449,
+    "Shape_Length": 15.629211698475546,
+    "FeatureID": "CBL-SD-449"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10815145157183,
+      42.391110446934896
+     ],
+     [
+      -71.1081381600387,
+      42.39106870693226
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 510,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "VC",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 8,
+    "Shape_Leng": 17.7637678971,
+    "FieldBook": " ",
+    "OBJECTID_1": 450,
+    "Shape_Length": 17.76372201320607,
+    "FeatureID": "CBL-SD-450"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10725787587373,
+      42.39067473503522
+     ],
+     [
+      -71.10723318144973,
+      42.390719911506125
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 511,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "VC",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 8,
+    "Shape_Leng": 19.1764567715,
+    "FieldBook": " ",
+    "OBJECTID_1": 451,
+    "Shape_Length": 19.176298681557093,
+    "FeatureID": "CBL-SD-451"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10726463416509,
+      42.39076708468719
+     ],
+     [
+      -71.10723318144973,
+      42.390719911506125
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 512,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "VC",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 8,
+    "Shape_Leng": 19.549974533,
+    "FieldBook": " ",
+    "OBJECTID_1": 452,
+    "Shape_Length": 19.549971037187245,
+    "FeatureID": "CBL-SD-452"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10574493574389,
+      42.3901790741066
+     ],
+     [
+      -71.1056964891208,
+      42.39021892562832
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 513,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "VC",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 8,
+    "Shape_Leng": 11.0364673153,
+    "FieldBook": " ",
+    "OBJECTID_1": 453,
+    "Shape_Length": 11.036710642245067,
+    "FeatureID": "CBL-SD-453"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10568281333838,
+      42.39024746361212
+     ],
+     [
+      -71.1056964891208,
+      42.39021892562832
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 514,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "VC",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 8,
+    "Shape_Leng": 19.009781922,
+    "FieldBook": " ",
+    "OBJECTID_1": 454,
+    "Shape_Length": 19.009822476677183,
+    "FeatureID": "CBL-SD-454"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10619707417955,
+      42.3903292598379
+     ],
+     [
+      -71.10614384434271,
+      42.39036337838636
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 515,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "VC",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 8,
+    "Shape_Leng": 19.6477045737,
+    "FieldBook": " ",
+    "OBJECTID_1": 455,
+    "Shape_Length": 19.64775611886389,
+    "FeatureID": "CBL-SD-455"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10618502172525,
+      42.39040781949027
+     ],
+     [
+      -71.10614384434271,
+      42.39036337838636
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 516,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "VC",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 8,
+    "Shape_Leng": 16.1988303,
+    "FieldBook": " ",
+    "OBJECTID_1": 456,
+    "Shape_Length": 16.198689960309462,
+    "FeatureID": "CBL-SD-456"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10672614754075,
+      42.390511145494116
+     ],
+     [
+      -71.1067306909729,
+      42.39055546748736
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 517,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "VC",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 8,
+    "Shape_Leng": 17.3772017962,
+    "FieldBook": " ",
+    "OBJECTID_1": 457,
+    "Shape_Length": 17.37735191188821,
+    "FeatureID": "CBL-SD-457"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10666986492282,
+      42.3905709830014
+     ],
+     [
+      -71.1067306909729,
+      42.39055546748736
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 518,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "VC",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 8,
+    "Shape_Leng": 15.5369944678,
+    "FieldBook": " ",
+    "OBJECTID_1": 458,
+    "Shape_Length": 15.537019188134416,
+    "FeatureID": "CBL-SD-458"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.1042734377856,
+      42.38978528015231
+     ],
+     [
+      -71.1042602082529,
+      42.389743789270476
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 519,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "VC",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 8,
+    "Shape_Leng": 20.2578222546,
+    "FieldBook": " ",
+    "OBJECTID_1": 459,
+    "Shape_Length": 20.257717750272935,
+    "FeatureID": "CBL-SD-459"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10431250644169,
+      42.38970395159224
+     ],
+     [
+      -71.1042602082529,
+      42.389743789270476
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 520,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "VC",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 8,
+    "Shape_Leng": 22.4382154825,
+    "FieldBook": " ",
+    "OBJECTID_1": 460,
+    "Shape_Length": 22.438446432940793,
+    "FeatureID": "CBL-SD-460"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10465890265915,
+      42.38980661035527
+     ],
+     [
+      -71.10462769808055,
+      42.389863671942955
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 521,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "VC",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 8,
+    "Shape_Leng": 33.5816728659,
+    "FieldBook": " ",
+    "OBJECTID_1": 461,
+    "Shape_Length": 33.5814057529907,
+    "FeatureID": "CBL-SD-461"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10481667738559,
+      42.38985860434841
+     ],
+     [
+      -71.10476602006464,
+      42.38994275436566
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 522,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "VC",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 8,
+    "Shape_Leng": 47.1897541441,
+    "FieldBook": " ",
+    "OBJECTID_1": 462,
+    "Shape_Length": 47.18980463471847,
+    "FeatureID": "CBL-SD-462"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10476602006464,
+      42.38994275436566
+     ],
+     [
+      -71.10462769808055,
+      42.389863671942955
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 523,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "VC",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 8,
+    "Shape_Leng": 19.9636686701,
+    "FieldBook": " ",
+    "OBJECTID_1": 463,
+    "Shape_Length": 19.963754877500484,
+    "FeatureID": "CBL-SD-463"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10513022281192,
+      42.38997401658359
+     ],
+     [
+      -71.10512023719426,
+      42.390028295422795
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 524,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "VC",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 8,
+    "Shape_Leng": 12.935909877,
+    "FieldBook": " ",
+    "OBJECTID_1": 464,
+    "Shape_Length": 12.9360764757479,
+    "FeatureID": "CBL-SD-464"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10508346876644,
+      42.390051036395214
+     ],
+     [
+      -71.10512023719426,
+      42.390028295422795
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 525,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "VC",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 8,
+    "Shape_Leng": 17.0048006156,
+    "FieldBook": " ",
+    "OBJECTID_1": 465,
+    "Shape_Length": 17.004783865776265,
+    "FeatureID": "CBL-SD-465"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10374910771411,
+      42.38961911570141
+     ],
+     [
+      -71.10380515044584,
+      42.38959786936766
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 526,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "VC",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 8,
+    "Shape_Leng": 23.6163500251,
+    "FieldBook": " ",
+    "OBJECTID_1": 466,
+    "Shape_Length": 23.61625639884036,
+    "FeatureID": "CBL-SD-466"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10387097257062,
+      42.38955522275911
+     ],
+     [
+      -71.10380515044584,
+      42.38959786936766
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 527,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "VC",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 8,
+    "Shape_Leng": 46.3804088786,
+    "FieldBook": " ",
+    "OBJECTID_1": 467,
+    "Shape_Length": 46.38046702068126,
+    "FeatureID": "CBL-SD-467"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10370747645648,
+      42.38949320292055
+     ],
+     [
+      -71.10380515044584,
+      42.38959786936766
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 557,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": 325987200000,
+    "LifecycleS": "Proposed",
+    "WaterType": "Storm",
+    "Material": "VC",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 8,
+    "Shape_Leng": 14.4340030024,
+    "FieldBook": " ",
+    "OBJECTID_1": 497,
+    "Shape_Length": 14.43392931906714,
+    "FeatureID": "CBL-SD-497"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10464674037895,
+      42.39048669643568
+     ],
+     [
+      -71.10467443247796,
+      42.390452823945886
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 558,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": 325987200000,
+    "LifecycleS": "Proposed",
+    "WaterType": "Storm",
+    "Material": "VC",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 8,
+    "Shape_Leng": 12.831614493,
+    "FieldBook": " ",
+    "OBJECTID_1": 498,
+    "Shape_Length": 12.831534760740283,
+    "FeatureID": "CBL-SD-498"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10469214121039,
+      42.390420152338386
+     ],
+     [
+      -71.10467443247796,
+      42.390452823945886
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 559,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": 325987200000,
+    "LifecycleS": "Proposed",
+    "WaterType": "Storm",
+    "Material": "VC",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 8,
+    "Shape_Leng": 11.7789326877,
+    "FieldBook": " ",
+    "OBJECTID_1": 499,
+    "Shape_Length": 11.77898153167766,
+    "FeatureID": "CBL-SD-499"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10646953805437,
+      42.39107653273551
+     ],
+     [
+      -71.10644640369033,
+      42.391103930208196
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 560,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": 325987200000,
+    "LifecycleS": "Proposed",
+    "WaterType": "Storm",
+    "Material": "VC",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 8,
+    "Shape_Leng": 17.0822686761,
+    "FieldBook": " ",
+    "OBJECTID_1": 500,
+    "Shape_Length": 17.08217891694307,
+    "FeatureID": "CBL-SD-500"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10641961825448,
+      42.391146391303714
+     ],
+     [
+      -71.10644640369033,
+      42.391103930208196
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 622,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "RCP",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 12,
+    "Shape_Leng": 41.3199556022,
+    "FieldBook": " ",
+    "OBJECTID_1": 552,
+    "Shape_Length": 41.31999763723041,
+    "FeatureID": "CBL-SD-552"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10212916660339,
+      42.39017639819544
+     ],
+     [
+      -71.10199018153558,
+      42.39022373871044
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "OBJECTID": 623,
+    "Enabled": 1,
+    "Subtype": 6,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "Material": "RCP",
+    "GraphicTyp": "Storm",
+    "LocationDe": " ",
+    "Diameter": 12,
+    "Shape_Leng": 19.6128041257,
+    "FieldBook": " ",
+    "OBJECTID_1": 553,
+    "Shape_Length": 19.612941442470568,
+    "FeatureID": "CBL-SD-553"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.10199018153558,
+      42.39022373871044
+     ],
+     [
+      -71.10192094727235,
+      42.390239939258386
+     ]
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,2321 @@
+{
+ "type": "FeatureCollection",
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "EPSG:4326"
+  }
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "id": 19,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10192410731716,
+     42.39065584895384
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 19,
+    "OBJECTID": 59,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -1325462400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "MM-8",
+    "Owner": "Somerv",
+    "Comments": "ASSUMED FROM PLAN TO BE CATCH BASIN - MAY BE OWNED BY B&L R.R. - PLANS GIVE NO PROFILE OR DATA ON STRUCTURES",
+    "AccessDiam": 0,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "MM-08",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-19",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 23,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.09489512917358,
+     42.389579583858705
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 23,
+    "OBJECTID": 86,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -2261952000000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "BB-11",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 0,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "BB-11",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-23",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 24,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.09480622538443,
+     42.389538542940265
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 24,
+    "OBJECTID": 87,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -2261952000000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "BB-11",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 0,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "BB-11",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-24",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 25,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.09522678454398,
+     42.38889580886366
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 25,
+    "OBJECTID": 88,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -2261952000000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "BB-12",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 0,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "BB-12",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-25",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 26,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.09530326916763,
+     42.388919304291484
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 26,
+    "OBJECTID": 89,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -2261952000000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "BB-12",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 0,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "BB-12",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-26",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 27,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.09560277377376,
+     42.388061407495194
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 27,
+    "OBJECTID": 90,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -2261952000000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "BB-12",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 0,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "BB-12",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-27",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 28,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.09413688722016,
+     42.390790662673304
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 28,
+    "OBJECTID": 91,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -2261952000000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "BB-11",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 0,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "BB-11",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-28",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 129,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.09758443601737,
+     42.3883004274099
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 129,
+    "OBJECTID": 100,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "MM-6",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 0,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "MM-06",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-129",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 130,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.09748920723307,
+     42.388418719158516
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 130,
+    "OBJECTID": 101,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "MM-6",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 0,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "MM-06",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-130",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 131,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.097135032018,
+     42.38802730251998
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 131,
+    "OBJECTID": 102,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "MM-6",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 0,
+    "AccessMate": " ",
+    "AccesType": " ",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "MM-06",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-131",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 132,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.09694663996736,
+     42.3879423249649
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 132,
+    "OBJECTID": 103,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "MM-6",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 0,
+    "AccessMate": " ",
+    "AccesType": " ",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "MM-06",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-132",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 133,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.09675632301126,
+     42.387855905301116
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 133,
+    "OBJECTID": 104,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "MM-6",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 0,
+    "AccessMate": " ",
+    "AccesType": " ",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "MM-06",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-133",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 134,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.09661857297311,
+     42.38768963537986
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 134,
+    "OBJECTID": 105,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "MM-6",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 0,
+    "AccessMate": " ",
+    "AccesType": " ",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "MM-06",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-134",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 135,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.09637058087007,
+     42.38757871872231
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 135,
+    "OBJECTID": 106,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "MM-6",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 0,
+    "AccessMate": " ",
+    "AccesType": " ",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "MM-06",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-135",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 136,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.09614306846866,
+     42.38758077518374
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 136,
+    "OBJECTID": 107,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "MM-6",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 0,
+    "AccessMate": " ",
+    "AccesType": " ",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "MM-06",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-136",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 137,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.09659824137978,
+     42.38785535117661
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 137,
+    "OBJECTID": 108,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "MM-6",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 0,
+    "AccessMate": " ",
+    "AccesType": " ",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "MM-06",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-137",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 138,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.09658466110145,
+     42.3878681650033
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 138,
+    "OBJECTID": 109,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "MM-6",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 0,
+    "AccessMate": " ",
+    "AccesType": " ",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "MM-06",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-138",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 139,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.09380548234765,
+     42.38667446200935
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 139,
+    "OBJECTID": 110,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "MM-5",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 0,
+    "AccessMate": " ",
+    "AccesType": " ",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "MM-05",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-139",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 140,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.093870576498,
+     42.38661678738189
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 140,
+    "OBJECTID": 111,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "MM-5",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 0,
+    "AccessMate": " ",
+    "AccesType": " ",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "MM-05",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-140",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 201,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10188234353258,
+     42.39055280223609
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 201,
+    "OBJECTID": 60,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "MM-8",
+    "Owner": "Somerv",
+    "Comments": "ASSUMED FROM PLAN TO BE CATCH BASIN - MAY BE OWNED BY B&L R.R. - PLANS GIVE NO PROFILE OR DATA ON STRUCTURES",
+    "AccessDiam": 0,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "MM-08",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-201",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 202,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10354476160967,
+     42.391093060077495
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 202,
+    "OBJECTID": 61,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "MM-8",
+    "Owner": "Somerv",
+    "Comments": "ASSUMED FROM PLAN TO BE CATCH BASIN - MAY BE OWNED BY B&L R.R. - PLANS GIVE NO PROFILE OR DATA ON STRUCTURES",
+    "AccessDiam": 0,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "MM-08",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-202",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 204,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10283021564818,
+     42.390666124749224
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 204,
+    "OBJECTID": 63,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "MM-8",
+    "Owner": "Somerv",
+    "Comments": "ASSUMED FROM PLAN TO BE CATCH BASIN - MAY BE OWNED BY B&L R.R. - PLANS GIVE NO PROFILE OR DATA ON STRUCTURES",
+    "AccessDiam": 0,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "MM-08",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-204",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 205,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10291742124458,
+     42.39059496854732
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 205,
+    "OBJECTID": 64,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "MM-8",
+    "Owner": "Somerv",
+    "Comments": "ASSUMED FROM PLAN TO BE CATCH BASIN - MAY BE OWNED BY B&L R.R. - PLANS GIVE NO PROFILE OR DATA ON STRUCTURES",
+    "AccessDiam": 0,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "MM-08",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-205",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 206,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10258417982564,
+     42.390546649604886
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 206,
+    "OBJECTID": 65,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "MM-8",
+    "Owner": "Somerv",
+    "Comments": "ASSUMED FROM PLAN TO BE CATCH BASIN - MAY BE OWNED BY B&L R.R. - PLANS GIVE NO PROFILE OR DATA ON STRUCTURES",
+    "AccessDiam": 0,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "MM-08",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-206",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 207,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10221560993858,
+     42.39020441674941
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 207,
+    "OBJECTID": 66,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "MM-8",
+    "Owner": "Somerv",
+    "Comments": "ALSO SHOWN ON CENTRAL ST BRIDGE PLANS",
+    "AccessDiam": 0,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "MM-08",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-207",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 208,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10212916660339,
+     42.39017639819544
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 208,
+    "OBJECTID": 67,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "MM-8",
+    "Owner": "Somerv",
+    "Comments": "ALSO SHOWN ON CENTRAL ST BRIDGE PLANS",
+    "AccessDiam": 0,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "MM-08",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-208",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 209,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10147192300578,
+     42.390208373135806
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 209,
+    "OBJECTID": 69,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "MM-8",
+    "Owner": "Somerv",
+    "Comments": "ASSUMED FROM PLAN TO BE CATCH BASIN - MAY BE OWNED BY B&L R.R. - PLANS GIVE NO PROFILE OR DATA ON STRUCTURES",
+    "AccessDiam": 0,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "MM-08",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-209",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 210,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10067509339486,
+     42.38968680856511
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 210,
+    "OBJECTID": 70,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "MM-8",
+    "Owner": "Somerv",
+    "Comments": "ASSUMED FROM PLAN TO BE CATCH BASIN - MAY BE OWNED BY B&L R.R. - PLANS GIVE NO PROFILE OR DATA ON STRUCTURES",
+    "AccessDiam": 0,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "MM-08",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-210",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 211,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.1004808337709,
+     42.389613249183746
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 211,
+    "OBJECTID": 71,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "MM-8",
+    "Owner": "Somerv",
+    "Comments": "ASSUMED FROM PLAN TO BE CATCH BASIN - MAY BE OWNED BY B&L R.R. - PLANS GIVE NO PROFILE OR DATA ON STRUCTURES",
+    "AccessDiam": 0,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "MM-08",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-211",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 212,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10046598960815,
+     42.3898261476925
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 212,
+    "OBJECTID": 72,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "MM-8",
+    "Owner": "Somerv",
+    "Comments": "ASSUMED FROM PLAN TO BE CATCH BASIN - MAY BE OWNED BY B&L R.R. - PLANS GIVE NO PROFILE OR DATA ON STRUCTURES",
+    "AccessDiam": 0,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "MM-08",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-212",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 213,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.1005390131246,
+     42.389863556772
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 213,
+    "OBJECTID": 73,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "MM-8",
+    "Owner": "Somerv",
+    "Comments": "ASSUMED FROM PLAN TO BE CATCH BASIN - MAY BE OWNED BY B&L R.R. - PLANS GIVE NO PROFILE OR DATA ON STRUCTURES",
+    "AccessDiam": 0,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "MM-08",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-213",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 214,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10012230354322,
+     42.389600570169875
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 214,
+    "OBJECTID": 74,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "MM-8",
+    "Owner": "Somerv",
+    "Comments": "ASSUMED FROM PLAN TO BE CATCH BASIN - MAY BE OWNED BY B&L R.R. - PLANS GIVE NO PROFILE OR DATA ON STRUCTURES",
+    "AccessDiam": 0,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "MM-08",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-214",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 215,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.09897456811699,
+     42.38908491828828
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 215,
+    "OBJECTID": 75,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "MM-8",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 0,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "MM-08",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-215",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 216,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.09905815144054,
+     42.38897802374479
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 216,
+    "OBJECTID": 76,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -1356998400000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "MM-8",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 0,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "MM-08",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-216",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 217,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.1075931661766,
+     42.38409546416541
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 217,
+    "OBJECTID": 77,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -938908800000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "PF-22",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 0,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "PF-022",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-217",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 218,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10768949748628,
+     42.38410579842188
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 218,
+    "OBJECTID": 78,
+    "Subtype": 1,
+    "FacilityID": " ",
+    "InstallDat": -938908800000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "PF-22",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 0,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "PF-022",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-218",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 473,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10844191716455,
+     42.39113496907954
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 473,
+    "OBJECTID": 497,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "TB-045",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 64.53,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "TB-045",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-473",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 474,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10838534383859,
+     42.3911999533337
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 474,
+    "OBJECTID": 498,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "TB-045",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 64.56,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "TB-045",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-474",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 475,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10815145157183,
+     42.391110446934896
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 475,
+    "OBJECTID": 499,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "TB-044",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 64.77,
+    "FieldBook": " ",
+    "Invert": 61.47,
+    "Plan1": "TB-044",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-475",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 476,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10820314797256,
+     42.39104364112374
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 476,
+    "OBJECTID": 500,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "TB-045",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 64.82,
+    "FieldBook": " ",
+    "Invert": 61.12,
+    "Plan1": "TB-045",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-476",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 477,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10725787587373,
+     42.39067473503522
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 477,
+    "OBJECTID": 501,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "TB-045",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 70.47,
+    "FieldBook": " ",
+    "Invert": 66.87,
+    "Plan1": "TB-045",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-477",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 478,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10726463416509,
+     42.39076708468719
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 478,
+    "OBJECTID": 502,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "TB-045",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 70.04,
+    "FieldBook": " ",
+    "Invert": 66.04,
+    "Plan1": "TB-045",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-478",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 479,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10764503541226,
+     42.39079155116456
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 479,
+    "OBJECTID": 503,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "TB-045",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "TB-045",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-479",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 480,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.1075104360977,
+     42.390732489193304
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 480,
+    "OBJECTID": 504,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "TB-045",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "TB-045",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-480",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 481,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10743079650284,
+     42.3908279759718
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 481,
+    "OBJECTID": 505,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "TB-045",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "TB-045",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-481",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 482,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10574493574389,
+     42.3901790741066
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 482,
+    "OBJECTID": 506,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "TB-046",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 82.02,
+    "FieldBook": " ",
+    "Invert": 79.02,
+    "Plan1": "TB-046",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-482",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 483,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10568281333838,
+     42.39024746361212
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 483,
+    "OBJECTID": 507,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "TB-046",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 82.11,
+    "FieldBook": " ",
+    "Invert": 78.81,
+    "Plan1": "TB-046",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-483",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 484,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10619707417955,
+     42.3903292598379
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 484,
+    "OBJECTID": 508,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "TB-046",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 80.83,
+    "FieldBook": " ",
+    "Invert": 78.33,
+    "Plan1": "TB-046",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-484",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 485,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10618502172525,
+     42.39040781949027
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 485,
+    "OBJECTID": 509,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "TB-046",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 80.6,
+    "FieldBook": " ",
+    "Invert": 77.1,
+    "Plan1": "TB-046",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-485",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 486,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10672614754075,
+     42.390511145494116
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 486,
+    "OBJECTID": 510,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "TB-046",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 76.98,
+    "FieldBook": " ",
+    "Invert": 73.08,
+    "Plan1": "TB-046",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-486",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 487,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10666986492282,
+     42.3905709830014
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 487,
+    "OBJECTID": 511,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "TB-046",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 77.48,
+    "FieldBook": " ",
+    "Invert": 75.68,
+    "Plan1": "TB-046",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-487",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 488,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10431250644169,
+     42.38970395159224
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 488,
+    "OBJECTID": 512,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "TB-047",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 83.01,
+    "FieldBook": " ",
+    "Invert": 80.51,
+    "Plan1": "TB-047",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-488",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 489,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.1042734377856,
+     42.38978528015231
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 489,
+    "OBJECTID": 513,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "TB-047",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 83.09,
+    "FieldBook": " ",
+    "Invert": 79.89,
+    "Plan1": "TB-047",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-489",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 490,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10465890265915,
+     42.38980661035527
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 490,
+    "OBJECTID": 514,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "TB-047",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 83.02,
+    "FieldBook": " ",
+    "Invert": 80.72,
+    "Plan1": "TB-047",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-490",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 491,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10481667738559,
+     42.38985860434841
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 491,
+    "OBJECTID": 515,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "TB-047",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 82.95,
+    "FieldBook": " ",
+    "Invert": 80.65,
+    "Plan1": "TB-047",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-491",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 492,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10476602006464,
+     42.38994275436566
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 492,
+    "OBJECTID": 516,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "TB-047",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 82.97,
+    "FieldBook": " ",
+    "Invert": 79.67,
+    "Plan1": "TB-047",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-492",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 493,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10513022281192,
+     42.38997401658359
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 493,
+    "OBJECTID": 517,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "TB-047",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 82.87,
+    "FieldBook": " ",
+    "Invert": 78.67,
+    "Plan1": "TB-047",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-493",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 494,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10508346876644,
+     42.390051036395214
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 494,
+    "OBJECTID": 518,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "TB-047",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 82.76,
+    "FieldBook": " ",
+    "Invert": 80.16,
+    "Plan1": "TB-047",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-494",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 495,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10387097257062,
+     42.38955522275911
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 495,
+    "OBJECTID": 519,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "TB-048",
+    "Owner": "Somerv",
+    "Comments": "DRAIN STRUCTURE",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 82.91,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "TB-048",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-495",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 496,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10374910771411,
+     42.38961911570141
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 496,
+    "OBJECTID": 520,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "TB-048",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 83.24,
+    "FieldBook": " ",
+    "Invert": 80.14,
+    "Plan1": "TB-048",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-496",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 497,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10370747645648,
+     42.38949320292055
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 497,
+    "OBJECTID": 521,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "TB-048",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 83.28,
+    "FieldBook": " ",
+    "Invert": 79.68,
+    "Plan1": "TB-048",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-497",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 498,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10294372818227,
+     42.38922902357927
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 498,
+    "OBJECTID": 522,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "TB-048",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "TB-048",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-498",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 534,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10464674037895,
+     42.39048669643568
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 534,
+    "OBJECTID": 558,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 253392451200000,
+    "LifecycleS": "Active",
+    "WaterType": "Storm",
+    "PlanNum": "TB-038",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "TB-038",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-534",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 535,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10469214121039,
+     42.390420152338386
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 535,
+    "OBJECTID": 559,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 325987200000,
+    "LifecycleS": "Proposed",
+    "WaterType": "Storm",
+    "PlanNum": "TB-038",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "TB-038",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-535",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 536,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10646953805437,
+     42.39107653273551
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 536,
+    "OBJECTID": 560,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 325987200000,
+    "LifecycleS": "Proposed",
+    "WaterType": "Storm",
+    "PlanNum": "TB-038",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "TB-038",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-536",
+    "DupeNum": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 537,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.10641961825448,
+     42.391146391303714
+    ]
+   },
+   "properties": {
+    "OBJECTID_1": 537,
+    "OBJECTID": 561,
+    "Subtype": 0,
+    "FacilityID": " ",
+    "InstallDat": 325987200000,
+    "LifecycleS": "Proposed",
+    "WaterType": "Storm",
+    "PlanNum": "TB-038",
+    "Owner": "Somerv",
+    "Comments": " ",
+    "AccessDiam": 9999,
+    "AccessMate": "Unk",
+    "AccesType": "Unk",
+    "Station": 9999,
+    "RimElevati": 9999,
+    "FieldBook": " ",
+    "Invert": 9999,
+    "Plan1": "TB-038",
+    "Plan2": null,
+    "Plan3": null,
+    "FeatureID": "CB-SD-537",
+    "DupeNum": 1
+   }
+  }
+ ]
+}
