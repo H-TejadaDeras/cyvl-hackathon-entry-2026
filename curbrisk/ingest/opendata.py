@@ -1,144 +1,176 @@
-"""Phase 3a: fetch and cache municipal open data that validates/weights risk.
+"""Phase 3a: build the municipal open-data layers that validate/weight risk,
+from the REAL downloaded Somerville data (no live endpoints, no sample fallbacks).
 
-Two layers, both clipped to the demo tile:
-  * 311 flooding complaints  — Somerville's Socrata 311 dataset, filtered to
-    flooding / storm / catch-basin / standing-water service types. These are
-    ground-truth flood reports at real coordinates.
-  * storm-drain infrastructure — Cyvl found no catch basins inside this tile, so
-    the drainage-infrastructure signal comes from the municipal storm-drain
-    network (MassGIS / Somerville GIS). A low point far from any drain structure
-    is higher risk.
+Outputs (both WGS84, clipped to the demo tile + a neighbourhood buffer):
+  * storm_drains.geojson     <- somerville_drainage/catch_basins.geojson (66)
+                                + somerville_drainage/storm_inlets.geojson (577).
+                                Drainage structures; distance-to-nearest feeds the
+                                20% "basin" component of CurbRisk.
+  * flood_complaints.geojson <- somerville_311/drainage_pavement_311.csv, filtered
+                                to flooding / catch-basin / sewer / drain service
+                                types and geolocated by joining the 15-digit
+                                `block_code` (2020 Census block GEOID) to TIGER/Line
+                                block centroids for MA Middlesex County (FIPS 25017).
+                                BLOCK-level resolution — NOT exact coordinates.
 
-Both fetchers cache their GeoJSON under data/processed/ so the rest of the
-pipeline (and the API) runs offline. If a live endpoint is unreachable, we fall
-back to a bundled sample so the demo still runs end-to-end.
+The 311 CSV carries no lat/lon, so the 2020 TIGER block shapefile is downloaded and
+cached on first run to resolve `block_code` -> block centroid. Complaints whose
+block does not match a Middlesex block (e.g. outside the county) are dropped.
 
 Run:
     python -m curbrisk.ingest.opendata
 """
 from __future__ import annotations
 
+import io
 import json
-from pathlib import Path
+import zipfile
 
 import requests
+import pandas as pd
 import geopandas as gpd
-from shapely.geometry import Point, box
+from shapely.geometry import box
 
 from curbrisk import config as C
 
 COMPLAINTS_OUT = C.PROCESSED_DIR / "flood_complaints.geojson"
 DRAINS_OUT = C.PROCESSED_DIR / "storm_drains.geojson"
 
-# Somerville Socrata 311 service-requests dataset.
-SOMERVILLE_311 = "https://data.somervillema.gov/resource/sxulr-rmsq.json"
-FLOOD_TERMS = ["flood", "storm", "catch basin", "standing water", "drain", "sewer"]
+# --- Real downloaded municipal data -----------------------------------------
+DRAINAGE_DIR = C.DATA_DIR / "somerville_drainage"
+CATCH_BASINS = DRAINAGE_DIR / "catch_basins.geojson"
+STORM_INLETS = DRAINAGE_DIR / "storm_inlets.geojson"
+CSV_311 = C.DATA_DIR / "somerville_311" / "drainage_pavement_311.csv"
 
-# MassGIS storm-drain structures (ArcGIS FeatureServer) — point query by envelope.
-# Endpoint may change; we degrade gracefully to a bundled sample on failure.
-MASSGIS_DRAINS = (
-    "https://services1.arcgis.com/hGdibHYSPO59RG1h/arcgis/rest/services/"
-    "Massachusetts_Storm_Drains/FeatureServer/0/query"
+# 2020 TIGER/Line tabulation blocks. For TIGER2020 the TABBLOCK20 layer is
+# published per-STATE (MA = 25), not per-county; we filter to Middlesex (017)
+# after loading. (The 2010-era county-level tl_2020_25017_* file does not exist.)
+TIGER_URL = (
+    "https://www2.census.gov/geo/tiger/TIGER2020/TABBLOCK20/"
+    "tl_2020_25_tabblock20.zip"
 )
+TIGER_DIR = C.DATA_DIR / "tiger_blocks_25"
+TIGER_SHP = TIGER_DIR / "tl_2020_25_tabblock20.shp"
+MIDDLESEX_PREFIX = "25017"  # state 25 + county 017
+
+# 311 service types that signal drainage / flood failures. Deliberately excludes
+# Pothole and Street/road defect — those are pavement signals already captured by
+# the PCI (pavement) component, not flood complaints.
+FLOOD_TERMS = ["flood", "catch basin", "sewer", "drain", "standing water"]
+
+# Neighbourhood buffer (degrees) around the LiDAR tile. The drainage network and
+# historical complaints that affect our streets extend past the tile edge, so we
+# keep a generous halo (~0.8-1.1 km) rather than clipping to the exact tile.
+NBHD_PAD_DEG = 0.01
 
 
-def _tile_bbox_wgs84():
-    return C.LIDAR_BOUNDS_WGS84  # (w, s, e, n)
+def _neighbourhood_box():
+    w, s, e, n = C.LIDAR_BOUNDS_WGS84
+    return box(w - NBHD_PAD_DEG, s - NBHD_PAD_DEG, e + NBHD_PAD_DEG, n + NBHD_PAD_DEG)
 
 
-def fetch_flood_complaints() -> gpd.GeoDataFrame:
-    """311 flood-related complaints within (a generous buffer around) the tile."""
-    w, s, e, n = _tile_bbox_wgs84()
-    # widen to the neighbourhood so we capture nearby historical reports
-    pad = 0.01
-    where = " OR ".join([f"lower(case_title) like '%{t}%'" for t in FLOOD_TERMS])
-    params = {
-        "$where": f"({where}) AND latitude > {s-pad} AND latitude < {n+pad} "
-                  f"AND longitude > {w-pad} AND longitude < {e+pad}",
-        "$limit": 5000,
-    }
-    try:
-        r = requests.get(SOMERVILLE_311, params=params, timeout=30)
-        r.raise_for_status()
-        rows = r.json()
-    except Exception as exc:  # noqa: BLE001
-        print(f"  [311] live fetch failed ({exc}); using bundled sample")
-        rows = _sample_complaints()
+def _ensure_tiger():
+    """Download + cache the 2020 TIGER block shapefile for MA Middlesex County."""
+    if TIGER_SHP.exists():
+        return TIGER_SHP
+    TIGER_DIR.mkdir(parents=True, exist_ok=True)
+    print(f"  [tiger] downloading {TIGER_URL} (~107 MB) ...")
+    r = requests.get(TIGER_URL, timeout=600)
+    r.raise_for_status()
+    with zipfile.ZipFile(io.BytesIO(r.content)) as zf:
+        zf.extractall(TIGER_DIR)
+    if not TIGER_SHP.exists():
+        raise FileNotFoundError(f"TIGER shapefile missing after extract: {TIGER_SHP}")
+    print(f"  [tiger] extracted -> {TIGER_DIR}")
+    return TIGER_SHP
 
-    feats = []
-    for row in rows:
-        lat = row.get("latitude") or (row.get("location") or {}).get("latitude")
-        lon = row.get("longitude") or (row.get("location") or {}).get("longitude")
-        if lat is None or lon is None:
-            continue
-        feats.append({
-            "geometry": Point(float(lon), float(lat)),
-            "case_title": row.get("case_title") or row.get("type") or "flood report",
-            "date": row.get("ticket_created_date_time") or row.get("open_dt") or "",
-        })
-    gdf = gpd.GeoDataFrame(feats, crs=C.WGS84) if feats else \
-        gpd.GeoDataFrame(columns=["geometry", "case_title", "date"], crs=C.WGS84)
+
+def _block_centroids() -> pd.DataFrame:
+    """15-digit block GEOID -> centroid lon/lat, from TIGER internal points."""
+    shp = _ensure_tiger()
+    blocks = gpd.read_file(shp)
+    df = pd.DataFrame({
+        "block_code": blocks["GEOID20"].astype(str).str.strip(),
+        "lat": blocks["INTPTLAT20"].astype(float),
+        "lon": blocks["INTPTLON20"].astype(float),
+    })
+    df = df[df["block_code"].str.startswith(MIDDLESEX_PREFIX)]  # Middlesex only
+    df = df[~df["block_code"].duplicated()].set_index("block_code")
+    return df
+
+
+def build_storm_drains() -> gpd.GeoDataFrame:
+    """Union of municipal catch basins + storm inlets, clipped to the neighbourhood."""
+    if not CATCH_BASINS.exists() or not STORM_INLETS.exists():
+        raise FileNotFoundError(
+            f"Missing drainage data: {CATCH_BASINS} / {STORM_INLETS}")
+    cb = gpd.read_file(CATCH_BASINS).to_crs(C.WGS84)
+    si = gpd.read_file(STORM_INLETS).to_crs(C.WGS84)
+    cb = cb.copy(); cb["struct_type"] = "catch_basin"
+    si = si.copy(); si["struct_type"] = "storm_inlet"
+    keep = ["struct_type", "FacilityID", "geometry"]
+    cb = cb[[c for c in keep if c in cb.columns]]
+    si = si[[c for c in keep if c in si.columns]]
+    drains = gpd.GeoDataFrame(pd.concat([cb, si], ignore_index=True), crs=C.WGS84)
+    drains = drains[drains.geometry.notna() & ~drains.geometry.is_empty]
+    nb = _neighbourhood_box()
+    drains = drains[drains.geometry.intersects(nb)].reset_index(drop=True)
+    return drains
+
+
+def build_flood_complaints() -> gpd.GeoDataFrame:
+    """311 flood/drain complaints, geolocated to block centroids, clipped to nbhd."""
+    if not CSV_311.exists():
+        raise FileNotFoundError(f"Missing 311 CSV: {CSV_311}")
+    df = pd.read_csv(CSV_311, dtype=str)
+    pat = "|".join(FLOOD_TERMS)
+    mask = df["type"].fillna("").str.lower().str.contains(pat)
+    df = df[mask].copy()
+    n_flood = len(df)
+    df["block_code"] = df["block_code"].astype(str).str.strip()
+
+    cent = _block_centroids()
+    joined = df.join(cent, on="block_code", how="inner")  # inner => drop unmatched
+    n_matched = len(joined)
+
+    gdf = gpd.GeoDataFrame(
+        {
+            "block_code": joined["block_code"].values,
+            "type": joined["type"].values,
+            "date": joined.get("date_created", pd.Series([""] * n_matched)).values,
+            "resolution": "block",  # block-centroid, NOT exact coordinate
+        },
+        geometry=gpd.points_from_xy(joined["lon"], joined["lat"]),
+        crs=C.WGS84,
+    )
+    nb = _neighbourhood_box()
+    gdf = gdf[gdf.geometry.intersects(nb)].reset_index(drop=True)
+    print(f"  [311] flood-type rows={n_flood}  block-matched={n_matched}  "
+          f"in-neighbourhood={len(gdf)}  (dropped {n_flood - n_matched} unmatched)")
     return gdf
-
-
-def fetch_storm_drains() -> gpd.GeoDataFrame:
-    """Municipal storm-drain structures within the tile (with neighbourhood pad)."""
-    w, s, e, n = _tile_bbox_wgs84()
-    pad = 0.005
-    params = {
-        "where": "1=1",
-        "geometry": f"{w-pad},{s-pad},{e+pad},{n+pad}",
-        "geometryType": "esriGeometryEnvelope",
-        "inSR": "4326", "outSR": "4326",
-        "spatialRel": "esriSpatialRelIntersects",
-        "outFields": "*", "f": "geojson",
-    }
-    try:
-        r = requests.get(MASSGIS_DRAINS, params=params, timeout=30)
-        r.raise_for_status()
-        gj = r.json()
-        gdf = gpd.GeoDataFrame.from_features(gj.get("features", []), crs=C.WGS84)
-        if len(gdf) == 0:
-            raise ValueError("no drains returned")
-    except Exception as exc:  # noqa: BLE001
-        print(f"  [drains] live fetch failed ({exc}); using bundled sample")
-        gdf = _sample_drains()
-    return gdf
-
-
-def _sample_complaints():
-    """Minimal bundled fallback so the pipeline runs without network.
-
-    Two representative historical flood reports near the Avon St low corridor.
-    """
-    w, s, e, n = _tile_bbox_wgs84()
-    cx, cy = (w + e) / 2, (s + n) / 2
-    return [
-        {"latitude": cy - 0.0006, "longitude": cx + 0.0004,
-         "case_title": "Street flooding / standing water", "open_dt": "2023-09-12"},
-        {"latitude": cy - 0.0009, "longitude": cx + 0.0007,
-         "case_title": "Catch basin clogged - flooding", "open_dt": "2021-07-18"},
-    ]
-
-
-def _sample_drains():
-    w, s, e, n = _tile_bbox_wgs84()
-    cx, cy = (w + e) / 2, (s + n) / 2
-    pts = [Point(cx - 0.0008, cy + 0.0005), Point(cx + 0.0010, cy - 0.0010)]
-    return gpd.GeoDataFrame({"type": ["storm_drain"] * len(pts)}, geometry=pts, crs=C.WGS84)
 
 
 def main() -> None:
-    comp = fetch_flood_complaints()
-    drains = fetch_storm_drains()
-    # write (GeoJSON requires at least the schema; handle empties)
-    comp.to_file(COMPLAINTS_OUT, driver="GeoJSON")
+    drains = build_storm_drains()
+    comp = build_flood_complaints()
+
+    if len(drains) == 0:
+        raise RuntimeError("storm_drains came out empty — check drainage GeoJSON")
+    if len(comp) == 0:
+        raise RuntimeError("flood_complaints came out empty — check 311 CSV / TIGER join")
+
     drains.to_file(DRAINS_OUT, driver="GeoJSON")
+    comp.to_file(COMPLAINTS_OUT, driver="GeoJSON")
+
     print(json.dumps({
-        "flood_complaints": int(len(comp)),
         "storm_drains": int(len(drains)),
+        "storm_drains_by_type": drains["struct_type"].value_counts().to_dict()
+            if "struct_type" in drains.columns else {},
+        "flood_complaints": int(len(comp)),
+        "flood_complaints_by_type": comp["type"].value_counts().head(8).to_dict(),
     }, indent=2))
-    print(f"Wrote {COMPLAINTS_OUT}\nWrote {DRAINS_OUT}")
+    print(f"Wrote {DRAINS_OUT}")
+    print(f"Wrote {COMPLAINTS_OUT}")
 
 
 if __name__ == "__main__":

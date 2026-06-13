@@ -36,6 +36,13 @@ GROUND_QUANTILE = 0.10   # per-cell low quantile used as the ground estimate
 Z_CLIP_LOW_PCT = 0.5     # drop points below this global percentile (low multipath)
 Z_CLIP_HIGH_PCT = 90.0   # drop points above this global percentile (buildings/trees)
 
+# This is a dense mobile cloud (50M+ pts, ~200 MB LAZ). Holding it as float64
+# x/y/z peaks past available RAM, so we stream it in chunks and keep only a
+# compact (cell_id int64, z float32) representation of the in-tile points.
+CHUNK = 8_000_000             # points per streaming chunk (bounds peak RAM)
+Z_SAMPLE_STRIDE = 10          # stride for the global Z-percentile sample pass
+MAX_GRID_POINTS = 12_000_000  # cap on collected in-tile pts (subsample if above)
+
 
 def _accumulate_low_z(grid_min: np.ndarray, ix: np.ndarray, iy: np.ndarray, z: np.ndarray) -> None:
     """In-place per-cell minimum of z into grid_min[iy, ix]."""
@@ -51,41 +58,66 @@ def build_dem() -> None:
     print(f"DEM grid: {nrows} rows x {ncols} cols @ {res} m  "
           f"({nrows * ncols:,} cells)")
 
-    # First pass: stream the cloud to get a global Z range for outlier clipping.
+    minx_f, miny_f, maxx_f, maxy_f = map(float, (minx, miny, maxx, maxy))
     t0 = time.time()
-    las = laspy.read(C.LIDAR_LAZ)
-    z_all = np.asarray(las.z, dtype=np.float64)
-    lo, hi = np.percentile(z_all, [Z_CLIP_LOW_PCT, Z_CLIP_HIGH_PCT])
-    print(f"Ground band: [{lo:.2f}, {hi:.2f}] m  (read {len(z_all):,} pts in {time.time()-t0:.1f}s)")
 
-    x_all = np.asarray(las.x, dtype=np.float64)
-    y_all = np.asarray(las.y, dtype=np.float64)
+    # --- Pass 1: global Z-clip thresholds (strided sample) + in-tile count ----
+    # Stream the cloud so we never hold all 50M+ points in RAM at once.
+    z_samp, n_tile, n_total = [], 0, 0
+    with laspy.open(C.LIDAR_LAZ) as f:
+        for pts in f.chunk_iterator(CHUNK):
+            x = np.asarray(pts.x); y = np.asarray(pts.y); z = np.asarray(pts.z)
+            n_total += len(z)
+            z_samp.append(z[::Z_SAMPLE_STRIDE].astype(np.float32))
+            n_tile += int(((x >= minx_f) & (x < maxx_f)
+                           & (y >= miny_f) & (y < maxy_f)).sum())
+    lo, hi = np.percentile(np.concatenate(z_samp), [Z_CLIP_LOW_PCT, Z_CLIP_HIGH_PCT])
+    del z_samp
+    print(f"Ground band: [{lo:.2f}, {hi:.2f}] m  "
+          f"(streamed {n_total:,} pts in {time.time()-t0:.1f}s)")
 
-    # Keep points inside the tile and within the sane Z band.
-    m = (x_all >= minx) & (x_all < maxx) & (y_all >= miny) & (y_all < maxy) & (z_all >= lo) & (z_all <= hi)
-    x, y, z = x_all[m], y_all[m], z_all[m]
-    print(f"Points in tile after clip: {len(x):,}")
+    # If the in-tile cloud is huge, subsample so the gridding stays in memory.
+    # A low per-cell quantile is statistically stable under uniform subsampling.
+    keep = min(1.0, MAX_GRID_POINTS / max(n_tile, 1))
+    print(f"Points in tile: {n_tile:,}"
+          + ("" if keep >= 1.0 else f"  (subsampling ~{keep*100:.0f}% to cap RAM)"))
 
-    # Cell indices. Row 0 = top (north), so flip the Y axis.
-    ix = np.clip(((x - minx) / res).astype(np.int64), 0, ncols - 1)
-    iy = np.clip(((maxy - y) / res).astype(np.int64), 0, nrows - 1)
+    # --- Pass 2: collect compact in-tile (cell_id, z) -------------------------
+    rng = np.random.default_rng(42)   # fixed seed => reproducible subsample/DEM
+    cell_parts, z_parts = [], []
+    with laspy.open(C.LIDAR_LAZ) as f:
+        for pts in f.chunk_iterator(CHUNK):
+            x = np.asarray(pts.x); y = np.asarray(pts.y); z = np.asarray(pts.z)
+            m = ((x >= minx_f) & (x < maxx_f) & (y >= miny_f) & (y < maxy_f)
+                 & (z >= lo) & (z <= hi))
+            if keep < 1.0:
+                m &= rng.random(len(x)) < keep
+            xi, yi = x[m], y[m]
+            zi = z[m].astype(np.float32)
+            # Cell indices. Row 0 = top (north), so flip the Y axis.
+            ix = np.clip(((xi - minx_f) / res).astype(np.int64), 0, ncols - 1)
+            iy = np.clip(((maxy_f - yi) / res).astype(np.int64), 0, nrows - 1)
+            cell_parts.append(iy * ncols + ix)
+            z_parts.append(zi)
+    cell = np.concatenate(cell_parts)
+    z = np.concatenate(z_parts)
+    del cell_parts, z_parts
+    print(f"Gridding {len(z):,} points into {nrows * ncols:,} cells")
 
-    # Robust ground estimate per cell: a low quantile. We approximate it
-    # efficiently by sorting points into cells and taking the q-th value.
-    cell = iy * ncols + ix
+    # Robust ground estimate per cell: a low quantile, computed by sorting points
+    # into cells and taking the q-th value (nearest-rank, robust to low outliers).
     order = np.argsort(cell, kind="stable")
     cell_sorted = cell[order]
     z_sorted = z[order]
+    del cell, z, order
     # Boundaries between cells in the sorted array.
     starts = np.searchsorted(cell_sorted, np.arange(nrows * ncols), side="left")
     ends = np.searchsorted(cell_sorted, np.arange(nrows * ncols), side="right")
 
     dem = np.full(nrows * ncols, np.nan, dtype=np.float32)
     counts = ends - starts
-    nonempty = np.where(counts > 0)[0]
-    for c in nonempty:
+    for c in np.where(counts > 0)[0]:
         seg = z_sorted[starts[c]:ends[c]]
-        # low quantile (nearest-rank) — robust to a few low outliers
         k = int(GROUND_QUANTILE * (len(seg) - 1))
         dem[c] = np.partition(seg, k)[k]
     dem = dem.reshape(nrows, ncols)

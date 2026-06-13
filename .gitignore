@@ -5,3 +5,9 @@ data[Ii]nfo.md
 __pycache__/
 *.pyc
 .env
+
+# Claude Code session artifacts
+.claude/
+
+# Large re-downloadable TIGER/Line block cache (opendata.py refetches on demand)
+/data/tiger_blocks_25/

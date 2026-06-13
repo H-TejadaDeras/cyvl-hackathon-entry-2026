@@ -23,6 +23,7 @@ from __future__ import annotations
 import base64
 import json
 import os
+import re
 import time
 from pathlib import Path
 
@@ -32,9 +33,30 @@ from curbrisk import config as C
 
 OUT_DIR = C.PROCESSED_DIR / "crosssections"
 URN_CACHE = C.PROCESSED_DIR / "aps_urns.json"
-BUCKET = os.environ.get("APS_BUCKET", "curbrisk-somerville-demo")
 BASE = "https://developer.api.autodesk.com"
 SCOPE = "data:read data:write data:create bucket:create bucket:read viewables:read"
+
+DEFAULT_BUCKET = "curbrisk-somerville-demo"
+
+
+def _bucket_key() -> str:
+    """APS bucketKey must match [-_.a-z0-9]{3,128}. Env may be empty/unset/dirty
+    (note: os.environ.get(k, default) returns '' when k is set-but-empty, NOT the
+    default), so coalesce, lowercase, and sanitise."""
+    raw = (os.environ.get("APS_BUCKET") or DEFAULT_BUCKET).strip().lower()
+    raw = re.sub(r"[^-_.a-z0-9]", "-", raw)
+    return raw if 3 <= len(raw) <= 128 else DEFAULT_BUCKET
+
+
+BUCKET = _bucket_key()
+
+
+def _raise_with_body(r: requests.Response, what: str) -> None:
+    """raise_for_status() but surface the APS JSON error body (it explains why)."""
+    if r.ok:
+        return
+    body = r.text[:600]
+    raise RuntimeError(f"APS {what} failed: HTTP {r.status_code} — {body}")
 
 
 def _token(scope: str = SCOPE) -> str | None:
@@ -47,31 +69,44 @@ def _token(scope: str = SCOPE) -> str | None:
         data={"grant_type": "client_credentials", "scope": scope},
         auth=(cid, sec), timeout=30,
     )
-    r.raise_for_status()
+    _raise_with_body(r, "auth")
     return r.json()["access_token"]
 
 
 def _ensure_bucket(tok: str) -> None:
+    """Create the OSS bucket (idempotent). APS occasionally returns a transient
+    400 on the first create; retry a couple of times before surfacing the body."""
     h = {"Authorization": f"Bearer {tok}", "Content-Type": "application/json"}
-    r = requests.post(f"{BASE}/oss/v2/buckets", headers=h,
-                      json={"bucketKey": BUCKET, "policyKey": "transient"}, timeout=30)
-    if r.status_code not in (200, 409):  # 409 = already exists
-        r.raise_for_status()
+    payload = {"bucketKey": BUCKET, "policyKey": "transient"}
+    last = None
+    for attempt in range(3):
+        r = requests.post(f"{BASE}/oss/v2/buckets", headers=h, json=payload, timeout=30)
+        if r.status_code in (200, 409):  # 200 = created, 409 = already exists
+            return
+        last = r
+        print(f"  [aps] bucket create attempt {attempt + 1} -> HTTP {r.status_code}: "
+              f"{r.text[:200]}")
+        time.sleep(2)
+    _raise_with_body(last, "bucket create")
 
 
 def _upload(tok: str, dxf: Path) -> str:
     """Signed-S3 upload; returns the object URN (base64, unpadded)."""
     h = {"Authorization": f"Bearer {tok}"}
     key = dxf.name
-    s = requests.get(
+    r = requests.get(
         f"{BASE}/oss/v2/buckets/{BUCKET}/objects/{key}/signeds3upload",
-        headers=h, timeout=30).json()
-    requests.put(s["urls"][0], data=dxf.read_bytes(), timeout=120).raise_for_status()
-    fin = requests.post(
+        headers=h, timeout=30)
+    _raise_with_body(r, f"signed-upload init ({key})")
+    s = r.json()
+    put = requests.put(s["urls"][0], data=dxf.read_bytes(), timeout=120)
+    _raise_with_body(put, f"S3 PUT ({key})")
+    r = requests.post(
         f"{BASE}/oss/v2/buckets/{BUCKET}/objects/{key}/signeds3upload",
         headers={**h, "Content-Type": "application/json"},
-        json={"uploadKey": s["uploadKey"]}, timeout=30).json()
-    object_id = fin["objectId"]
+        json={"uploadKey": s["uploadKey"]}, timeout=30)
+    _raise_with_body(r, f"signed-upload finalize ({key})")
+    object_id = r.json()["objectId"]
     return base64.urlsafe_b64encode(object_id.encode()).decode().rstrip("=")
 
 
@@ -80,8 +115,21 @@ def _translate(tok: str, urn: str) -> None:
          "x-ads-force": "true"}
     job = {"input": {"urn": urn},
            "output": {"formats": [{"type": "svf2", "views": ["2d", "3d"]}]}}
-    requests.post(f"{BASE}/modelderivative/v2/designdata/job",
-                  headers=h, json=job, timeout=30).raise_for_status()
+    r = requests.post(f"{BASE}/modelderivative/v2/designdata/job",
+                      headers=h, json=job, timeout=30)
+    _raise_with_body(r, "translate job")
+
+
+def manifest_status(tok: str, urn: str) -> dict:
+    """GET the Model Derivative manifest -> {status, progress} for an URN."""
+    h = {"Authorization": f"Bearer {tok}"}
+    r = requests.get(
+        f"{BASE}/modelderivative/v2/designdata/{urn}/manifest", headers=h, timeout=30)
+    if r.status_code == 404:
+        return {"status": "pending", "progress": "job not registered yet"}
+    _raise_with_body(r, "manifest")
+    j = r.json()
+    return {"status": j.get("status"), "progress": j.get("progress")}
 
 
 def _poll_manifest(tok: str, urn: str, timeout_s: int = 180) -> str:
@@ -150,3 +198,25 @@ def upload_all() -> dict:
 if __name__ == "__main__":
     out = upload_all()
     print(json.dumps(out, indent=2))
+
+    # Confirm at least one URN is a real, translating APS derivative (not the SVG
+    # fallback): poll its Model Derivative manifest.
+    real = {s: v for s, v in out.items() if v.get("urn")}
+    if not real:
+        print("\nNo APS URNs produced (SVG fallback path). APS not exercised.")
+    else:
+        tok = _token()
+        seg, info = next(iter(real.items()))
+        urn = info["urn"]
+        print(f"\nVerifying APS translation for {seg} (urn={urn[:24]}...):")
+        st = {}
+        for i in range(10):
+            st = manifest_status(tok, urn)
+            print(f"  poll {i + 1}: status={st.get('status')} progress={st.get('progress')}")
+            if st.get("status") in ("success", "inprogress", "failed"):
+                break
+            time.sleep(3)
+        ok = st.get("status") in ("success", "inprogress")
+        print(f"\nAPS URN {'CONFIRMED translating/complete' if ok else 'NOT confirmed'} "
+              f"(status={st.get('status')}).")
+        print(f"Viewer: {info['viewer']}")

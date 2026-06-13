@@ -1,85 +1,85 @@
 {
   "summaries": {
+    "IA11167": {
+      "summary": "**Drainage Risk Summary \u2013 Avon Street (Segment IA11167)**\n\nLiDAR-measured data confirm a catchment area of 3,338 sq ft with a maximum ponding depth of 5.91 inches and a curb risk score of 66.4, while the nearest drain is 58.8 meters away; 22 nearby complaints further support the **High** risk band designation, despite a relatively strong pavement condition index of 91.0 (imputed). Given the directly measured ponding depth and drain proximity in combination with the elevated complaint density, the recommended action is: **clear drainage**.",
+      "vision": null,
+      "image_url": "https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images/GX010747_MP4_1763391441012190_front_3000.jpg",
+      "panoramic_url": "https://platform.cyvl.ai/3DViewer.html?image_url=https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images360/GS020079_360_1763584738485558_360_3000.jpg",
+      "source": "claude",
+      "model": "claude-sonnet-4-6"
+    },
+    "IA11166": {
+      "summary": "**Drainage Risk Summary \u2013 Avon Street (Segment IA11166)**\n\nLiDAR-measured data indicate a catchment area of 3,338 sq ft with a maximum ponding depth of 5.91 inches and the nearest drain located 67.9 meters away; the pavement condition index of 93.0 reflects good surface integrity, yet the curb risk score of 65.6 (imputed) and 22 nearby drainage complaints contribute to an overall **Moderate** risk band designation. No structural defects or causal factors beyond these recorded metrics are observed or inferred.\n\n**Recommended Action: Clear Drainage.**",
+      "vision": null,
+      "image_url": "https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images/GX010747_MP4_1763391440013243_front_3000.jpg",
+      "panoramic_url": "https://platform.cyvl.ai/3DViewer.html?image_url=https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images360/GS030078_360_1763497845137151_360_3000.jpg",
+      "source": "claude",
+      "model": "claude-sonnet-4-6"
+    },
+    "IA11168": {
+      "summary": "**Drainage-Risk Summary \u2013 Avon Street (Segment IA11168)**\n\nLiDAR-measured data confirm a catchment area of 3,338 sq ft with a modeled maximum ponding depth of 5.91 inches and a nearest drain located 49.7 meters away; the curb-risk score of 65.5 and 22 nearby drainage complaints support a **Moderate** risk-band classification, while the pavement condition index of 93.0 indicates the road surface itself is in good structural condition. No surface defects or physical causes of blockage were independently observed in available imagery, and ponding depth and catchment values are LiDAR-measured rather than imputed.\n\n**Recommended Action: Clear drainage.**",
+      "vision": null,
+      "image_url": "https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images/GX010747_MP4_1763391442011138_front_3000.jpg",
+      "panoramic_url": "https://platform.cyvl.ai/3DViewer.html?image_url=https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images360/GS020079_360_1763584739485493_360_3000.jpg",
+      "source": "claude",
+      "model": "claude-sonnet-4-6"
+    },
+    "IA16988": {
+      "summary": "**Drainage-Risk Summary \u2013 Segment IA16988 (Oxford Street)**\n\nAll values for this segment are **imputed (not LiDAR-measured)**: the modeled curb risk score is 64.9/100, the pavement condition index is 69.2 (fair), the nearest drain is estimated at 73.3 m, and both catchment area and ponding depth are recorded as zero, indicating no confirmed standing-water geometry has been captured; however, 6 nearby drainage complaints elevate concern and place this segment in the **Moderate** risk band. No defects, ponding events, or structural failures are confirmed from direct observation or LiDAR data, and the risk designation reflects modeled estimates only.\n\n**Recommended action: inspect.**",
+      "vision": null,
+      "image_url": "https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images/GX010770_MP4_1763572567940346_front_3000.jpg",
+      "panoramic_url": "https://platform.cyvl.ai/3DViewer.html?image_url=https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images360/GS010079_360_1763572567769396_360_3000.jpg",
+      "source": "claude",
+      "model": "claude-sonnet-4-6"
+    },
+    "IA11164": {
+      "summary": "**Drainage-Risk Summary \u2013 Avon Street (Segment IA11164)**\n\nLiDAR-measured data confirms a catchment area of 3,338 sq ft with a modeled ponding depth of 5.91 inches and a nearest drain distance of 57.8 m, while the curb risk score of 64.2 and 22 nearby complaints are imputed composite indicators suggesting elevated local drainage stress despite a relatively high pavement condition index (PCI: 96.2) that places this segment in the **Moderate** risk band. No surface defects or structural failures are independently observed in the supplied image data, and no causes beyond the quantified risk factors are inferred.\n\n**Recommended Action: Clear drainage.**",
+      "vision": null,
+      "image_url": "https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images/GX010747_MP4_1763391437016401_front_3000.jpg",
+      "panoramic_url": "https://platform.cyvl.ai/3DViewer.html?image_url=https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images360/GS030083_360_1764017199547319_360_3000.jpg",
+      "source": "claude",
+      "model": "claude-sonnet-4-6"
+    },
+    "IA11165": {
+      "summary": "**Drainage-Risk Summary \u2013 Avon Street (Segment IA11165)**\n\nLiDAR-measured data confirms a catchment area of 3,338 sq ft with a modeled ponding depth of 5.91 inches and a nearest drain distance of 66.9 meters, while the curb risk score of 64.2 and 22 nearby complaints are imputed indicators that collectively place this segment in the **Moderate** risk band, despite a strong pavement condition index of 96.2. No surface defects or structural failures were observed or recorded in the supplied facts or image data; risk is driven by catchment geometry and drain proximity rather than any identified physical damage.\n\n**Recommended Action: Clear drainage.**",
+      "vision": null,
+      "image_url": "https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images/GX010747_MP4_1763391438015348_front_3000.jpg",
+      "panoramic_url": "https://platform.cyvl.ai/3DViewer.html?image_url=https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images360/GS030078_360_1763497844137218_360_3000.jpg",
+      "source": "claude",
+      "model": "claude-sonnet-4-6"
+    },
+    "IA11163": {
+      "summary": "**Drainage-Risk Summary \u2013 Avon Street (Segment IA11163)**\n\nLiDAR-measured data confirm a catchment area of 3,338 sq ft with a modeled maximum ponding depth of 5.91 inches and a nearest drain distance of 48.6 m, while the curb risk score of 63.6 and 22 nearby complaints are model-imputed indicators supporting a **Moderate** risk band designation; the pavement condition index of 96.3 (LiDAR-measured) is high and does not itself suggest surface deterioration as a contributing factor. No image-based defects are independently observable from the supplied materials, and all risk drivers referenced are sourced exclusively from the provided JSON record.\n\n**Recommended action: clear drainage.**",
+      "vision": null,
+      "image_url": "https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images/GX010747_MP4_1763391436017453_front_3000.jpg",
+      "panoramic_url": "https://platform.cyvl.ai/3DViewer.html?image_url=https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images360/GS030083_360_1764017198547385_360_3000.jpg",
+      "source": "claude",
+      "model": "claude-sonnet-4-6"
+    },
     "IA11856": {
-      "summary": "Greene Street segment IA11856 has a CurbRisk score of 68.7 (High). The topography-imputed model estimates 0.0 inches of ponding from a 0 square-foot contributing area, with 0 nearby flood-related 311 reports. Recommended action: reconstruct.",
+      "summary": "**Drainage Risk Summary \u2013 Greene Street (Segment IA11856)**\n\nAll values are imputed (no LiDAR measurement was available for this segment): the pavement condition index of 37.0 indicates poor surface integrity, the curb risk score of 61.7 is elevated, the nearest drain is 7.5 m away, and five nearby drainage complaints have been recorded, collectively placing this segment in the **Moderate** risk band; ponding depth and catchment area were not quantified from direct measurement. No image-observable defects are introduced beyond what the supplied data indicate.\n\n**Recommended action: inspect.**",
       "vision": null,
       "image_url": "https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images/GX020770_MP4_1763573988908775_front_3000.jpg",
       "panoramic_url": "https://platform.cyvl.ai/3DViewer.html?image_url=https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images360/GS010079_360_1763573987178222_360_3000.jpg",
-      "source": "structured_fallback",
-      "model": null
+      "source": "claude",
+      "model": "claude-sonnet-4-6"
     },
-    "IA11179": {
-      "summary": "Avon Street segment IA11179 has a CurbRisk score of 63.1 (Moderate). The LiDAR-measured model estimates 5.0 inches of ponding from a 9644 square-foot contributing area, with 2 nearby flood-related 311 reports. Recommended action: clear drainage.",
+    "IA11851": {
+      "summary": "**Drainage Risk Summary \u2013 Greene Street (Segment IA11851)**\n\nAll values for this segment are imputed (no LiDAR measurement was collected), showing a curb risk score of 61.6, a pavement condition index of 77.0, a nearest drain distance of 50.8 m, and zero recorded ponding depth, alongside 8 nearby drainage complaints that elevate contextual concern despite the Moderate risk band designation. Because imputed data limits confidence in the ponding and catchment figures (catchment area registers 0.0 sq ft, likely a data gap rather than a confirmed condition), and the complaint density suggests localized drainage stress that ground-truth observation has not yet confirmed or ruled out, verification is warranted before final underwriting determination.\n\n**Recommended action: inspect.**",
       "vision": null,
-      "image_url": "https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images/GX010747_MP4_1763391453998506_front_3000.jpg",
-      "panoramic_url": "https://platform.cyvl.ai/3DViewer.html?image_url=https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images360/GS030083_360_1764017211546528_360_3000.jpg",
-      "source": "structured_fallback",
-      "model": null
+      "image_url": "https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images/GX020770_MP4_1763573977409031_front_3000.jpg",
+      "panoramic_url": "https://platform.cyvl.ai/3DViewer.html?image_url=https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images360/GS010079_360_1763573976678897_360_3000.jpg",
+      "source": "claude",
+      "model": "claude-sonnet-4-6"
     },
-    "IA11857": {
-      "summary": "Greene Street segment IA11857 has a CurbRisk score of 62.7 (Moderate). The topography-imputed model estimates 0.0 inches of ponding from a 0 square-foot contributing area, with 0 nearby flood-related 311 reports. Recommended action: inspect.",
+    "IA11112": {
+      "summary": "**Drainage-Risk Summary \u2013 Laurel Street (Segment IA11112)**\n\nImputed (non-LiDAR) modeling for this segment returns a Moderate risk band, with an imputed curb-risk score of 59.9, an imputed ponding depth of 0.0 inches, and an imputed catchment area of 0.0 sq ft, while the nearest drain is recorded at 50.7 m and the pavement condition index stands at a measured 81.0; notably, 8 nearby drainage complaints have been logged, elevating concern despite the otherwise unremarkable surface indicators. No LiDAR-measured values are available for this segment, so all spatial and hydraulic figures carry imputation uncertainty, and no defects or ponding were observed or confirmed in the supplied image data.\n\n**Recommended action: inspect.**",
       "vision": null,
-      "image_url": "https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images/GX020770_MP4_1763573992908686_front_3000.jpg",
-      "panoramic_url": "https://platform.cyvl.ai/3DViewer.html?image_url=https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images360/GS010079_360_1763573990178030_360_3000.jpg",
-      "source": "structured_fallback",
-      "model": null
-    },
-    "IA11178": {
-      "summary": "Avon Street segment IA11178 has a CurbRisk score of 62.3 (Moderate). The LiDAR-measured model estimates 5.0 inches of ponding from a 9644 square-foot contributing area, with 2 nearby flood-related 311 reports. Recommended action: clear drainage.",
-      "vision": null,
-      "image_url": "https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images/GX010747_MP4_1763391452999558_front_3000.jpg",
-      "panoramic_url": "https://platform.cyvl.ai/3DViewer.html?image_url=https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images360/GS030083_360_1764017210546594_360_3000.jpg",
-      "source": "structured_fallback",
-      "model": null
-    },
-    "IA11176": {
-      "summary": "Avon Street segment IA11176 has a CurbRisk score of 62.3 (Moderate). The LiDAR-measured model estimates 5.0 inches of ponding from a 9644 square-foot contributing area, with 2 nearby flood-related 311 reports. Recommended action: clear drainage.",
-      "vision": null,
-      "image_url": "https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images/GX010747_MP4_1763391451001664_front_3000.jpg",
-      "panoramic_url": "https://platform.cyvl.ai/3DViewer.html?image_url=https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images360/GS020079_360_1763584748484911_360_3000.jpg",
-      "source": "structured_fallback",
-      "model": null
-    },
-    "IA02293": {
-      "summary": "Greene Street segment IA02293 has a CurbRisk score of 61.9 (Moderate). The topography-imputed model estimates 0.0 inches of ponding from a 0 square-foot contributing area, with 0 nearby flood-related 311 reports. Recommended action: inspect.",
-      "vision": null,
-      "image_url": "https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images/GX020770_MP4_1763573992908686_front_3000.jpg",
-      "panoramic_url": "https://platform.cyvl.ai/3DViewer.html?image_url=https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images360/GS010079_360_1763573993677805_360_3000.jpg",
-      "source": "structured_fallback",
-      "model": null
-    },
-    "IA11177": {
-      "summary": "Avon Street segment IA11177 has a CurbRisk score of 61.7 (Moderate). The LiDAR-measured model estimates 5.0 inches of ponding from a 9644 square-foot contributing area, with 2 nearby flood-related 311 reports. Recommended action: clear drainage.",
-      "vision": null,
-      "image_url": "https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images/GX010747_MP4_1763391452000611_front_3000.jpg",
-      "panoramic_url": "https://platform.cyvl.ai/3DViewer.html?image_url=https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images360/GS020079_360_1763584749484846_360_3000.jpg",
-      "source": "structured_fallback",
-      "model": null
-    },
-    "IA11185": {
-      "summary": "Avon Street segment IA11185 has a CurbRisk score of 61.6 (Moderate). The LiDAR-measured model estimates 4.2 inches of ponding from a 10386 square-foot contributing area, with 2 nearby flood-related 311 reports. Recommended action: clear drainage.",
-      "vision": null,
-      "image_url": "https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images/GX050770_MP4_1763584768669273_front_3000.jpg",
-      "panoramic_url": "https://platform.cyvl.ai/3DViewer.html?image_url=https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images360/GS030078_360_1763497871135402_360_3000.jpg",
-      "source": "structured_fallback",
-      "model": null
-    },
-    "IA11175": {
-      "summary": "Avon Street segment IA11175 has a CurbRisk score of 61.0 (Moderate). The LiDAR-measured model estimates 5.0 inches of ponding from a 9644 square-foot contributing area, with 2 nearby flood-related 311 reports. Recommended action: clear drainage.",
-      "vision": null,
-      "image_url": "https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images/GX010747_MP4_1763391450002716_front_3000.jpg",
-      "panoramic_url": "https://platform.cyvl.ai/3DViewer.html?image_url=https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images360/GS030078_360_1763497855136478_360_3000.jpg",
-      "source": "structured_fallback",
-      "model": null
-    },
-    "IA11173": {
-      "summary": "Avon Street segment IA11173 has a CurbRisk score of 61.0 (Moderate). The LiDAR-measured model estimates 5.0 inches of ponding from a 9644 square-foot contributing area, with 2 nearby flood-related 311 reports. Recommended action: clear drainage.",
-      "vision": null,
-      "image_url": "https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images/GX010747_MP4_1763391447005874_front_3000.jpg",
-      "panoramic_url": "https://platform.cyvl.ai/3DViewer.html?image_url=https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images360/GS030083_360_1764017206546858_360_3000.jpg",
-      "source": "structured_fallback",
-      "model": null
+      "image_url": "https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images/GX020770_MP4_1763574055907286_front_3000.jpg",
+      "panoramic_url": "https://platform.cyvl.ai/3DViewer.html?image_url=https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images360/GS030080_360_1763670437743309_360_3000.jpg",
+      "source": "claude",
+      "model": "claude-sonnet-4-6"
     }
   },
-  "claude_error": "summary: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011Cc1hRegwMx1qjqs6ifpA4'}"
+  "claude_error": "vision: BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': \"This URL is disallowed by the website's robots.txt file.\"}, 'request_id': 'req_011Cc1kBkoFPaqj5jhfYfaWA'}"
 }
