@@ -24,6 +24,7 @@ scoring/risk.py         CurbRisk = topo(40)+pavement(30)+basin(20)+complaint(10)
 output/crosssection.py  ezdxf DXF + SVG cross-section per low point
 output/aps_upload.py    DXF → Autodesk APS Viewer URN (SVG fallback w/o creds)
 api/main.py             FastAPI: GET /risk?address=… → JSON report + cross-section
+output/narrative.py     Claude summary for top risks (structured offline fallback)
 ```
 
 ## Run
@@ -37,6 +38,12 @@ Optional Autodesk APS Viewer (else SVG fallback is served):
 export APS_CLIENT_ID=…  APS_CLIENT_SECRET=…
 python -m curbrisk.output.aps_upload
 ```
+Optional Claude summaries (the root `.env` is loaded automatically):
+```bash
+ANTHROPIC_API_KEY=… python -m curbrisk.output.narrative
+```
+The API also accepts coordinates: `/risk?lat=42.3855&lon=-71.1020`. Queries
+outside the LiDAR tile return a clear out-of-coverage response.
 
 ## Scoring model (auditable, weights in `config.py`)
 | component | weight | signal |

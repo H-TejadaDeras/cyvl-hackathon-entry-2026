@@ -6,9 +6,11 @@ regardless of the working directory it is launched from.
 from __future__ import annotations
 
 from pathlib import Path
+from dotenv import load_dotenv
 
 # --- Paths -------------------------------------------------------------------
 REPO_ROOT = Path(__file__).resolve().parent.parent
+load_dotenv(REPO_ROOT / ".env")
 DATA_DIR = REPO_ROOT / "data"
 RAW_DIR = DATA_DIR                       # the raw Cyvl deliverables live directly in data/
 PROCESSED_DIR = DATA_DIR / "processed"   # clean, reprojected layers we generate
@@ -27,6 +29,7 @@ DEM_OUT = PROCESSED_DIR / "dem.tif"                      # gridded ground-surfac
 LOWPOINTS_OUT = PROCESSED_DIR / "low_points.geojson"     # detected ponding points
 SCORES_OUT = PROCESSED_DIR / "curbrisk_scores.geojson"  # final scored segments
 SCORES_DB = PROCESSED_DIR / "scores.db"                 # SQLite cache for the API
+SUMMARIES_OUT = PROCESSED_DIR / "segment_summaries.json"
 
 # --- Coordinate systems ------------------------------------------------------
 WGS84 = "EPSG:4326"         # lat/lon, as delivered for vectors

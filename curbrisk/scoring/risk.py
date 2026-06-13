@@ -32,6 +32,13 @@ PONDING_DEPTH_NORM_IN = 6.0      # ponding depth (in) that saturates the topo sc
 CATCHMENT_NORM_SQFT = 8000.0     # catchment that saturates the topo score
 PCI_FLOOR = 30.0                 # PCI at/below this saturates the pavement score
 
+HYDRAULIC_ASSUMPTIONS = {
+    "rain_event_in": C.RAIN_EVENT_IN,
+    "runoff_coefficient": 0.9,
+    "model": "Simplified surface ponding model; no pipe-network hydraulics.",
+    "vertical_accuracy": "LiDAR stores 1 cm Z precision; absolute vertical accuracy is not 1 cm.",
+}
+
 
 def _nearest_dist_m(pts_gdf: gpd.GeoDataFrame, target) -> float:
     if pts_gdf is None or len(pts_gdf) == 0:
@@ -60,6 +67,23 @@ def _basin_score(dist_m: float) -> float:
 
 def _complaint_score(n: int) -> float:
     return float(np.clip(n / 5.0, 0, 1))
+
+
+def _recommended_action(
+    risk: float, pavement: float, basin: float, topo: float, has_lidar: bool,
+) -> str:
+    """Choose one concise field action from the strongest risk signals."""
+    if risk >= 66 and pavement >= 0.7:
+        return "reconstruct"
+    if not has_lidar:
+        return "inspect" if risk >= 40 else "monitor"
+    if basin >= 0.8 and topo >= 0.45:
+        return "clear drainage"
+    if pavement >= 0.55:
+        return "crack-seal"
+    if risk >= 40:
+        return "inspect"
+    return "monitor"
 
 
 def _load(path):
@@ -125,6 +149,7 @@ def compute() -> None:
         rows.append({
             "geometry": sgmt.geometry,
             "segment_id": sgmt.get("inspect_id"),
+            "client_seg": sgmt.get("client_seg"),
             "street": sgmt.get("street"),
             "pci": round(float(sgmt["pci"]), 1) if np.isfinite(sgmt.get("pci", np.nan)) else None,
             "has_lidar": has_lidar,
@@ -159,6 +184,13 @@ def compute() -> None:
     gdf["risk_band"] = np.select(
         [gdf["curb_risk"] >= 66, gdf["curb_risk"] >= 40],
         ["High", "Moderate"], default="Low")
+    gdf["recommended_action"] = gdf.apply(
+        lambda r: _recommended_action(
+            float(r["curb_risk"]), float(r["_pav"]),
+            float(r["_basin"]), float(r["_topo_eff"]), bool(r["has_lidar"])),
+        axis=1,
+    )
+    gdf["hydraulic_assumptions"] = json.dumps(HYDRAULIC_ASSUMPTIONS, sort_keys=True)
 
     out = gdf.drop(columns=[c for c in gdf.columns if c.startswith("_")])
     out.to_crs(C.WGS84).to_file(C.SCORES_OUT, driver="GeoJSON")
@@ -185,21 +217,23 @@ def _write_sqlite(gdf: gpd.GeoDataFrame) -> None:
     cur.execute("DROP TABLE IF EXISTS segments")
     cur.execute("""
         CREATE TABLE segments (
-            segment_id TEXT, street TEXT, pci REAL, has_lidar INTEGER,
+            segment_id TEXT, client_seg TEXT, street TEXT, pci REAL, has_lidar INTEGER,
             ponding_depth_in REAL, catchment_sqft REAL, low_point_dist_m REAL,
             nearest_drain_m REAL, complaints_nearby INTEGER,
             topo_pts REAL, pavement_pts REAL, basin_pts REAL, complaint_pts REAL,
-            curb_risk REAL, risk_band TEXT, lat REAL, lon REAL, wkt TEXT
+            curb_risk REAL, risk_band TEXT, recommended_action TEXT,
+            hydraulic_assumptions TEXT, lat REAL, lon REAL, wkt TEXT
         )""")
     for _, r in gdf.iterrows():
         c = r.geometry.interpolate(0.5, normalized=True)
         cur.execute(
-            "INSERT INTO segments VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-            (r["segment_id"], r["street"], r["pci"], int(bool(r["has_lidar"])),
+            "INSERT INTO segments VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            (r["segment_id"], r["client_seg"], r["street"], r["pci"], int(bool(r["has_lidar"])),
              r["ponding_depth_in"], r["catchment_sqft"], r["low_point_dist_m"],
              r["nearest_drain_m"], int(r["complaints_nearby"]),
              r["topo_pts"], r["pavement_pts"], r["basin_pts"], r["complaint_pts"],
-             r["curb_risk"], r["risk_band"], c.y, c.x, r.geometry.wkt))
+             r["curb_risk"], r["risk_band"], r["recommended_action"],
+             r["hydraulic_assumptions"], c.y, c.x, r.geometry.wkt))
     con.commit()
     con.close()
 

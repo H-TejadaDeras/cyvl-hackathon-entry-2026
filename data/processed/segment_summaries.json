@@ -1,0 +1,85 @@
+{
+  "summaries": {
+    "IA11856": {
+      "summary": "Greene Street segment IA11856 has a CurbRisk score of 68.7 (High). The topography-imputed model estimates 0.0 inches of ponding from a 0 square-foot contributing area, with 0 nearby flood-related 311 reports. Recommended action: reconstruct.",
+      "vision": null,
+      "image_url": "https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images/GX020770_MP4_1763573988908775_front_3000.jpg",
+      "panoramic_url": "https://platform.cyvl.ai/3DViewer.html?image_url=https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images360/GS010079_360_1763573987178222_360_3000.jpg",
+      "source": "structured_fallback",
+      "model": null
+    },
+    "IA11179": {
+      "summary": "Avon Street segment IA11179 has a CurbRisk score of 63.1 (Moderate). The LiDAR-measured model estimates 5.0 inches of ponding from a 9644 square-foot contributing area, with 2 nearby flood-related 311 reports. Recommended action: clear drainage.",
+      "vision": null,
+      "image_url": "https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images/GX010747_MP4_1763391453998506_front_3000.jpg",
+      "panoramic_url": "https://platform.cyvl.ai/3DViewer.html?image_url=https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images360/GS030083_360_1764017211546528_360_3000.jpg",
+      "source": "structured_fallback",
+      "model": null
+    },
+    "IA11857": {
+      "summary": "Greene Street segment IA11857 has a CurbRisk score of 62.7 (Moderate). The topography-imputed model estimates 0.0 inches of ponding from a 0 square-foot contributing area, with 0 nearby flood-related 311 reports. Recommended action: inspect.",
+      "vision": null,
+      "image_url": "https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images/GX020770_MP4_1763573992908686_front_3000.jpg",
+      "panoramic_url": "https://platform.cyvl.ai/3DViewer.html?image_url=https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images360/GS010079_360_1763573990178030_360_3000.jpg",
+      "source": "structured_fallback",
+      "model": null
+    },
+    "IA11178": {
+      "summary": "Avon Street segment IA11178 has a CurbRisk score of 62.3 (Moderate). The LiDAR-measured model estimates 5.0 inches of ponding from a 9644 square-foot contributing area, with 2 nearby flood-related 311 reports. Recommended action: clear drainage.",
+      "vision": null,
+      "image_url": "https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images/GX010747_MP4_1763391452999558_front_3000.jpg",
+      "panoramic_url": "https://platform.cyvl.ai/3DViewer.html?image_url=https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images360/GS030083_360_1764017210546594_360_3000.jpg",
+      "source": "structured_fallback",
+      "model": null
+    },
+    "IA11176": {
+      "summary": "Avon Street segment IA11176 has a CurbRisk score of 62.3 (Moderate). The LiDAR-measured model estimates 5.0 inches of ponding from a 9644 square-foot contributing area, with 2 nearby flood-related 311 reports. Recommended action: clear drainage.",
+      "vision": null,
+      "image_url": "https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images/GX010747_MP4_1763391451001664_front_3000.jpg",
+      "panoramic_url": "https://platform.cyvl.ai/3DViewer.html?image_url=https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images360/GS020079_360_1763584748484911_360_3000.jpg",
+      "source": "structured_fallback",
+      "model": null
+    },
+    "IA02293": {
+      "summary": "Greene Street segment IA02293 has a CurbRisk score of 61.9 (Moderate). The topography-imputed model estimates 0.0 inches of ponding from a 0 square-foot contributing area, with 0 nearby flood-related 311 reports. Recommended action: inspect.",
+      "vision": null,
+      "image_url": "https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images/GX020770_MP4_1763573992908686_front_3000.jpg",
+      "panoramic_url": "https://platform.cyvl.ai/3DViewer.html?image_url=https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images360/GS010079_360_1763573993677805_360_3000.jpg",
+      "source": "structured_fallback",
+      "model": null
+    },
+    "IA11177": {
+      "summary": "Avon Street segment IA11177 has a CurbRisk score of 61.7 (Moderate). The LiDAR-measured model estimates 5.0 inches of ponding from a 9644 square-foot contributing area, with 2 nearby flood-related 311 reports. Recommended action: clear drainage.",
+      "vision": null,
+      "image_url": "https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images/GX010747_MP4_1763391452000611_front_3000.jpg",
+      "panoramic_url": "https://platform.cyvl.ai/3DViewer.html?image_url=https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images360/GS020079_360_1763584749484846_360_3000.jpg",
+      "source": "structured_fallback",
+      "model": null
+    },
+    "IA11185": {
+      "summary": "Avon Street segment IA11185 has a CurbRisk score of 61.6 (Moderate). The LiDAR-measured model estimates 4.2 inches of ponding from a 10386 square-foot contributing area, with 2 nearby flood-related 311 reports. Recommended action: clear drainage.",
+      "vision": null,
+      "image_url": "https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images/GX050770_MP4_1763584768669273_front_3000.jpg",
+      "panoramic_url": "https://platform.cyvl.ai/3DViewer.html?image_url=https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images360/GS030078_360_1763497871135402_360_3000.jpg",
+      "source": "structured_fallback",
+      "model": null
+    },
+    "IA11175": {
+      "summary": "Avon Street segment IA11175 has a CurbRisk score of 61.0 (Moderate). The LiDAR-measured model estimates 5.0 inches of ponding from a 9644 square-foot contributing area, with 2 nearby flood-related 311 reports. Recommended action: clear drainage.",
+      "vision": null,
+      "image_url": "https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images/GX010747_MP4_1763391450002716_front_3000.jpg",
+      "panoramic_url": "https://platform.cyvl.ai/3DViewer.html?image_url=https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images360/GS030078_360_1763497855136478_360_3000.jpg",
+      "source": "structured_fallback",
+      "model": null
+    },
+    "IA11173": {
+      "summary": "Avon Street segment IA11173 has a CurbRisk score of 61.0 (Moderate). The LiDAR-measured model estimates 5.0 inches of ponding from a 9644 square-foot contributing area, with 2 nearby flood-related 311 reports. Recommended action: clear drainage.",
+      "vision": null,
+      "image_url": "https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images/GX010747_MP4_1763391447005874_front_3000.jpg",
+      "panoramic_url": "https://platform.cyvl.ai/3DViewer.html?image_url=https://dcygqrjfsypox.cloudfront.net/0e9ad4538ce0a1b7876a5bcfd6275a942b2f92472dfa4b85e93f424eb4a62eda/images360/GS030083_360_1764017206546858_360_3000.jpg",
+      "source": "structured_fallback",
+      "model": null
+    }
+  },
+  "claude_error": "summary: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011Cc1hRegwMx1qjqs6ifpA4'}"
+}

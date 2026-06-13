@@ -17,7 +17,7 @@ import time
 
 from curbrisk.ingest import cyvl_ingest, opendata, lidar_dem
 from curbrisk.scoring import topo, risk
-from curbrisk.output import crosssection, aps_upload
+from curbrisk.output import crosssection, aps_upload, narrative
 
 
 def main(build_dem: bool = True) -> None:
@@ -31,6 +31,7 @@ def main(build_dem: bool = True) -> None:
     steps += [
         ("Topo / low points", topo.analyze),
         ("Risk scoring", risk.compute),
+        ("Plain-English summaries", narrative.generate),
         ("Cross-sections", crosssection.main),
         ("APS upload", aps_upload.upload_all),
     ]

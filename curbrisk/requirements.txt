@@ -10,3 +10,5 @@ ezdxf
 fastapi
 uvicorn
 requests
+anthropic
+python-dotenv
