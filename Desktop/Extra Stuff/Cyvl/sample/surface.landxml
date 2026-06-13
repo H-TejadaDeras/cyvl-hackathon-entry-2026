@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SAMPLE / STUB SURFACE — synthetic 9-point TIN inside the real Somerville demo tile.
+     Purpose: let Team B build and test the Civil 3D LandXML import workflow before the
+     real DTM exists. Coordinates are UTM 19N (EPSG:32619) so it lands in the right place.
+     Replace with curbrisk/export/landxml.py output (dem.tif -> LandXML) when ready. -->
+<LandXML xmlns="http://www.landxml.org/schema/LandXML-1.2"
+         version="1.2"
+         date="2026-06-13"
+         time="00:00:00">
+  <Units>
+    <Metric linearUnit="meter" areaUnit="squareMeter" volumeUnit="cubicMeter"
+            temperatureUnit="celsius" pressureUnit="milliBars"/>
+  </Units>
+  <CoordinateSystem epsgCode="32619" desc="UTM Zone 19N"/>
+  <Application name="CurbRisk" version="0.1.0"/>
+  <Surfaces>
+    <Surface name="CurbRisk_DTM_sample">
+      <Definition surfType="TIN">
+        <Pnts>
+          <P id="1">4694700.00 326850.00 12.50</P>
+          <P id="2">4694700.00 326900.00 12.30</P>
+          <P id="3">4694700.00 326950.00 12.60</P>
+          <P id="4">4694730.00 326850.00 12.40</P>
+          <P id="5">4694730.00 326900.00 12.10</P>
+          <P id="6">4694730.00 326950.00 12.45</P>
+          <P id="7">4694760.00 326850.00 12.55</P>
+          <P id="8">4694760.00 326900.00 12.35</P>
+          <P id="9">4694760.00 326950.00 12.65</P>
+        </Pnts>
+        <Faces>
+          <F>1 2 4</F>
+          <F>2 5 4</F>
+          <F>2 3 5</F>
+          <F>3 6 5</F>
+          <F>4 5 7</F>
+          <F>5 8 7</F>
+          <F>5 6 8</F>
+          <F>6 9 8</F>
+        </Faces>
+      </Definition>
+    </Surface>
+  </Surfaces>
+</LandXML>

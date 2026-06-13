@@ -1,0 +1,19 @@
+{
+  "tile_id": "global_xyz_rgb_icgu_5122_4000_4988",
+  "crs_processing": "EPSG:32619",
+  "crs_geojson": "EPSG:4326",
+  "generated_from": "STUB — hand-authored sample bundle (not real pipeline output)",
+  "generated_date": "2026-06-13",
+  "_note": "NF5 compliance: every field below is tagged measured (from Cyvl LiDAR/CV) or assumed (no as-built records; declared assumption). InfoDrainage/Civil 3D must surface assumed values distinctly.",
+  "fields": {
+    "surface_dtm": "measured",
+    "catchment_area_m2": "measured",
+    "mean_slope_pct": "measured",
+    "time_of_conc_min": "assumed",
+    "peak_runoff_cfs": "assumed",
+    "basin_location": "measured",
+    "grate_capacity_cfs": "assumed",
+    "pipe_diameter_in": "assumed",
+    "invert_elev_m": "assumed"
+  }
+}

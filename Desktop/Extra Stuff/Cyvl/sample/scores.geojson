@@ -1,0 +1,60 @@
+{
+  "type": "FeatureCollection",
+  "name": "scores_sample",
+  "_note": "STUB matching contract C1. Lets Team C build the API/AI/web against the real schema before Team A's pipeline lands. 3 segments + 1 gap. One row has a populated infodrainage block to exercise the C3 loop-back path; the rest are null (the app must render fine either way).",
+  "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "inspect_id": "SAMPLE-INSPECT-001", "client_seg": "SAMPLE-SEG-001", "kind": "segment",
+        "street": "Sample St", "pci": 41.0,
+        "drainage_gap_score": 78.5,
+        "pothole_risk_3mo": 0.22, "pothole_risk_6mo": 0.48, "pothole_risk_12mo": 0.71,
+        "flow_accum": 1840.0, "sink_depth_m": 0.06, "nearest_basin_m": 64.0,
+        "complaint_count_100m": 3, "fema_zone": null, "action": "drain",
+        "infodrainage": { "peak_flow_cfs": 3.2, "surcharge_ft": 0.4, "flood_volume_cf": 210.0, "drainage_time_min": 38.0 }
+      },
+      "geometry": { "type": "LineString", "coordinates": [[-71.1029,42.3850],[-71.1025,42.3851]] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "inspect_id": "SAMPLE-INSPECT-002", "client_seg": "SAMPLE-SEG-002", "kind": "segment",
+        "street": "Sample St", "pci": 67.0,
+        "drainage_gap_score": 35.0,
+        "pothole_risk_3mo": 0.05, "pothole_risk_6mo": 0.14, "pothole_risk_12mo": 0.30,
+        "flow_accum": 420.0, "sink_depth_m": 0.0, "nearest_basin_m": 22.0,
+        "complaint_count_100m": 0, "fema_zone": null, "action": "monitor",
+        "infodrainage": null
+      },
+      "geometry": { "type": "LineString", "coordinates": [[-71.1025,42.3851],[-71.1019,42.3851]] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "inspect_id": "SAMPLE-INSPECT-003", "client_seg": "SAMPLE-SEG-003", "kind": "segment",
+        "street": "Demo Ave", "pci": 28.0,
+        "drainage_gap_score": 88.0,
+        "pothole_risk_3mo": 0.41, "pothole_risk_6mo": 0.66, "pothole_risk_12mo": 0.85,
+        "flow_accum": 2510.0, "sink_depth_m": 0.12, "nearest_basin_m": 91.0,
+        "complaint_count_100m": 5, "fema_zone": "AE", "action": "reconstruct",
+        "infodrainage": null
+      },
+      "geometry": { "type": "LineString", "coordinates": [[-71.1019,42.3851],[-71.1012,42.3850]] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "inspect_id": "SAMPLE-GAP-001", "client_seg": "SAMPLE-SEG-003", "kind": "gap",
+        "street": "Demo Ave", "pci": null,
+        "drainage_gap_score": 92.0,
+        "pothole_risk_3mo": null, "pothole_risk_6mo": null, "pothole_risk_12mo": null,
+        "flow_accum": 2980.0, "sink_depth_m": 0.18, "nearest_basin_m": 110.0,
+        "complaint_count_100m": 6, "fema_zone": "AE", "action": "drain",
+        "infodrainage": null
+      },
+      "geometry": { "type": "Point", "coordinates": [-71.1015, 42.3850] }
+    }
+  ]
+}

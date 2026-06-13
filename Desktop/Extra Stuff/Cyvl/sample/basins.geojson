@@ -1,0 +1,34 @@
+{
+  "type": "FeatureCollection",
+  "name": "basins_sample",
+  "_note": "STUB. WGS84 (RFC 7946). 2 synthetic catch-basin nodes for the InfoDrainage scenario. Hydraulic fields are ASSUMED (see manifest.json). The real demo tile has no basins in it (see plan: Open Risks) — these stand in until a basin-bearing tile is chosen.",
+  "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_id": "BASIN-001",
+        "asset_type": "CATCH_BASIN",
+        "grate_capacity_cfs": 4.0,
+        "pipe_diameter_in": 12,
+        "invert_elev_m": 11.2,
+        "condition": "FAIR",
+        "image_url": "https://example.invalid/sample-basin-001.jpg"
+      },
+      "geometry": { "type": "Point", "coordinates": [-71.1022, 42.3851] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_id": "BASIN-002",
+        "asset_type": "CATCH_BASIN",
+        "grate_capacity_cfs": 6.0,
+        "pipe_diameter_in": 15,
+        "invert_elev_m": 10.9,
+        "condition": "GOOD",
+        "image_url": "https://example.invalid/sample-basin-002.jpg"
+      },
+      "geometry": { "type": "Point", "coordinates": [-71.1014, 42.3851] }
+    }
+  ]
+}

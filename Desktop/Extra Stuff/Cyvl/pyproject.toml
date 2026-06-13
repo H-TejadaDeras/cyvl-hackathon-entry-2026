@@ -1,0 +1,53 @@
+[project]
+name = "curbrisk"
+version = "0.1.0"
+description = "Terrain-informed infrastructure risk service: ranks streets and drainage gaps by flood and pavement-failure risk from Cyvl LiDAR."
+requires-python = ">=3.11"
+dependencies = [
+    # --- Geospatial core (Team A: ingest, terrain, hydro, scoring) ---
+    "geopandas>=0.14",
+    "shapely>=2.0",
+    "fiona>=1.9",
+    "pyproj>=3.6",
+    "rasterio>=1.3",
+    "numpy>=1.26",
+    "scipy>=1.11",
+    # --- LiDAR ground classification (Team A: terrain) ---
+    # PDAL has heavy native deps; install via conda-forge if pip fails.
+    # `laspy` + a morphological filter is the documented fallback (see plan: Open Risks).
+    "pdal>=3.4",
+    "laspy[laszip]>=2.5",
+    # --- Hydrology: D8 flow direction / accumulation / sinks (Team A: hydro) ---
+    "whitebox>=2.3",
+    # --- Pothole risk model (Team A: scoring, later phase) ---
+    "scikit-learn>=1.4",
+    # --- Autodesk export seam (Team A -> Team B: export) ---
+    "ezdxf>=1.1",            # DXF authoring + LandXML helpers
+    # --- API + web demo (Team C) ---
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.29",
+    "pydantic>=2.6",
+    # --- Claude intelligence layer (Team C: ai) ---
+    "anthropic>=0.40",
+    # --- Cross-section rendering (Team C: api/crosssection) ---
+    "matplotlib>=3.8",
+    # --- HTTP for external ingest + geocoding (Team A/C) ---
+    "httpx>=0.27",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.4",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["curbrisk*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
