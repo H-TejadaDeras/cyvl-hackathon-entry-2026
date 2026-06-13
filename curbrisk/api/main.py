@@ -445,6 +445,11 @@ const SEVC={High:'#d9352a',Medium:'#e8a33d',Low:'#f2d15b'};
 const fmt=v=>(v===null||v===undefined)?'—':v;
 
 /* ---------- APS viewer ---------- */
+function showViewerError(msg){
+  $('fv').innerHTML='<div style="color:#e6edf3;padding:28px;max-width:520px;font:14px/1.6 system-ui">'
+    +'<h3 style="color:#ff9d9d;margin:0 0 8px">3-D model failed to load</h3>'
+    +'<p style="color:#9fb1c9">'+msg+'</p></div>';
+}
 Autodesk.Viewing.Initializer({env:'AutodeskProduction',api:'streamingV2',
   getAccessToken:cb=>fetch('/aps/token').then(r=>r.json()).then(t=>cb(t.access_token,t.expires_in))},
   ()=>{
@@ -452,12 +457,21 @@ Autodesk.Viewing.Initializer({env:'AutodeskProduction',api:'streamingV2',
     viewer.start();
     viewer.setBackgroundColor(20,26,34,12,16,22);
     Autodesk.Viewing.Document.load('urn:'+URN, doc=>{
-      viewer.loadDocumentNode(doc, doc.getRoot().getDefaultGeometry()).then(()=>{
+      const root=doc.getRoot();
+      // A DXF translates to several viewables: a 3-D View (the extruded road +
+      // water + crack meshes — what we want), a 2-D View, and an empty paperspace
+      // "Layout1". getDefaultGeometry() can resolve to that empty layout and show
+      // nothing, so pick the 3-D geometry explicitly, then fall back gracefully.
+      const g3d=root.search({type:'geometry',role:'3d'});
+      const g2d=root.search({type:'geometry',role:'2d'});
+      const geom=(g3d&&g3d[0])||(g2d&&g2d[0])||root.getDefaultGeometry();
+      if(!geom){ showViewerError('No renderable viewable found in this model.'); return; }
+      viewer.loadDocumentNode(doc, geom).then(()=>{
         viewer.addEventListener(Autodesk.Viewing.GEOMETRY_LOADED_EVENT, mapCracks);
         viewer.addEventListener(Autodesk.Viewing.SELECTION_CHANGED_EVENT, onViewerSelect);
         viewer.fitToView();
-      });
-    }, (code,msg)=>{ $('fv').innerHTML='<p style="color:#fff;padding:20px">Viewer failed ('+code+'): '+msg+'</p>'; });
+      }).catch(err=>showViewerError('Could not load the geometry: '+(err&&err.message?err.message:err)));
+    }, (code,msg)=>{ showViewerError('Document load error '+code+': '+msg); });
   });
 
 function mapCracks(){
